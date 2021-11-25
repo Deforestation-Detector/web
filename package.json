@@ -1,0 +1,19 @@
+{
+  "name": "threejs-template",
+  "version": "1.0.0",
+  "description": "Template for vanilla Three.js projects",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JMBeresford/threejs-template.git"
+  },
+  "author": "John Beresford",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JMBeresford/threejs-template/issues"
+  },
+  "homepage": "https://github.com/JMBeresford/threejs-template#readme"
+}
