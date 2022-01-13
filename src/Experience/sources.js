@@ -1,34 +1,97 @@
-import envMapPx from '../img/envMap/px.jpg';
-import envMapNx from '../img/envMap/nx.jpg';
-import envMapPy from '../img/envMap/py.jpg';
-import envMapNy from '../img/envMap/ny.jpg';
-import envMapPz from '../img/envMap/pz.jpg';
-import envMapNz from '../img/envMap/nz.jpg';
+/**
+ * TILES
+ */
+import tile11 from '../img/tiles/tl_11.jpg';
+import tile12 from '../img/tiles/tl_12.jpg';
+import tile13 from '../img/tiles/tl_13.jpg';
+import tile21 from '../img/tiles/tl_21.jpg';
+import tile22 from '../img/tiles/tl_22.jpg';
+import tile23 from '../img/tiles/tl_23.jpg';
+import tile31 from '../img/tiles/tl_31.jpg';
+import tile32 from '../img/tiles/tl_32.jpg';
+import tile33 from '../img/tiles/tl_33.jpg';
 
-import dirtAlbedo from '../img/floor/albedo.jpg';
-import dirtNormal from '../img/floor/normal.jpg';
+/**
+ * HEIGHT MAPS
+ */
+import tileHeight33 from '../img/tileHeightmaps/tl_33.jpg';
 
-import foxModel from '../models/fox/Fox.gltf';
+/**
+ * MATCAPS
+ */
+import glossMatcap from '../img/matcaps/gloss.png';
+import metalMatcap from '../img/matcaps/metal.png';
+import diffuseMatcap from '../img/matcaps/diffuse.png';
 
 export default [
+  // TILES
   {
-    name: 'envMapTexture',
-    type: 'cubeTexture',
-    path: [envMapPx, envMapNx, envMapPy, envMapNy, envMapPz, envMapNz],
-  },
-  {
-    name: 'dirtAlbedoMap',
+    name: 'tile11',
     type: 'texture',
-    path: dirtAlbedo,
+    path: tile11,
   },
   {
-    name: 'dirtNormalMap',
+    name: 'tile12',
     type: 'texture',
-    path: dirtNormal,
+    path: tile12,
   },
   {
-    name: 'foxModel',
-    type: 'gltfModel',
-    path: foxModel,
+    name: 'tile13',
+    type: 'texture',
+    path: tile13,
+  },
+  {
+    name: 'tile21',
+    type: 'texture',
+    path: tile21,
+  },
+  {
+    name: 'tile22',
+    type: 'texture',
+    path: tile22,
+  },
+  {
+    name: 'tile23',
+    type: 'texture',
+    path: tile23,
+  },
+  {
+    name: 'tile31',
+    type: 'texture',
+    path: tile31,
+  },
+  {
+    name: 'tile32',
+    type: 'texture',
+    path: tile32,
+  },
+  {
+    name: 'tile33',
+    type: 'texture',
+    path: tile33,
+  },
+
+  // HEIGHT MAPS
+  {
+    name: 'tileHeight33',
+    type: 'texture',
+    path: tileHeight33,
+  },
+
+  // MATCAPS
+  {
+    name: 'glossMatcap',
+    type: 'texture',
+    path: glossMatcap,
+  },
+  {
+    name: 'metalMatcap',
+    type: 'texture',
+    path: metalMatcap,
+  },
+  {
+    name: 'diffuseMatcap',
+    type: 'texture',
+    path: diffuseMatcap,
   },
 ];

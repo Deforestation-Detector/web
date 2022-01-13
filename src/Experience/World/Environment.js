@@ -1,5 +1,7 @@
-import { DirectionalLight, sRGBEncoding } from 'three';
+import { DirectionalLight, sRGBEncoding, Color } from 'three';
 import Experience from '..';
+
+const col = new Color();
 
 export default class Environment {
   constructor() {
@@ -8,8 +10,25 @@ export default class Environment {
 
     this.scene = this.experience.scene;
     this.resources = this.experience.resources;
-    this.setSun();
-    this.setEnvMap();
+
+    if (this.experience.debug.active) {
+      this.debugFolder = this.experience.debug.pane.addFolder({
+        title: 'World',
+        expanded: false,
+      });
+
+      this.debugParams = {
+        sky: { r: 0, g: 0, b: 0 },
+      };
+
+      this.debugFolder
+        .addInput(this.debugParams, 'sky', { picker: 'inline' })
+        .on('change', (e) => {
+          col.setRGB(e.value.r / 255, e.value.g / 255, e.value.b / 255);
+
+          this.experience.renderer.instance.setClearColor(col, 1);
+        });
+    }
 
     return this;
   }
@@ -22,16 +41,5 @@ export default class Environment {
     this.sun.shadow.normalBias = 0.05;
     this.sun.position.set(3, 3, -2.25);
     this.scene.add(this.sun);
-  }
-
-  setEnvMap() {
-    this.envMap = {
-      intensity: 0.4,
-      texture: this.resources.items['envMapTexture'],
-    };
-
-    this.envMap.texture.encoding = sRGBEncoding;
-
-    this.scene.environment = this.envMap.texture;
   }
 }

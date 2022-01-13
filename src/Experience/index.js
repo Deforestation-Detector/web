@@ -1,7 +1,7 @@
-import { Clock, Debug, Resources, Sizes } from './Utils';
+import { Clock, Debug, Mouse, Resources, Sizes } from './Utils';
 import Camera from './Camera';
 import Renderer from './Renderer';
-import { Mesh, Scene } from 'three';
+import { Mesh, Raycaster, Scene } from 'three';
 import World from './World';
 import sources from './sources';
 
@@ -63,6 +63,16 @@ export default class Experience {
     this.renderer = new Renderer();
 
     /**
+     * Mouse Coordinates
+     */
+    this.mouse = new Mouse();
+
+    /**
+     * Raycaster
+     */
+    this.raycaster = new Raycaster();
+
+    /**
      * Resources
      */
 
@@ -84,7 +94,10 @@ export default class Experience {
   update() {
     this.camera.update();
     this.renderer.update();
-    this.world.update();
+    this.raycaster.setFromCamera(
+      { x: this.mouse.x, y: this.mouse.y },
+      this.camera.instance
+    );
   }
 
   destroy() {
@@ -108,6 +121,8 @@ export default class Experience {
     this.camera.controls.dispose();
 
     this.renderer.instance.dispose();
+
+    this.mouse.dispose();
 
     if (this.debug.active) {
       this.debug.pane.dispose();

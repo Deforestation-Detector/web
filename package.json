@@ -1,7 +1,6 @@
 {
-  "name": "threejs-template",
+  "name": "cse115-project",
   "version": "1.0.0",
-  "description": "Template for vanilla Three.js projects",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack serve --mode=development",
@@ -9,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JMBeresford/threejs-template.git"
+    "url": "git+https://github.com/JMBeresford/cse115-project.git"
   },
   "author": "John Beresford",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/JMBeresford/threejs-template/issues"
+    "url": "https://github.com/JMBeresford/cse115-project/issues"
   },
-  "homepage": "https://github.com/JMBeresford/threejs-template#readme",
+  "homepage": "https://github.com/JMBeresford/cse115-project#readme",
   "dependencies": {
     "css-loader": "^6.5.1",
     "file-loader": "^6.2.0",
