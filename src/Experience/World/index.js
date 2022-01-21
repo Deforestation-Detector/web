@@ -1,7 +1,7 @@
 import { BoxGeometry, Mesh, MeshBasicMaterial } from 'three';
 import Experience from '..';
 import Environment from './Environment';
-import Tiles from './Tiles';
+import Terrain from './Terrain';
 export default class World {
   constructor() {
     // retrieve singleton instance of Experience
@@ -12,7 +12,7 @@ export default class World {
 
     this.resources.on('ready', () => {
       this.environment = new Environment();
-      this.tiles = new Tiles();
+      this.terrain = new Terrain();
     });
 
     return this;

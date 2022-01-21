@@ -28,6 +28,12 @@ export default class Resources extends EventEmitter {
       cubeTextureLoader: new CubeTextureLoader(),
       dracoLoader: new DRACOLoader(),
     };
+
+    this.loaders.dracoLoader.setDecoderPath(
+      'https://www.gstatic.com/draco/versioned/decoders/1.4.3/'
+    );
+
+    this.loaders.gltfLoader.setDRACOLoader(this.loaders.dracoLoader);
   }
 
   startLoading() {

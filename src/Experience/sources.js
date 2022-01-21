@@ -12,6 +12,11 @@ import tile32 from '../img/tiles/tl_32.jpg';
 import tile33 from '../img/tiles/tl_33.jpg';
 
 /**
+ * MODELS
+ */
+import terrainModel from '../models/terrain.glb';
+
+/**
  * HEIGHT MAPS
  */
 import tileHeight33 from '../img/tileHeightmaps/tl_33.jpg';
@@ -21,7 +26,8 @@ import tileHeight33 from '../img/tileHeightmaps/tl_33.jpg';
  */
 import glossMatcap from '../img/matcaps/gloss.png';
 import metalMatcap from '../img/matcaps/metal.png';
-import diffuseMatcap from '../img/matcaps/diffuse.png';
+import grassMatcap from '../img/matcaps/grass.png';
+import sandMatcap from '../img/matcaps/sand.png';
 
 export default [
   // TILES
@@ -71,6 +77,13 @@ export default [
     path: tile33,
   },
 
+  // MODELS
+  {
+    name: 'terrainModel',
+    type: 'gltfModel',
+    path: terrainModel,
+  },
+
   // HEIGHT MAPS
   {
     name: 'tileHeight33',
@@ -90,8 +103,13 @@ export default [
     path: metalMatcap,
   },
   {
-    name: 'diffuseMatcap',
+    name: 'grassMatcap',
     type: 'texture',
-    path: diffuseMatcap,
+    path: grassMatcap,
+  },
+  {
+    name: 'sandMatcap',
+    type: 'texture',
+    path: sandMatcap,
   },
 ];

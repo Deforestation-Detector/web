@@ -3,7 +3,7 @@ import { PerspectiveCamera } from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
 export default class Camera {
-  constructor(fov = 35, near = 0.1, far = 100) {
+  constructor(fov = 35, near = 0.1, far = 2000) {
     // grab singleton instance of Experience
     this.experience = new Experience();
     this.sizes = this.experience.sizes;
@@ -25,7 +25,7 @@ export default class Camera {
       far
     );
 
-    this.instance.position.set(0, 6, 12);
+    this.instance.position.set(0, 200, 50);
     this.scene.add(this.instance);
   }
 

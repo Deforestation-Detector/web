@@ -42,7 +42,7 @@ module.exports = {
       },
       // Models
       {
-        test: /\.(gltf|obj)$/,
+        test: /\.(gltf|obj|glb)$/,
         use: ['file-loader'],
       },
     ],
