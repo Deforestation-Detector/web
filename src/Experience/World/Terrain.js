@@ -25,6 +25,7 @@ export default class Terrain {
       } else if (child instanceof Mesh && child.name === 'sand') {
         child.material = new MeshMatcapMaterial({
           matcap: this.resources.items['sandMatcap'],
+          color: '#f2c078',
         });
       }
     });
