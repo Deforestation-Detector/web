@@ -69,8 +69,8 @@ export default class Renderer {
 
     this.instance.physicallyCorrectLights = true;
     this.instance.outputEncoding = sRGBEncoding;
-    this.instance.toneMapping = ACESFilmicToneMapping;
-    this.instance.toneMappingExposure = 1.25;
+    this.instance.toneMapping = ReinhardToneMapping;
+    // this.instance.toneMappingExposure = 1.25;
     this.instance.shadowMap.enabled = shadows;
     this.instance.shadowMap.type = PCFSoftShadowMap;
     this.instance.setClearColor('#454944');

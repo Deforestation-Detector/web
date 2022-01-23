@@ -26,8 +26,9 @@ import tileHeight33 from '../img/tileHeightmaps/tl_33.jpg';
  */
 import glossMatcap from '../img/matcaps/gloss.png';
 import metalMatcap from '../img/matcaps/metal.png';
-import grassMatcap from '../img/matcaps/grass.png';
+import grassMatcap from '../img/matcaps/grass3.png';
 import sandMatcap from '../img/matcaps/sand.png';
+import waterMatcap from '../img/matcaps/water.png';
 
 export default [
   // TILES
@@ -111,5 +112,10 @@ export default [
     name: 'sandMatcap',
     type: 'texture',
     path: sandMatcap,
+  },
+  {
+    name: 'waterMatcap',
+    type: 'texture',
+    path: waterMatcap,
   },
 ];
