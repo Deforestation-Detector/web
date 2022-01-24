@@ -25,12 +25,22 @@ export default class Camera {
       far
     );
 
-    this.instance.position.set(0, 200, 50);
+    this.instance.position.set(
+      -2.789958503768538,
+      25.84389344147691,
+      17.08812818338609
+    );
+
     this.scene.add(this.instance);
   }
 
   setControls() {
     this.controls = new OrbitControls(this.instance, this.canvas);
+    this.controls.target.set(
+      -2.789958503768538,
+      25.44389344147691,
+      15.08812818338609
+    );
     this.controls.enableDamping = true;
     Camera._controls = this.controls;
   }

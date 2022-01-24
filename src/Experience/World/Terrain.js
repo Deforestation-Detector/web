@@ -8,6 +8,7 @@ export default class Terrain {
 
     this.setModel();
     this.setMaterials();
+    this.traverseModel();
     this.addToScene();
   }
 
@@ -16,38 +17,64 @@ export default class Terrain {
   }
 
   setMaterials() {
-    const grass = this.resources.items['grassMatcap'];
-    const sand = this.resources.items['sandMatcap'];
-    const water = this.resources.items['waterMatcap'];
+    this.grass = this.resources.items['grassMatcap'];
+    this.sand = this.resources.items['sandMatcap'];
+    this.redSand = this.resources.items['redSandMatcap'];
+    this.water = this.resources.items['waterMatcap'];
+    this.pineLeaves = this.resources.items['pineLeavesMatcap'];
+    this.pineWood = this.resources.items['pineWoodMatcap'];
+    this.birchLeaves = this.resources.items['birchLeavesMatcap'];
+    this.birchWood = this.resources.items['birchWoodMatcap'];
 
-    grass.encoding = sRGBEncoding;
-    sand.encoding = sRGBEncoding;
-    water.encoding = sRGBEncoding;
+    this.grass.encoding = sRGBEncoding;
+    this.sand.encoding = sRGBEncoding;
+    this.redSand.encoding = sRGBEncoding;
+    this.water.encoding = sRGBEncoding;
+    this.pineLeaves.encoding = sRGBEncoding;
+    this.pineWood.encoding = sRGBEncoding;
+    this.birchLeaves.encoding = sRGBEncoding;
+    this.birchWood.encoding = sRGBEncoding;
+  }
 
+  traverseModel() {
     this.model.scene.traverse((child) => {
       if (
         child instanceof Mesh &&
         ['large_grass', 'small_grass', 'medium_grass'].includes(child.name)
       ) {
         child.material = new MeshMatcapMaterial({
-          matcap: grass,
+          matcap: this.grass,
         });
       } else if (
         child instanceof Mesh &&
         ['large_island', 'small_island', 'medium_island'].includes(child.name)
       ) {
         child.material = new MeshMatcapMaterial({
-          matcap: sand,
-          color: '#333333',
+          matcap: this.redSand,
         });
       } else if (child instanceof Mesh && child.name === 'beach') {
         child.material = new MeshMatcapMaterial({
-          matcap: sand,
-          color: '#eeeeee',
+          matcap: this.sand,
         });
       } else if (child instanceof Mesh && child.name === 'river') {
         child.material = new MeshMatcapMaterial({
-          matcap: water,
+          matcap: this.water,
+        });
+      } else if (child instanceof Mesh && child.name === 'pine_leaves') {
+        child.material = new MeshMatcapMaterial({
+          matcap: this.pineLeaves,
+        });
+      } else if (child instanceof Mesh && child.name === 'pine_wood') {
+        child.material = new MeshMatcapMaterial({
+          matcap: this.pineWood,
+        });
+      } else if (child instanceof Mesh && child.name === 'birch_leaves') {
+        child.material = new MeshMatcapMaterial({
+          matcap: this.birchLeaves,
+        });
+      } else if (child instanceof Mesh && child.name === 'birch_wood') {
+        child.material = new MeshMatcapMaterial({
+          matcap: this.birchWood,
         });
       }
     });

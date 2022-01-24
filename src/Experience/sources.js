@@ -26,8 +26,13 @@ import tileHeight33 from '../img/tileHeightmaps/tl_33.jpg';
  */
 import glossMatcap from '../img/matcaps/gloss.png';
 import metalMatcap from '../img/matcaps/metal.png';
-import grassMatcap from '../img/matcaps/grass.png';
-import sandMatcap from '../img/matcaps/sand.png';
+import pineLeavesMatcap from '../img/matcaps/pineLeaves.png';
+import pineWoodMatcap from '../img/matcaps/pineWood.png';
+import birchLeavesMatcap from '../img/matcaps/birchLeaves.png';
+import birchWoodMatcap from '../img/matcaps/birchWood.jpg';
+import grassMatcap from '../img/matcaps/grass3.png';
+import sandMatcap from '../img/matcaps/sand2.png';
+import redSandMatcap from '../img/matcaps/redSand.png';
 import waterMatcap from '../img/matcaps/water.png';
 
 export default [
@@ -114,8 +119,33 @@ export default [
     path: sandMatcap,
   },
   {
+    name: 'redSandMatcap',
+    type: 'texture',
+    path: redSandMatcap,
+  },
+  {
     name: 'waterMatcap',
     type: 'texture',
     path: waterMatcap,
+  },
+  {
+    name: 'pineLeavesMatcap',
+    type: 'texture',
+    path: pineLeavesMatcap,
+  },
+  {
+    name: 'pineWoodMatcap',
+    type: 'texture',
+    path: pineWoodMatcap,
+  },
+  {
+    name: 'birchLeavesMatcap',
+    type: 'texture',
+    path: birchLeavesMatcap,
+  },
+  {
+    name: 'birchWoodMatcap',
+    type: 'texture',
+    path: birchWoodMatcap,
   },
 ];
