@@ -77,6 +77,7 @@ export default class Experience {
      */
 
     this.resources = new Resources(sources);
+    this.resources.on('ready', () => this.init());
 
     /**
      * World
@@ -84,6 +85,14 @@ export default class Experience {
     this.world = new World();
 
     return this;
+  }
+
+  init() {
+    document.querySelector('.navLink').onclick = () => {
+      document.getElementById('learnMore').classList.add('in');
+    };
+    document.getElementById('content').classList.add('in');
+    // TRANSITION LOAD PAGE OUT
   }
 
   resize() {

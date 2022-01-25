@@ -5,3 +5,75 @@
   box-sizing: border-box;
   overflow: hidden;
 }
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+#content {
+  position: fixed;
+  inset: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  color: white;
+}
+
+#content:not(.in) {
+  display: none;
+}
+
+#content > * {
+  width: clamp(300px, 100%, 1500px);
+  max-width: 90vw;
+}
+
+header {
+  height: clamp(75px, 10vh, 120px);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h2 {
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.navLink {
+  cursor: pointer;
+  font-weight: 200;
+}
+
+.domComponent {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+
+  height: 100%;
+}
+
+.domComponent:not(.in) {
+  display: none;
+}
+
+.in {
+  animation-name: fadein;
+
+  animation-duration: 0.5s;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes fadein {
+  0% {
+    display: initial;
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

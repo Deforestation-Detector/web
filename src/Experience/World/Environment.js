@@ -1,7 +1,7 @@
 import { DirectionalLight, sRGBEncoding, Color } from 'three';
 import Experience from '..';
 
-const col = new Color();
+const col = new Color('#454944');
 
 export default class Environment {
   constructor() {
@@ -18,7 +18,7 @@ export default class Environment {
       });
 
       this.debugParams = {
-        sky: { r: 0, g: 0, b: 0 },
+        sky: { r: col.r * 255, g: col.g * 255, b: col.b * 255 },
       };
 
       this.debugFolder
@@ -36,10 +36,10 @@ export default class Environment {
   setSun() {
     this.sun = new DirectionalLight('#ffffff', 4);
     this.sun.castShadow = true;
-    this.sun.shadow.camera.far = 15;
+    this.sun.shadow.camera.far = 200;
     this.sun.shadow.mapSize.set(1024, 1024);
     this.sun.shadow.normalBias = 0.05;
-    this.sun.position.set(3, 3, -2.25);
+    this.sun.position.set(3, 50, -2.25);
     this.scene.add(this.sun);
   }
 }
