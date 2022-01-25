@@ -83,3 +83,123 @@ header h2 {
     opacity: 1;
   }
 }
+
+/* Code below here is stylization for the loading page */
+.quiver {
+  position: fixed;
+  bottom: 50%;
+  left: 50%;
+  z-index: 899;
+  margin-bottom: -50px;
+  margin-left: -50px;
+  width: fit-content;
+}
+
+.arrows {
+  -moz-animation: equalizor cubic-bezier(0.77, 0, 0.175, 1) 0.5s alternate-reverse infinite;
+  -webkit-animation: equalizor cubic-bezier(0.77, 0, 0.175, 1) 0.5s alternate-reverse infinite;
+  animation: equalizor cubic-bezier(0.77, 0, 0.175, 1) 0.5s alternate-reverse infinite;
+  vertical-align: baseline;
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 10px 1px 10px;
+  border-color: rgba(255, 255, 255, 0) rgba(255, 255, 255, 0) #0B486B rgba(255, 255, 255, 0);
+}
+
+.st {
+  border-bottom-color: #1A4C1D;
+}
+
+.nd {
+  border-bottom-color: #246A29;
+}
+
+.rd {
+  border-bottom-color: #2F8935;
+}
+
+.th {
+  border-bottom-color: #39A741;
+}
+
+.fth {
+  border-bottom-color: #49C151;
+}
+
+span:nth-child(1) {
+  -moz-animation-delay: 0s;
+  -webkit-animation-delay: 0s;
+  animation-delay: 0s;
+}
+
+span:nth-child(2) {
+  -moz-animation-delay: 0.1s;
+  -webkit-animation-delay: 0.1s;
+  animation-delay: 0.1s;
+}
+
+span:nth-child(3) {
+  -moz-animation-delay: 0.2s;
+  -webkit-animation-delay: 0.2s;
+  animation-delay: 0.2s;
+}
+
+span:nth-child(4) {
+  -moz-animation-delay: 0.3s;
+  -webkit-animation-delay: 0.3s;
+  animation-delay: 0.3s;
+}
+
+span:nth-child(5) {
+  -moz-animation-delay: 0.4s;
+  -webkit-animation-delay: 0.4s;
+  animation-delay: 0.4s;
+}
+
+@-moz-keyframes equalizor {
+  from {
+    border-bottom-width: 60px;
+  }
+  to {
+    border-bottom-width: 1px;
+  }
+}
+@-webkit-keyframes equalizor {
+  from {
+    border-bottom-width: 60px;
+  }
+  to {
+    border-bottom-width: 1px;
+  }
+}
+@keyframes equalizor {
+  from {
+    border-bottom-width: 60px;
+  }
+  to {
+    border-bottom-width: 1px;
+  }
+}
+
+.loading-body {
+  background-color: #091109;
+  height: 100%;
+  width: 100%;
+}
+
+.loading {
+  display: block;
+  text-align: center;
+  font: normal 22px/1em "Merriweather Sans", sans-serif;
+  text-transform: uppercase;
+  color: #CFF09E;
+}
+
+.percentage {
+  display: block;
+  text-align: center;
+  font: normal 22px/1em "Merriweather Sans", sans-serif;
+  color: #CFF09E;
+}
