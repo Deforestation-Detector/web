@@ -19,6 +19,9 @@ body {
   align-items: center;
 
   color: white;
+
+  pointer-events: none;
+  touch-action: none;
 }
 
 #content:not(.in) {
@@ -45,6 +48,9 @@ header h2 {
 .navLink {
   cursor: pointer;
   font-weight: 200;
+
+  pointer-events: all;
+  touch-action: all;
 }
 
 .domComponent {
