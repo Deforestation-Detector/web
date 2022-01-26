@@ -1,21 +1,27 @@
+@use 'styles/fonts';
+
 * {
   margin: 0;
   padding: 0;
+
   box-sizing: border-box;
   overflow: hidden;
 }
 
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: fonts.$sans-serif;
 }
 
 #content {
   position: fixed;
   inset: 0;
+
   display: flex;
   flex-direction: column;
   align-items: center;
+
   color: white;
+
   pointer-events: none;
   touch-action: none;
 }
@@ -31,18 +37,20 @@ body {
 
 header {
   height: clamp(75px, 10vh, 120px);
+
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 header h2 {
-  font-family: "Cormorant Garamond", serif;
+  font-family: fonts.$serif;
 }
 
 .navLink {
   cursor: pointer;
   font-weight: 200;
+
   pointer-events: all;
   touch-action: all;
 }
@@ -50,7 +58,9 @@ header h2 {
 .domComponent {
   display: flex;
   flex-direction: column;
+
   justify-content: center;
+
   height: 100%;
 }
 
@@ -59,22 +69,10 @@ header h2 {
 }
 
 .in {
-  -webkit-animation-name: fadein;
-          animation-name: fadein;
-  -webkit-animation-duration: 0.5s;
-          animation-duration: 0.5s;
-  -webkit-animation-timing-function: ease-in-out;
-          animation-timing-function: ease-in-out;
-}
+  animation-name: fadein;
 
-@-webkit-keyframes fadein {
-  0% {
-    display: initial;
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+  animation-duration: 0.5s;
+  animation-timing-function: ease-in-out;
 }
 
 @keyframes fadein {
@@ -82,10 +80,12 @@ header h2 {
     display: initial;
     opacity: 0;
   }
+
   100% {
     opacity: 1;
   }
 }
+
 /* Code below here is stylization for the loading page */
 .loading-body {
   background-color: #091109;
@@ -95,22 +95,20 @@ header h2 {
 
 .loading-text {
   display: block;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
   width: fit-content;
   text-align: center;
 }
 
 .loading {
   display: inline-block;
-  font: normal 17px/1em "Merriweather Sans", sans-serif;
+  font: normal 17px/1em 'Merriweather Sans', sans-serif;
   text-transform: uppercase;
   color: #cff09e;
 }
 
 .percentage {
   display: inline-block;
-  font: normal 17px/1em "Merriweather Sans", sans-serif;
+  font: normal 17px/1em 'Merriweather Sans', sans-serif;
   color: #cff09e;
 }
 
@@ -121,21 +119,24 @@ header h2 {
   z-index: 899;
   margin-bottom: -50px;
   margin-left: -50px;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
   width: fit-content;
 }
 
 .arrows {
-  -webkit-animation: equalizor cubic-bezier(0.77, 0, 0.175, 1) 0.5s alternate-reverse infinite;
-  animation: equalizor cubic-bezier(0.77, 0, 0.175, 1) 0.5s alternate-reverse infinite;
+  -moz-animation: equalizor cubic-bezier(0.77, 0, 0.175, 1) 0.5s
+    alternate-reverse infinite;
+  -webkit-animation: equalizor cubic-bezier(0.77, 0, 0.175, 1) 0.5s
+    alternate-reverse infinite;
+  animation: equalizor cubic-bezier(0.77, 0, 0.175, 1) 0.5s alternate-reverse
+    infinite;
   vertical-align: baseline;
   display: inline-block;
   width: 0;
   height: 0;
   border-style: solid;
   border-width: 0 10px 1px 10px;
-  border-color: rgba(255, 255, 255, 0) rgba(255, 255, 255, 0) #0b486b rgba(255, 255, 255, 0);
+  border-color: rgba(255, 255, 255, 0) rgba(255, 255, 255, 0) #0b486b
+    rgba(255, 255, 255, 0);
 }
 
 .st {
@@ -159,28 +160,42 @@ header h2 {
 }
 
 span:nth-child(1) {
+  -moz-animation-delay: 0s;
   -webkit-animation-delay: 0s;
   animation-delay: 0s;
 }
 
 span:nth-child(2) {
+  -moz-animation-delay: 0.1s;
   -webkit-animation-delay: 0.1s;
   animation-delay: 0.1s;
 }
 
 span:nth-child(3) {
+  -moz-animation-delay: 0.2s;
   -webkit-animation-delay: 0.2s;
   animation-delay: 0.2s;
 }
 
 span:nth-child(4) {
+  -moz-animation-delay: 0.3s;
   -webkit-animation-delay: 0.3s;
   animation-delay: 0.3s;
 }
 
 span:nth-child(5) {
+  -moz-animation-delay: 0.4s;
   -webkit-animation-delay: 0.4s;
   animation-delay: 0.4s;
+}
+
+@-moz-keyframes equalizor {
+  from {
+    border-bottom-width: 60px;
+  }
+  to {
+    border-bottom-width: 1px;
+  }
 }
 @-webkit-keyframes equalizor {
   from {
@@ -198,5 +213,3 @@ span:nth-child(5) {
     border-bottom-width: 1px;
   }
 }
-
-/*# sourceMappingURL=style.css.map */
