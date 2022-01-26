@@ -78,6 +78,13 @@ export default class Experience {
 
     this.resources = new Resources(sources);
     this.resources.on('ready', () => this.init());
+    this.resources.on('loaded', () => {
+      let el = document.querySelector('#loadpage .percentage');
+
+      el.innerHTML = `${Math.floor(
+        (this.resources.loaded / this.resources.toLoad) * 100
+      )}%`;
+    });
 
     /**
      * World
@@ -91,8 +98,9 @@ export default class Experience {
     document.querySelector('.navLink').onclick = () => {
       document.getElementById('learnMore').classList.add('in');
     };
+
     document.getElementById('content').classList.add('in');
-    // TRANSITION LOAD PAGE OUT
+    document.getElementById('loadpage').classList.remove('in');
   }
 
   resize() {

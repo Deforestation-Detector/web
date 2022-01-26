@@ -1,0 +1,142 @@
+@use './animations' as *;
+
+#loadpage {
+  background-color: #091109;
+  z-index: 1000;
+  opacity: 1;
+
+  height: 100vh;
+  width: 100vw;
+
+  position: fixed;
+  inset: 0;
+
+  transition: opacity ease-in-out 0.2s;
+
+  &:not(.in) {
+    pointer-events: none;
+    touch-action: none;
+    opacity: 0;
+  }
+}
+
+.loading-text {
+  display: block;
+  width: fit-content;
+  text-align: center;
+}
+
+.loading {
+  display: inline-block;
+  font: normal 17px/1em 'Merriweather Sans', sans-serif;
+  text-transform: uppercase;
+  color: #cff09e;
+}
+
+.percentage {
+  display: inline-block;
+  font: normal 17px/1em 'Merriweather Sans', sans-serif;
+  color: #cff09e;
+}
+
+.quiver {
+  position: fixed;
+  bottom: 50%;
+  left: 50%;
+  z-index: 899;
+  margin-bottom: -50px;
+  margin-left: -50px;
+  width: fit-content;
+}
+
+.arrows {
+  -moz-animation: equalizor cubic-bezier(0.77, 0, 0.175, 1) 0.5s
+    alternate-reverse infinite;
+  -webkit-animation: equalizor cubic-bezier(0.77, 0, 0.175, 1) 0.5s
+    alternate-reverse infinite;
+  animation: equalizor cubic-bezier(0.77, 0, 0.175, 1) 0.5s alternate-reverse
+    infinite;
+  vertical-align: baseline;
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 10px 1px 10px;
+  border-color: rgba(255, 255, 255, 0) rgba(255, 255, 255, 0) #0b486b
+    rgba(255, 255, 255, 0);
+}
+
+.st {
+  border-bottom-color: #1a4c1d;
+}
+
+.nd {
+  border-bottom-color: #246a29;
+}
+
+.rd {
+  border-bottom-color: #2f8935;
+}
+
+.th {
+  border-bottom-color: #39a741;
+}
+
+.fth {
+  border-bottom-color: #49c151;
+}
+
+span:nth-child(1) {
+  -moz-animation-delay: 0s;
+  -webkit-animation-delay: 0s;
+  animation-delay: 0s;
+}
+
+span:nth-child(2) {
+  -moz-animation-delay: 0.1s;
+  -webkit-animation-delay: 0.1s;
+  animation-delay: 0.1s;
+}
+
+span:nth-child(3) {
+  -moz-animation-delay: 0.2s;
+  -webkit-animation-delay: 0.2s;
+  animation-delay: 0.2s;
+}
+
+span:nth-child(4) {
+  -moz-animation-delay: 0.3s;
+  -webkit-animation-delay: 0.3s;
+  animation-delay: 0.3s;
+}
+
+span:nth-child(5) {
+  -moz-animation-delay: 0.4s;
+  -webkit-animation-delay: 0.4s;
+  animation-delay: 0.4s;
+}
+
+@-moz-keyframes equalizor {
+  from {
+    border-bottom-width: 60px;
+  }
+  to {
+    border-bottom-width: 1px;
+  }
+}
+@-webkit-keyframes equalizor {
+  from {
+    border-bottom-width: 60px;
+  }
+  to {
+    border-bottom-width: 1px;
+  }
+}
+@keyframes equalizor {
+  from {
+    border-bottom-width: 60px;
+  }
+  to {
+    border-bottom-width: 1px;
+  }
+}
