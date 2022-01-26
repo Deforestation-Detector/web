@@ -1,96 +1,27 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  overflow: hidden;
-}
-
-body {
-  font-family: "Poppins", sans-serif;
-}
-
-#content {
-  position: fixed;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: white;
-  pointer-events: none;
-  touch-action: none;
-}
-
-#content:not(.in) {
-  display: none;
-}
-
-#content > * {
-  width: clamp(300px, 100%, 1500px);
-  max-width: 90vw;
-}
-
-header {
-  height: clamp(75px, 10vh, 120px);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-header h2 {
-  font-family: "Cormorant Garamond", serif;
-}
-
-.navLink {
-  cursor: pointer;
-  font-weight: 200;
-  pointer-events: all;
-  touch-action: all;
-}
-
-.domComponent {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 100%;
-}
-
-.domComponent:not(.in) {
-  display: none;
-}
-
-.in {
-  -webkit-animation-name: fadein;
-          animation-name: fadein;
-  -webkit-animation-duration: 0.5s;
-          animation-duration: 0.5s;
-  -webkit-animation-timing-function: ease-in-out;
-          animation-timing-function: ease-in-out;
-}
-
 @-webkit-keyframes fadein {
   0% {
-    display: initial;
     opacity: 0;
   }
   100% {
     opacity: 1;
   }
 }
-
 @keyframes fadein {
   0% {
-    display: initial;
     opacity: 0;
   }
   100% {
     opacity: 1;
   }
 }
-/* Code below here is stylization for the loading page */
-.loading-body {
+#loadpage {
   background-color: #091109;
-  height: 100%;
-  width: 100%;
+  z-index: 1000;
+  opacity: 1;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  inset: 0;
 }
 
 .loading-text {
@@ -197,6 +128,62 @@ span:nth-child(5) {
   to {
     border-bottom-width: 1px;
   }
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+#content {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  pointer-events: none;
+  touch-action: none;
+}
+
+#content > * {
+  width: clamp(300px, 100%, 1500px);
+  max-width: 90vw;
+}
+
+header {
+  height: clamp(75px, 10vh, 120px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h2 {
+  font-family: "Cormorant Garamond", serif;
+}
+
+.navLink {
+  cursor: pointer;
+  font-weight: 200;
+  pointer-events: all;
+  touch-action: all;
+}
+
+.domComponent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  transition: opacity ease-in-out 0.2s;
+}
+
+.domComponent:not(.in) {
+  opacity: 0;
 }
 
 /*# sourceMappingURL=style.css.map */
