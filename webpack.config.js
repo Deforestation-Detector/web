@@ -1,6 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+// const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   entry: [path.resolve(__dirname, 'src/index.js')],
@@ -8,7 +8,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, './src/index.html'),
     }),
-    new MiniCssExtractPlugin(),
+    // new MiniCssExtractPlugin(),
   ],
   module: {
     // rules to handle certain file types
@@ -20,8 +20,8 @@ module.exports = {
       },
       // CSS
       {
-        test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader'],
+        test: /\.s[ac]ss$/,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       // Images
       {
