@@ -95,8 +95,8 @@ export default class Experience {
   }
 
   init() {
+
     document.querySelector('.navLink').onclick = () => {
-      console.log('clicked');
       document.getElementById('learnMore').classList.toggle('in');
     };
 
