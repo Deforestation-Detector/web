@@ -58,7 +58,7 @@ header h2 {
   flex-direction: column;
 
   justify-content: center;
-
+  width: 100%;
   height: 100%;
 
   transition: opacity ease-in-out 0.5s;
@@ -69,16 +69,14 @@ header h2 {
   opacity: 0;
 }
 
-.box1 {
+.aboutOverlay {
   position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 100%;
-  width: 100%;
-  background-color: #000;
-  color: #fff;
-  opacity: .4;
+  inset: 0;
   z-index: -1;
+
+  height: 100vh;
+  width: 100vw;
+
+  background-color: #000;
+  opacity: 0.4;
 }
