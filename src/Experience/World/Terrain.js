@@ -40,17 +40,12 @@ export default class Terrain {
     this.model.scene.traverse((child) => {
       if (
         child instanceof Mesh &&
-        ['large_grass', 'small_grass', 'medium_grass'].includes(child.name)
+        ['large_island', 'top_of_large_island', 'medium_island'].includes(
+          child.name
+        )
       ) {
         child.material = new MeshMatcapMaterial({
           matcap: this.grass,
-        });
-      } else if (
-        child instanceof Mesh &&
-        ['large_island', 'small_island', 'medium_island'].includes(child.name)
-      ) {
-        child.material = new MeshMatcapMaterial({
-          matcap: this.redSand,
         });
       } else if (child instanceof Mesh && child.name === 'beach') {
         child.material = new MeshMatcapMaterial({
@@ -64,11 +59,11 @@ export default class Terrain {
         child.material = new MeshMatcapMaterial({
           matcap: this.pineLeaves,
         });
-      } else if (child instanceof Mesh && child.name === 'pine_wood') {
+      } else if (child instanceof Mesh && child.name === 'logs') {
         child.material = new MeshMatcapMaterial({
           matcap: this.pineWood,
         });
-      } else if (child instanceof Mesh && child.name === 'birch_leaves') {
+      } else if (child instanceof Mesh && child.name === 'round_leaves') {
         child.material = new MeshMatcapMaterial({
           matcap: this.birchLeaves,
         });
