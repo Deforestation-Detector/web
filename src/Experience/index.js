@@ -44,7 +44,13 @@ export default class Experience {
     this.clock = new Clock();
 
     this.clock.on('tick', () => {
-      this.update();
+      if (this.debug.active) {
+        this.debug.stats.begin();
+        this.update();
+        this.debug.stats.end();
+      } else {
+        this.update();
+      }
     });
 
     /**
@@ -95,12 +101,38 @@ export default class Experience {
   }
 
   init() {
-
+    /**
+     *  HANDLE TRANSITIONS TO/FROM LEARN MORE PAGE
+     * */
     document.querySelector('.navLink').onclick = () => {
-      document.getElementById('learnMore').classList.toggle('in');
+      document.getElementById('learnMore').classList.add('in');
+      document.getElementById('backdrop').classList.add('in');
+    };
+    document.getElementById('learnMoreBtn').onclick = () => {
+      document.getElementById('learnMore').classList.add('in');
+      document.getElementById('backdrop').classList.add('in');
+      document.getElementById('landing').classList.remove('in');
+    };
+    document.getElementById('learnMoreBackBtn').onclick = () => {
+      document.getElementById('learnMore').classList.remove('in');
+      document.getElementById('backdrop').classList.remove('in');
+      document.getElementById('landing').classList.add('in');
     };
 
-    document.getElementById('content').classList.add('in');
+    /**
+     * HANDLE TRANSITION TO EXPLORE
+     */
+    document.getElementById('exploreBtn').onclick = () => {
+      let landingEl = document.getElementById('landing');
+      let backdropEl = document.getElementById('backdrop');
+
+      backdropEl.classList.remove('in');
+      landingEl.classList.remove('in');
+
+      backdropEl.classList.add('exploring');
+      landingEl.classList.add('exploring');
+    };
+
     document.getElementById('loadpage').classList.remove('in');
   }
 
