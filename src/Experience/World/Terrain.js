@@ -1,4 +1,9 @@
-import { Mesh, MeshMatcapMaterial, sRGBEncoding } from 'three';
+import {
+  Mesh,
+  MeshLambertMaterial,
+  MeshMatcapMaterial,
+  sRGBEncoding,
+} from 'three';
 import Experience from '../index.js';
 
 export default class Terrain {
@@ -64,8 +69,8 @@ export default class Terrain {
           matcap: this.pineWood,
         });
       } else if (child instanceof Mesh && child.name === 'round_leaves') {
-        child.material = new MeshMatcapMaterial({
-          matcap: this.birchLeaves,
+        child.material = new MeshLambertMaterial({
+          color: '#5CC75F',
         });
       } else if (child instanceof Mesh && child.name === 'birch_wood') {
         child.material = new MeshMatcapMaterial({

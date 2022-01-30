@@ -131,6 +131,8 @@ export default class Experience {
 
       backdropEl.classList.add('exploring');
       landingEl.classList.add('exploring');
+
+      document.getElementById('header').classList.add('in');
     };
 
     document.getElementById('loadpage').classList.remove('in');

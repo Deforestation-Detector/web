@@ -198,6 +198,10 @@ span:nth-child(5) {
   overflow: hidden;
 }
 
+.tp-dfwv {
+  z-index: 10000;
+}
+
 body {
   font-family: "Poppins", sans-serif;
 }
