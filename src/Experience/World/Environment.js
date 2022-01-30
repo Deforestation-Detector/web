@@ -1,7 +1,8 @@
-import { DirectionalLight, sRGBEncoding, Color } from 'three';
+import { DirectionalLight, sRGBEncoding, Color, AmbientLight } from 'three';
 import Experience from '..';
 
 const col = new Color('#454944');
+const sunCol = new Color('#ff9329');
 
 export default class Environment {
   constructor() {
@@ -19,6 +20,7 @@ export default class Environment {
 
       this.debugParams = {
         sky: { r: col.r * 255, g: col.g * 255, b: col.b * 255 },
+        sun: { r: sunCol.r * 255, g: sunCol.g * 255, b: sunCol.b * 255 },
       };
 
       this.debugFolder
@@ -28,18 +30,30 @@ export default class Environment {
 
           this.experience.renderer.instance.setClearColor(col, 1);
         });
+
+      this.debugFolder
+        .addInput(this.debugParams, 'sun', { picker: 'inline' })
+        .on('change', (e) => {
+          sunCol.setRGB(e.value.r / 255, e.value.g / 255, e.value.b / 255);
+
+          this.sun.color.set(sunCol);
+        });
     }
+
+    this.setAmbient();
+    this.setSun();
 
     return this;
   }
 
+  setAmbient() {
+    this.ambientLight = new AmbientLight('#ffffff', 0.2);
+    this.scene.add(this.ambientLight);
+  }
+
   setSun() {
-    this.sun = new DirectionalLight('#ffffff', 4);
-    this.sun.castShadow = true;
-    this.sun.shadow.camera.far = 200;
-    this.sun.shadow.mapSize.set(1024, 1024);
-    this.sun.shadow.normalBias = 0.05;
-    this.sun.position.set(3, 50, -2.25);
+    this.sun = new DirectionalLight('#ff9329', 2);
+    this.sun.position.set(-100, 20, 0);
     this.scene.add(this.sun);
   }
 }
