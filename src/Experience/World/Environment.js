@@ -1,7 +1,7 @@
 import { DirectionalLight, sRGBEncoding, Color, AmbientLight } from 'three';
 import Experience from '..';
 
-const col = new Color('#454944');
+const col = new Color('#f8e2ba');
 const sunCol = new Color('#ff9329');
 
 export default class Environment {
@@ -14,13 +14,15 @@ export default class Environment {
 
     if (this.experience.debug.active) {
       this.debugFolder = this.experience.debug.pane.addFolder({
-        title: 'World',
+        title: 'Lighting',
         expanded: false,
       });
 
       this.debugParams = {
         sky: { r: col.r * 255, g: col.g * 255, b: col.b * 255 },
         sun: { r: sunCol.r * 255, g: sunCol.g * 255, b: sunCol.b * 255 },
+        ambientLightIntensity: 0.1,
+        ambientLight: { r: 255, g: 255, b: 255 },
       };
 
       this.debugFolder
@@ -37,6 +39,22 @@ export default class Environment {
           sunCol.setRGB(e.value.r / 255, e.value.g / 255, e.value.b / 255);
 
           this.sun.color.set(sunCol);
+        });
+
+      this.debugFolder
+        .addInput(this.debugParams, 'ambientLight', { picker: 'inline' })
+        .on('change', (e) => {
+          this.ambientLight.color.setRGB(
+            e.value.r / 255,
+            e.value.g / 255,
+            e.value.b / 255
+          );
+        });
+
+      this.debugFolder
+        .addInput(this.debugParams, 'ambientLightIntensity')
+        .on('change', (e) => {
+          this.ambientLight.intensity = e.value;
         });
     }
 
