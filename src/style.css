@@ -232,8 +232,19 @@ svg {
   max-width: 90vw;
 }
 
-header {
+.headerWrapper {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  right: 0;
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.6) 100%);
+}
+.headerWrapper header {
+  width: clamp(300px, 100%, 1500px);
+  max-width: 90vw;
   height: clamp(75px, 10vh, 120px);
+  color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -242,17 +253,15 @@ header {
   touch-action: all;
   transition: opacity ease-in-out 0.5s;
 }
-header:not(.in) {
+.headerWrapper header:not(.in) {
   opacity: 0;
   pointer-events: none;
   touch-action: none;
 }
-
-header h2 {
+.headerWrapper header h2 {
   font-family: "Cormorant Garamond", serif;
 }
-
-.navLink {
+.headerWrapper header .navLink {
   cursor: pointer;
   font-weight: 200;
   pointer-events: all;
