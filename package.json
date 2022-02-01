@@ -38,5 +38,9 @@
     "webpack": "^5.64.4",
     "webpack-cli": "^4.9.1",
     "webpack-dev-server": "^4.6.0"
+  },
+  "devDependencies": {
+    "favicons": "^6.2.2",
+    "favicons-webpack-plugin": "^5.0.2"
   }
 }
