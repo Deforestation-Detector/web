@@ -1,4 +1,5 @@
 import {
+  DoubleSide,
   Mesh,
   MeshLambertMaterial,
   MeshMatcapMaterial,
@@ -69,6 +70,7 @@ export default class Terrain {
       } else if (child instanceof Mesh && child.name === 'logs') {
         child.material = new MeshLambertMaterial({
           color: '#3A1E03',
+          side: DoubleSide,
         });
 
         this.logs = child;
