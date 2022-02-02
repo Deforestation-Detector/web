@@ -2,7 +2,7 @@ import { DirectionalLight, sRGBEncoding, Color, AmbientLight } from 'three';
 import Experience from '..';
 
 const col = new Color('#f8e2ba');
-const sunCol = new Color('#ff9329');
+const sunCol = new Color('#ff7e00');
 
 export default class Environment {
   constructor() {
@@ -70,8 +70,8 @@ export default class Environment {
   }
 
   setSun() {
-    this.sun = new DirectionalLight('#ff9329', 2);
-    this.sun.position.set(-100, 20, 0);
+    this.sun = new DirectionalLight('#ff7e00', 2);
+    this.sun.position.set(-100, 20, 30);
     this.scene.add(this.sun);
   }
 }
