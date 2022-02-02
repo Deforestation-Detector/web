@@ -1,6 +1,7 @@
 import {
   DoubleSide,
   Mesh,
+  MeshBasicMaterial,
   MeshLambertMaterial,
   MeshMatcapMaterial,
   sRGBEncoding,
@@ -37,6 +38,9 @@ export default class Terrain {
   traverseModel() {
     this.islands = [];
 
+    var lm = this.resources.items['islandsLightMap'];
+    lm.flipY = false;
+
     this.model.scene.traverse((child) => {
       if (
         child instanceof Mesh &&
@@ -46,12 +50,17 @@ export default class Terrain {
       ) {
         child.material = new MeshLambertMaterial({
           color: '#82DD40',
+          lightMap: lm,
         });
 
         this.islands.push(child);
-      } else if (child instanceof Mesh && child.name === 'beach') {
+      } else if (
+        child instanceof Mesh &&
+        ['beach', 'small_island'].includes(child.name)
+      ) {
         child.material = new MeshLambertMaterial({
           color: '#F2C078',
+          lightMap: lm,
         });
 
         this.beach = child;
@@ -80,6 +89,12 @@ export default class Terrain {
         });
 
         this.roundLeaves = child;
+      } else if (child instanceof Mesh && child.name === 'tall_leaves') {
+        child.material = new MeshLambertMaterial({
+          color: '#3fff45',
+        });
+
+        this.tallLeaves = child;
       } else if (child instanceof Mesh && child.name === 'road') {
         child.material = new MeshLambertMaterial({
           color: '#777788',
@@ -88,13 +103,14 @@ export default class Terrain {
         this.road = child;
       } else if (child instanceof Mesh && child.name === 'loose_leaves') {
         child.material = new MeshLambertMaterial({
-          color: '#5CC75F',
+          color: '#88c75c',
         });
 
         this.looseLeaves = child;
       } else if (child instanceof Mesh && child.name === 'marshland') {
         child.material = new MeshLambertMaterial({
           color: '#152200',
+          lightMap: lm,
         });
 
         this.marshland = child;
@@ -112,7 +128,8 @@ export default class Terrain {
       beach: '#F2C078',
       roundTrees: '#5CC75F',
       pineTrees: '#111D13',
-      looseTrees: '#5CC75F',
+      looseTrees: '#88c75c',
+      tallTrees: '#88c75c',
       logs: '#3A1E03',
       road: '#777777',
       marshland: '#152200',
@@ -140,6 +157,14 @@ export default class Terrain {
       })
       .on('change', (e) => {
         this.looseLeaves.material.color.setStyle(e.value);
+      });
+
+    this.debugFolder
+      .addInput(this.debugParams, 'tallTrees', {
+        picker: 'inline',
+      })
+      .on('change', (e) => {
+        this.tallLeaves.material.color.setStyle(e.value);
       });
 
     this.debugFolder

@@ -17,9 +17,9 @@ import tile33 from '../img/tiles/tl_33.jpg';
 import terrainModel from '../models/terrain.glb';
 
 /**
- * HEIGHT MAPS
+ * LIGHT MAPS
  */
-import tileHeight33 from '../img/tileHeightmaps/tl_33.jpg';
+import islandsLightMap from '../img/lightmaps/islandsLightmap.png';
 
 /**
  * MATCAPS
@@ -90,11 +90,11 @@ export default [
     path: terrainModel,
   },
 
-  // HEIGHT MAPS
+  // LIGHT MAPS
   {
-    name: 'tileHeight33',
+    name: 'islandsLightMap',
     type: 'texture',
-    path: tileHeight33,
+    path: islandsLightMap,
   },
 
   // MATCAPS
