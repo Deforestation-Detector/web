@@ -1,7 +1,7 @@
 import { DirectionalLight, sRGBEncoding, Color, AmbientLight } from 'three';
 import Experience from '..';
 
-const col = new Color('#f8e2ba');
+const col = new Color('#d0f5df');
 const sunCol = new Color('#ff7e00');
 
 export default class Environment {

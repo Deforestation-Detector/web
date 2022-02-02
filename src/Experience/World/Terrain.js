@@ -1,8 +1,8 @@
 import {
   DoubleSide,
+  LuminanceFormat,
   Mesh,
   MeshBasicMaterial,
-  MeshLambertMaterial,
   MeshMatcapMaterial,
   sRGBEncoding,
 } from 'three';
@@ -20,7 +20,7 @@ export default class Terrain {
     }
 
     this.setModel();
-    this.setMaterials();
+    // this.setMaterials();
     this.traverseModel();
     this.addToScene();
   }
@@ -38,8 +38,21 @@ export default class Terrain {
   traverseModel() {
     this.islands = [];
 
-    var lm = this.resources.items['islandsLightMap'];
-    lm.flipY = false;
+    var islandsLightmap = this.resources.items['islandsLightMap'];
+    islandsLightmap.flipY = false;
+
+    var detailsLightmap = this.resources.items['detailsLightMap'];
+    detailsLightmap.flipY = false;
+
+    var roundTreesLightmap = this.resources.items['roundTreesLightMap'];
+    roundTreesLightmap.flipY = false;
+    roundTreesLightmap.format = LuminanceFormat;
+
+    var tallTreesLightmap = this.resources.items['tallTreesLightMap'];
+    tallTreesLightmap.flipY = false;
+
+    var looseTreesLightmap = this.resources.items['looseTreesLightMap'];
+    looseTreesLightmap.flipY = false;
 
     this.model.scene.traverse((child) => {
       if (
@@ -48,69 +61,118 @@ export default class Terrain {
           child.name
         )
       ) {
-        child.material = new MeshLambertMaterial({
+        child.material = new MeshBasicMaterial({
           color: '#82DD40',
-          lightMap: lm,
+          lightMap: islandsLightmap,
         });
 
         this.islands.push(child);
-      } else if (
-        child instanceof Mesh &&
-        ['beach', 'small_island'].includes(child.name)
-      ) {
-        child.material = new MeshLambertMaterial({
+      } else if (child instanceof Mesh && child.name === 'beach') {
+        child.material = new MeshBasicMaterial({
           color: '#F2C078',
-          lightMap: lm,
+          lightMap: islandsLightmap,
         });
 
         this.beach = child;
+      } else if (child instanceof Mesh && child.name === 'small_island') {
+        child.material = new MeshBasicMaterial({
+          color: '#F2C078',
+          lightMap: islandsLightmap,
+        });
+
+        this.smallIsland = child;
       } else if (child instanceof Mesh && child.name === 'river') {
-        child.material = new MeshMatcapMaterial({
-          matcap: this.water,
+        child.material = new MeshBasicMaterial({
+          color: '#3333ff',
+          lightMap: detailsLightmap,
         });
 
         this.river = child;
       } else if (child instanceof Mesh && child.name === 'pine_leaves') {
-        child.material = new MeshLambertMaterial({
+        child.material = new MeshBasicMaterial({
           color: '#111D13',
+          lightMap: detailsLightmap,
         });
 
         this.pineLeaves = child;
       } else if (child instanceof Mesh && child.name === 'logs') {
-        child.material = new MeshLambertMaterial({
+        child.material = new MeshBasicMaterial({
           color: '#3A1E03',
-          side: DoubleSide,
+
+          lightMap: detailsLightmap,
+          lightMapIntensity: 2,
         });
 
         this.logs = child;
       } else if (child instanceof Mesh && child.name === 'round_leaves') {
-        child.material = new MeshLambertMaterial({
+        child.material = new MeshBasicMaterial({
           color: '#5CC75F',
+          lightMap: roundTreesLightmap,
+          lightMapIntensity: 2,
         });
 
         this.roundLeaves = child;
       } else if (child instanceof Mesh && child.name === 'tall_leaves') {
-        child.material = new MeshLambertMaterial({
+        child.material = new MeshBasicMaterial({
           color: '#3fff45',
+          lightMap: tallTreesLightmap,
+          lightMapIntensity: 2,
         });
 
         this.tallLeaves = child;
-      } else if (child instanceof Mesh && child.name === 'road') {
-        child.material = new MeshLambertMaterial({
+      } else if (
+        child instanceof Mesh &&
+        ['road', 'rocks'].includes(child.name)
+      ) {
+        child.material = new MeshBasicMaterial({
           color: '#777788',
+          lightMap: detailsLightmap,
         });
 
-        this.road = child;
+        if (child.name === 'rocks') {
+          child.material.side = DoubleSide;
+        }
+
+        this.rocks = child;
+      } else if (child instanceof Mesh && child.name === 'soil') {
+        child.material = new MeshBasicMaterial({
+          color: '#3d301c',
+          lightMap: detailsLightmap,
+        });
+
+        this.soil = child;
+      } else if (child instanceof Mesh && child.name === 'house') {
+        child.material = new MeshBasicMaterial({
+          color: '#bbb',
+          lightMap: detailsLightmap,
+        });
+
+        this.house = child;
+      } else if (child instanceof Mesh && child.name === 'roof') {
+        child.material = new MeshBasicMaterial({
+          color: '#333',
+          lightMap: detailsLightmap,
+        });
+
+        this.roof = child;
+      } else if (child instanceof Mesh && child.name === 'agriculture') {
+        child.material = new MeshBasicMaterial({
+          color: '#ffd900',
+          lightMap: detailsLightmap,
+        });
+
+        this.agriculture = child;
       } else if (child instanceof Mesh && child.name === 'loose_leaves') {
-        child.material = new MeshLambertMaterial({
+        child.material = new MeshBasicMaterial({
           color: '#88c75c',
+          lightMap: looseTreesLightmap,
         });
 
         this.looseLeaves = child;
       } else if (child instanceof Mesh && child.name === 'marshland') {
-        child.material = new MeshLambertMaterial({
+        child.material = new MeshBasicMaterial({
           color: '#152200',
-          lightMap: lm,
+          lightMap: islandsLightmap,
         });
 
         this.marshland = child;
@@ -126,14 +188,27 @@ export default class Terrain {
 
     this.debugParams = {
       beach: '#F2C078',
+      islands: '#82DD40',
       roundTrees: '#5CC75F',
       pineTrees: '#111D13',
       looseTrees: '#88c75c',
-      tallTrees: '#88c75c',
+      tallTrees: '#3fff45',
       logs: '#3A1E03',
-      road: '#777777',
+      rocks: '#777799',
+      soil: '#3d301c',
       marshland: '#152200',
+      agriculture: '#ffd900',
     };
+
+    this.debugFolder
+      .addInput(this.debugParams, 'islands', {
+        picker: 'inline',
+      })
+      .on('change', (e) => {
+        for (let island of this.islands) {
+          island.material.color.setStyle(e.value);
+        }
+      });
 
     this.debugFolder
       .addInput(this.debugParams, 'roundTrees', {
@@ -176,11 +251,27 @@ export default class Terrain {
       });
 
     this.debugFolder
-      .addInput(this.debugParams, 'road', {
+      .addInput(this.debugParams, 'rocks', {
         picker: 'inline',
       })
       .on('change', (e) => {
-        this.road.material.color.setStyle(e.value);
+        this.rocks.material.color.setStyle(e.value);
+      });
+
+    this.debugFolder
+      .addInput(this.debugParams, 'soil', {
+        picker: 'inline',
+      })
+      .on('change', (e) => {
+        this.soil.material.color.setStyle(e.value);
+      });
+
+    this.debugFolder
+      .addInput(this.debugParams, 'agriculture', {
+        picker: 'inline',
+      })
+      .on('change', (e) => {
+        this.agriculture.material.color.setStyle(e.value);
       });
 
     this.debugFolder
@@ -197,6 +288,7 @@ export default class Terrain {
       })
       .on('change', (e) => {
         this.beach.material.color.setStyle(e.value);
+        this.smallIsland.material.color.setStyle(e.value);
       });
   }
 

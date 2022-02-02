@@ -1,6 +1,6 @@
 import EventEmitter from './EventEmitter';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
-import { CubeTextureLoader, TextureLoader } from 'three';
+import { CubeTextureLoader, sRGBEncoding, TextureLoader } from 'three';
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
 
 export default class Resources extends EventEmitter {
@@ -44,6 +44,7 @@ export default class Resources extends EventEmitter {
         });
       } else if (source.type === 'texture') {
         this.loaders.textureLoader.load(source.path, (file) => {
+          file.encoding = sRGBEncoding;
           this.sourceLoaded(source, file);
         });
       } else if (source.type === 'cubeTexture') {
