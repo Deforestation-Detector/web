@@ -150,6 +150,9 @@ export default class Experience {
       { x: this.mouse.x, y: this.mouse.y },
       this.camera.instance
     );
+    if (this.world.terrain) {
+      this.world.terrain.update();
+    }
   }
 
   destroy() {
