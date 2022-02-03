@@ -3,10 +3,11 @@ import {
   LuminanceFormat,
   Mesh,
   MeshBasicMaterial,
-  MeshMatcapMaterial,
   sRGBEncoding,
 } from 'three';
+
 import Experience from '../index.js';
+import RiverMaterial from '../../shaders/river';
 
 export default class Terrain {
   constructor() {
@@ -33,6 +34,10 @@ export default class Terrain {
     this.water = this.resources.items['waterMatcap'];
 
     this.water.encoding = sRGBEncoding;
+  }
+
+  update() {
+    this.river.material.uniforms.uTime.value = this.experience.clock.elapsed;
   }
 
   traverseModel() {
@@ -82,10 +87,9 @@ export default class Terrain {
 
         this.smallIsland = child;
       } else if (child instanceof Mesh && child.name === 'river') {
-        child.material = new MeshBasicMaterial({
-          color: '#3333ff',
-          lightMap: detailsLightmap,
-        });
+        child.material = RiverMaterial;
+        child.material.uniforms.uColor.value.setStyle('#5b63d4');
+        console.log(child.material);
 
         this.river = child;
       } else if (child instanceof Mesh && child.name === 'pine_leaves') {
@@ -196,6 +200,7 @@ export default class Terrain {
       logs: '#3A1E03',
       rocks: '#777799',
       soil: '#3d301c',
+      river: '#5b63d4',
       marshland: '#152200',
       agriculture: '#ffd900',
     };
@@ -216,6 +221,14 @@ export default class Terrain {
       })
       .on('change', (e) => {
         this.roundLeaves.material.color.setStyle(e.value);
+      });
+
+    this.debugFolder
+      .addInput(this.debugParams, 'river', {
+        picker: 'inline',
+      })
+      .on('change', (e) => {
+        this.river.material.uniforms.uColor.value.setStyle(e.value);
       });
 
     this.debugFolder
