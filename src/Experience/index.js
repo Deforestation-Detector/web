@@ -119,6 +119,7 @@ export default class Experience {
       document.getElementById('backdrop').classList.remove('in');
       document.getElementById('landing').classList.add('in');
       // Check to see if we've started exploring before adding the label list
+      // Otherwise it pops up after exiting learn more page from landing page
       if (document.getElementById('backdrop').classList.contains('exploring')){
         document.getElementById('labelList').classList.add('in');
       }
