@@ -1,8 +1,9 @@
-@use 'styles/fonts';
-@use 'styles/loading';
-@use 'styles/landing';
-@use 'styles/animations' as *;
-@use 'styles/utils' as *;
+@use "styles/fonts";
+@use "styles/loading";
+@use "styles/info";
+@use "styles/landing";
+@use "styles/animations" as *;
+@use "styles/utils" as *;
 
 * {
   margin: 0;
@@ -105,6 +106,8 @@ svg {
 .domComponent {
   display: flex;
   flex-direction: column;
+
+  position: absolute;
 
   justify-content: center;
   width: 100%;
