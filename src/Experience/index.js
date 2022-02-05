@@ -112,13 +112,11 @@ export default class Experience {
     document.getElementById('learnMoreBtn').onclick = () => {
       document.getElementById('learnMore').classList.add('in');
       document.getElementById('backdrop').classList.add('in');
-      document.getElementById('labelList').classList.remove('in');
       document.getElementById('landing').classList.remove('in');
     };
     document.getElementById('learnMoreBackBtn').onclick = () => {
       document.getElementById('learnMore').classList.remove('in');
       document.getElementById('backdrop').classList.remove('in');
-      document.getElementById('labelList').classList.add('in');
       document.getElementById('landing').classList.add('in');
     };
 
