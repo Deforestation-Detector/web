@@ -104,18 +104,36 @@ export default class Experience {
     /**
      *  HANDLE TRANSITIONS TO/FROM LEARN MORE PAGE
      * */
-    document.querySelector('.navLink').onclick = () => {
+    document.getElementById('learnMoreNavLink').onclick = () => {
       document.getElementById('learnMore').classList.add('in');
       document.getElementById('backdrop').classList.add('in');
+      document.getElementById('labelList').classList.remove('in');
     };
     document.getElementById('learnMoreBtn').onclick = () => {
       document.getElementById('learnMore').classList.add('in');
       document.getElementById('backdrop').classList.add('in');
+      document.getElementById('labelList').classList.remove('in');
       document.getElementById('landing').classList.remove('in');
     };
     document.getElementById('learnMoreBackBtn').onclick = () => {
       document.getElementById('learnMore').classList.remove('in');
       document.getElementById('backdrop').classList.remove('in');
+      document.getElementById('labelList').classList.add('in');
+      document.getElementById('landing').classList.add('in');
+    };
+
+    /**
+     * HANDLE TRANSITION TO/FROM INFO PAGE
+     */
+     document.getElementById('investigateBtn').onclick = () => {
+      document.getElementById('infoPage').classList.add('in');
+      document.getElementById('backdrop').classList.add('in');
+      document.getElementById('labelList').classList.remove('in');
+    };
+    document.getElementById('infoPage').onclick = () => {
+      document.getElementById('infoPage').classList.remove('in');
+      document.getElementById('backdrop').classList.remove('in');
+      document.getElementById('labelList').classList.add('in');
       document.getElementById('landing').classList.add('in');
     };
 
@@ -133,6 +151,7 @@ export default class Experience {
       landingEl.classList.add('exploring');
 
       document.getElementById('header').classList.add('in');
+      document.getElementById('labelList').classList.add('in');
     };
 
     document.getElementById('loadpage').classList.remove('in');
