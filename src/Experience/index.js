@@ -118,6 +118,10 @@ export default class Experience {
       document.getElementById('learnMore').classList.remove('in');
       document.getElementById('backdrop').classList.remove('in');
       document.getElementById('landing').classList.add('in');
+      // Check to see if we've started exploring before adding the label list
+      if (document.getElementById('backdrop').classList.contains('exploring')){
+        document.getElementById('labelList').classList.add('in');
+      }
     };
 
     /**
