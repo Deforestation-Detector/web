@@ -104,26 +104,32 @@ export default class Experience {
     /**
      *  HANDLE TRANSITIONS TO/FROM LEARN MORE PAGE
      * */
-    document.getElementById('learnMoreNavLink').onclick = () => {
-      document.getElementById('learnMore').classList.add('in');
-      document.getElementById('backdrop').classList.add('in');
-      document.getElementById('labelList').classList.remove('in');
-    };
-    document.getElementById('learnMoreBtn').onclick = () => {
-      document.getElementById('learnMore').classList.add('in');
-      document.getElementById('backdrop').classList.add('in');
-      document.getElementById('landing').classList.remove('in');
-    };
-    document.getElementById('learnMoreBackBtn').onclick = () => {
-      document.getElementById('learnMore').classList.remove('in');
-      document.getElementById('backdrop').classList.remove('in');
-      document.getElementById('landing').classList.add('in');
-      // Check to see if we've started exploring before adding the label list
-      // Otherwise it pops up after exiting learn more page from landing page
-      if (document.getElementById('backdrop').classList.contains('exploring')){
-        document.getElementById('labelList').classList.add('in');
-      }
-    };
+    let showAr = [ document.getElementById('learnMoreNavLink'),
+                   document.getElementById('learnMoreBtn')]
+    showAr.forEach(btn => {
+        btn.onclick = () => {
+          document.getElementById('learnMore').classList.add('in');
+          document.getElementById('backdrop').classList.add('in');
+          document.getElementById('back').classList.add('in');
+          document.getElementById('labelList').classList.remove('in');
+          document.getElementById('landing').classList.remove('in');
+        };
+    });
+  
+    let hideAr = [ document.getElementById('learnMoreBackBtn'),
+                   document.getElementById('learnMore')]
+    hideAr.forEach(btn => {
+        btn.onclick = () => {
+          document.getElementById('learnMore').classList.remove('in');
+          document.getElementById('backdrop').classList.remove('in');
+          document.getElementById('back').classList.remove('in');
+          document.getElementById('landing').classList.add('in');
+          // Check to see if we've started exploring before adding the label list
+          // Otherwise it pops up after exiting learn more page from landing page
+          if (document.getElementById('backdrop').classList.contains('exploring'))
+              document.getElementById('labelList').classList.add('in');
+        };
+    });
 
     /**
      * HANDLE TRANSITION TO/FROM INFO PAGE

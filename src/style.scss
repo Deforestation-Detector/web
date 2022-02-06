@@ -21,6 +21,11 @@ body {
   font-family: fonts.$sans-serif;
 }
 
+a {
+  color: orange;
+  text-decoration: none;
+}
+
 svg {
   cursor: pointer;
 }
@@ -48,7 +53,7 @@ svg {
   }
 }
 
-#content > *:not(#landing) {
+#content > *:not(#landing):not(#learnMore) {
   width: clamp(300px, 100%, 1500px);
   max-width: 90vw;
 }
@@ -124,6 +129,38 @@ svg {
     pointer-events: none;
     touch-action: none;
   }
+}
+
+.scrollComponent {
+  position: absolute;
+  max-height: 100vh;
+  width: 70%;
+
+  transition: $transitionIn;
+  z-index: 10;
+  overflow: scroll;
+  pointer-events: all;
+  touch-action: all;
+
+  scroll-snap-type: y mandatory;
+  &:not(.in) {
+    opacity: 0;
+    pointer-events: none;
+    touch-action: none;
+  }
+}
+
+
+.aboutSections {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+
+  scroll-snap-align: start;
+  
 }
 
 #backdrop {
