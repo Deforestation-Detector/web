@@ -111,7 +111,7 @@ export default class Experience {
           document.getElementById('learnMore').classList.add('in');
           document.getElementById('backdrop').classList.add('in');
           document.getElementById('back').classList.add('in');
-          document.getElementById('labelList').classList.remove('in');
+          document.getElementById('labelListWrapper').classList.remove('in');
           document.getElementById('landing').classList.remove('in');
         };
     });
@@ -126,7 +126,7 @@ export default class Experience {
           // Check to see if we've started exploring before adding the label list
           // Otherwise it pops up after exiting learn more page from landing page
           if (document.getElementById('backdrop').classList.contains('exploring')){
-              document.getElementById('labelList').classList.add('in');
+              document.getElementById('labelListWrapper').classList.add('in');
           }
           // Scroll to top after exiting learn more page.
           // Delay is to hide scroll until exit animation is over.
@@ -142,12 +142,12 @@ export default class Experience {
      document.getElementById('investigateBtn').onclick = () => {
       document.getElementById('infoPage').classList.add('in');
       document.getElementById('backdrop').classList.add('in');
-      document.getElementById('labelList').classList.remove('in');
+      document.getElementById('labelListWrapper').classList.remove('in');
     };
     document.getElementById('infoPage').onclick = () => {
       document.getElementById('infoPage').classList.remove('in');
       document.getElementById('backdrop').classList.remove('in');
-      document.getElementById('labelList').classList.add('in');
+      document.getElementById('labelListWrapper').classList.add('in');
       document.getElementById('landing').classList.add('in');
     };
 
@@ -165,7 +165,7 @@ export default class Experience {
       landingEl.classList.add('exploring');
 
       document.getElementById('header').classList.add('in');
-      document.getElementById('labelList').classList.add('in');
+      document.getElementById('labelListWrapper').classList.add('in');
     };
 
     document.getElementById('loadpage').classList.remove('in');
@@ -217,3 +217,66 @@ export default class Experience {
     }
   }
 }
+
+    // experimental javascript for label list stuff
+
+    const labels = {
+      haze: "This is the description for the haze label.",
+      primary: "This is the description for the primary label.",
+      agriculture: "This is the description for the haze agriculture.",
+      clear: "This is the description for the clear label.",
+      water: "This is the description for the water label.",
+      habitation: "This is the description for the habitation label.",
+      road: "This is the description for the road label.",
+      cultivation: "This is the description for the cultivation label.",
+      slash_burn: "This is the description for the slash_burn label.",
+      cloudy: "This is the description for the cloudy label.",
+      partly_cloudy: "This is the description for the partly_cloudy label.",
+      conventional_mine: "This is the description for the conventional_mine label.",
+      bare_ground: "This is the description for the bare_ground label.",
+      artisinal_mine: "This is the description for the artisinal_mine label.",
+      blooming: "This is the description for the blooming label.",
+      selective_logging: "This is the description for the selective_logging label.",
+      blow_down: "This is the description for the blow_down label."
+    }
+    
+    function updateLabels(labelArray){
+      let labelListNode = document.getElementById('labelList');
+      let infoPageNode = document.getElementById('infoPage');
+      // Clear label list and info page
+      labelListNode.innerHTML = '';
+      infoPageNode.innerHTML = '';
+      // Iterate through passed labels
+      labelArray.forEach(label => {
+        if (label in labels){
+          // Add label to list
+          let labelToInsert = document.createElement('p');
+          labelToInsert.innerHTML = label;
+          labelListNode.appendChild(labelToInsert);
+    
+          // Add label description to info page
+          // Create nodes
+          let labelWrapper = document.createElement('div');
+          let labelTitle = document.createElement('h1');
+          let labelDescription = document.createElement('p');
+          // Fill nodes
+          labelWrapper.classList.add('tileLabel');
+          labelTitle.innerHTML = label;
+          labelDescription.innerHTML = labels[label];
+          labelWrapper.appendChild(labelTitle);
+          labelWrapper.appendChild(labelDescription);
+    
+          // Add label wrapper to info page
+          infoPageNode.appendChild(labelWrapper);
+        }
+      })
+    }
+    
+    document.getElementById('updateLabelsBtn').onclick = () => {
+      let testLabels = [];
+      var keys = Object.keys(labels);
+      for (let i = 0; i < 5; i++){
+        testLabels.push(keys[ keys.length * Math.random() << 0]);
+      }
+      updateLabels(testLabels);
+    }
