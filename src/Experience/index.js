@@ -223,7 +223,7 @@ export default class Experience {
     const labels = {
       haze: "This is the description for the haze label.",
       primary: "This is the description for the primary label.",
-      agriculture: "This is the description for the haze agriculture.",
+      agriculture: "This is the description for the agriculture label.",
       clear: "This is the description for the clear label.",
       water: "This is the description for the water label.",
       habitation: "This is the description for the habitation label.",
