@@ -229,15 +229,15 @@ export default class Experience {
       habitation: "This is the description for the habitation label.",
       road: "This is the description for the road label.",
       cultivation: "This is the description for the cultivation label.",
-      slash_burn: "This is the description for the slash_burn label.",
+      slash_burn: "This is the description for the slash burn label.",
       cloudy: "This is the description for the cloudy label.",
-      partly_cloudy: "This is the description for the partly_cloudy label.",
-      conventional_mine: "This is the description for the conventional_mine label.",
-      bare_ground: "This is the description for the bare_ground label.",
-      artisinal_mine: "This is the description for the artisinal_mine label.",
+      partly_cloudy: "This is the description for the partly cloudy label.",
+      conventional_mine: "This is the description for the conventional mine label.",
+      bare_ground: "This is the description for the bare ground label.",
+      artisinal_mine: "This is the description for the artisinal mine label.",
       blooming: "This is the description for the blooming label.",
-      selective_logging: "This is the description for the selective_logging label.",
-      blow_down: "This is the description for the blow_down label."
+      selective_logging: "This is the description for the selective logging label.",
+      blow_down: "This is the description for the blow down label."
     }
     
     function updateLabels(labelArray){
@@ -249,9 +249,11 @@ export default class Experience {
       // Iterate through passed labels
       labelArray.forEach(label => {
         if (label in labels){
+          // Replace any underscores with spaces
+          let formattedLabel = label.replaceAll('_',' ');
           // Add label to list
           let labelToInsert = document.createElement('p');
-          labelToInsert.innerHTML = label;
+          labelToInsert.innerHTML = formattedLabel;
           labelListNode.appendChild(labelToInsert);
     
           // Add label description to info page
@@ -261,7 +263,7 @@ export default class Experience {
           let labelDescription = document.createElement('p');
           // Fill nodes
           labelWrapper.classList.add('tileLabel');
-          labelTitle.innerHTML = label;
+          labelTitle.innerHTML = formattedLabel;
           labelDescription.innerHTML = labels[label];
           labelWrapper.appendChild(labelTitle);
           labelWrapper.appendChild(labelDescription);
