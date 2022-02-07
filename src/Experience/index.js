@@ -116,8 +116,7 @@ export default class Experience {
         };
     });
   
-    let hideAr = [ document.getElementById('learnMoreBackBtn'),
-                   document.getElementById('learnMore')]
+    let hideAr = [ document.getElementById('learnMoreBackBtn')]
     hideAr.forEach(btn => {
         btn.onclick = () => {
           document.getElementById('learnMore').classList.remove('in');
@@ -126,8 +125,14 @@ export default class Experience {
           document.getElementById('landing').classList.add('in');
           // Check to see if we've started exploring before adding the label list
           // Otherwise it pops up after exiting learn more page from landing page
-          if (document.getElementById('backdrop').classList.contains('exploring'))
+          if (document.getElementById('backdrop').classList.contains('exploring')){
               document.getElementById('labelList').classList.add('in');
+          }
+          // Scroll to top after exiting learn more page.
+          // Delay is to hide scroll until exit animation is over.
+          setTimeout(function() {
+            document.getElementById('learnMore').scrollTop =0;
+          }, 500);
         };
     });
 
