@@ -2,6 +2,7 @@ import { Euler, PerspectiveCamera, Vector2, Vector3 } from 'three';
 import Experience from '..';
 
 const v = new Vector3();
+const RADIUS = 80;
 
 export default class Controls {
   constructor(camera, canvas, target) {
