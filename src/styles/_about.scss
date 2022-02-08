@@ -2,9 +2,10 @@
 @use "animations" as *;
 
 .scrollComponent {
-  position: absolute;
+  position: relative;
   max-height: 100vh;
-  width: 70%;
+  width: 80%;
+  left: 10%;
 
   transition: $transitionIn;
   z-index: 10;
@@ -36,12 +37,27 @@
 
 .aboutSections {
   display: flex;
-
   position: relative;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   height: 100vh;
+  width: 70%;
 
   scroll-snap-align: start;
 }
+
+@media screen and (max-width:400px) {
+  .scrollComponent{
+    display: block;
+    flex-wrap: wrap;
+    left:25%;
+    font-size: 3.5vw;
+  }
+
+  .aboutSections{
+    width:70%;
+    max-width: 225px;
+  }
+
+} 
