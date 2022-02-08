@@ -135,6 +135,143 @@ span:nth-child(5) {
     border-bottom-width: 1px;
   }
 }
+.arrow,
+.arrow:before {
+  position: absolute;
+}
+
+.arrow {
+  width: 20px;
+  height: 20px;
+  margin: -20px 0 0 -20px;
+  -webkit-transform: rotate(45deg);
+  border-left: none;
+  border-top: none;
+  border-right: 2px #fff solid;
+  border-bottom: 2px #fff solid;
+}
+
+.arrow:before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border-left: none;
+  border-top: none;
+  border-right: 1px #fff solid;
+  border-bottom: 1px #fff solid;
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-name: arrow;
+          animation-name: arrow;
+}
+
+@-webkit-keyframes arrow {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-10px, -10px);
+  }
+}
+
+@keyframes arrow {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-10px, -10px);
+  }
+}
+.scrollComponent {
+  position: absolute;
+  max-height: 100vh;
+  width: 70%;
+  transition: opacity ease-in-out 0.5s;
+  z-index: 10;
+  overflow: scroll;
+  pointer-events: all;
+  touch-action: all;
+  -ms-scroll-snap-type: y mandatory;
+      scroll-snap-type: y mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollComponent:not(.in) {
+  opacity: 0;
+  pointer-events: none;
+  touch-action: none;
+}
+.scrollComponent ::-webkit-scrollbar {
+  display: none;
+}
+.scrollComponent .downArrow {
+  bottom: 5%;
+}
+.scrollComponent .upArrow {
+  transform: rotate(225deg);
+  top: 5%;
+}
+
+.aboutSections {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  scroll-snap-align: start;
+}
+
+#labelListWrapper {
+  pointer-events: none;
+  touch-action: none;
+}
+#labelListWrapper.in #investigateBtn {
+  pointer-events: all;
+  touch-action: all;
+}
+#labelListWrapper.in #updateLabelsBtn {
+  pointer-events: all;
+  touch-action: all;
+}
+
+#infoPage {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.tileLabel {
+  max-width: 300px;
+}
+
+button {
+  background-color: rgba(255, 255, 255, 0);
+  font-family: "Poppins", sans-serif;
+  font-weight: 200;
+  cursor: pointer;
+}
+button#investigateBtn, button#updateLabelsBtn {
+  color: white;
+  border: 1px solid white;
+  padding: 1rem 1.5rem;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-size: 1.125rem;
+  transition: background-color 0.2s ease-in-out;
+}
+button#investigateBtn:hover, button#updateLabelsBtn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
 #landing {
   position: fixed;
   inset: 0;
@@ -206,6 +343,11 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
+a {
+  color: orange;
+  text-decoration: none;
+}
+
 svg {
   cursor: pointer;
 }
@@ -227,7 +369,7 @@ svg {
   opacity: 0;
 }
 
-#content > *:not(#landing) {
+#content > *:not(#landing):not(#learnMore) {
   width: clamp(300px, 100%, 1500px);
   max-width: 90vw;
 }
@@ -271,6 +413,7 @@ svg {
 .domComponent {
   display: flex;
   flex-direction: column;
+  position: absolute;
   justify-content: center;
   width: 100%;
   height: 100%;

@@ -89,7 +89,6 @@ export default class Terrain {
       } else if (child instanceof Mesh && child.name === 'river') {
         child.material = RiverMaterial;
         child.material.uniforms.uColor.value.setStyle('#5b63d4');
-        console.log(child.material);
 
         this.river = child;
       } else if (child instanceof Mesh && child.name === 'pine_leaves') {

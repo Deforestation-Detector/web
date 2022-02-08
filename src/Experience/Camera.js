@@ -1,6 +1,7 @@
 import Experience from '.';
 import { PerspectiveCamera } from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import Controls from './Utils/Controls';
 
 export default class Camera {
   constructor(fov = 35, near = 0.1, far = 2000) {
@@ -25,24 +26,17 @@ export default class Camera {
       far
     );
 
-    this.instance.position.set(
-      -2.789958503768538,
-      25.84389344147691,
-      17.08812818338609
-    );
+    this.instance.position.set(0, 35, 50);
+
+    // this.instance.lookAt(0, 0, -20);
 
     this.scene.add(this.instance);
   }
 
   setControls() {
-    this.controls = new OrbitControls(this.instance, this.canvas);
-    this.controls.target.set(
-      -2.789958503768538,
-      25.44389344147691,
-      15.08812818338609
-    );
-    this.controls.enableDamping = true;
-    Camera._controls = this.controls;
+    this.controls = new Controls(this.instance, this.canvas, [0, 0, -20]);
+    // this.controls = new OrbitControls(this.instance, this.canvas);
+    // this.controls.enableDamping = true;
   }
 
   resize() {
