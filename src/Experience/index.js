@@ -275,12 +275,12 @@ export default class Experience {
     }
     
     document.getElementById('updateLabelsBtn').onclick = () => {
-      let testLabels = [];
+      let newLabels = [];
       let remainingLabels = Object.keys(labels);
-      while(testLabels.length < 5){
+      while(newLabels.length < 5){
         var temp = remainingLabels[ remainingLabels.length * Math.random() << 0];
         remainingLabels = remainingLabels.filter(el => el !== temp);
-        testLabels.push(temp);
+        newLabels.push(temp);
       }
-      updateLabels(testLabels);
+      updateLabels(newLabels);
     }
