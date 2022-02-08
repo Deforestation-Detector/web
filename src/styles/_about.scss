@@ -4,7 +4,7 @@
 .scrollComponent {
   position: absolute;
   max-height: 100vh;
-  width: 70%;
+  width: 100%;
 
   transition: $transitionIn;
   z-index: 10;
@@ -42,6 +42,24 @@
   align-items: center;
   flex-direction: column;
   height: 100vh;
+  width: 70%;
+  left: 225px;
 
   scroll-snap-align: start;
 }
+
+@media screen and (max-width:700px) {
+  
+  .scrollComponent{
+    display: block;
+    flex-wrap: wrap;
+
+    font-size: 2.5vw;
+  }
+
+  .aboutSections{
+    width:80%;
+    max-width: 225px;
+    left: 100px;
+  }
+} 
