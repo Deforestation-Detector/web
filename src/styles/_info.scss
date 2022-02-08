@@ -1,10 +1,14 @@
-@use "./fonts" as *;
+@use './fonts' as *;
 
-#labelList {
+#labelListWrapper {
   pointer-events: none;
   touch-action: none;
 
   &.in #investigateBtn {
+    pointer-events: all;
+    touch-action: all;
+  }
+  &.in #updateLabelsBtn {
     pointer-events: all;
     touch-action: all;
   }
@@ -28,7 +32,8 @@ button {
   font-weight: 200;
   cursor: pointer;
 
-  &#investigateBtn {
+  &#investigateBtn,
+  &#updateLabelsBtn {
     color: white;
     border: 1px solid white;
     padding: 1rem 1.5rem;

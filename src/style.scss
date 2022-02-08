@@ -1,9 +1,11 @@
-@use "styles/fonts";
-@use "styles/loading";
-@use "styles/info";
-@use "styles/landing";
-@use "styles/animations" as *;
-@use "styles/utils" as *;
+@use 'styles/fonts';
+@use 'styles/loading';
+@use 'styles/about';
+@use 'styles/info';
+@use 'styles/landing';
+@use 'styles/scrollArrow';
+@use 'styles/animations' as *;
+@use 'styles/utils' as *;
 
 * {
   margin: 0;
@@ -19,6 +21,11 @@
 
 body {
   font-family: fonts.$sans-serif;
+}
+
+a {
+  color: orange;
+  text-decoration: none;
 }
 
 svg {
@@ -48,7 +55,7 @@ svg {
   }
 }
 
-#content > *:not(#landing) {
+#content > *:not(#landing):not(#learnMore) {
   width: clamp(300px, 100%, 1500px);
   max-width: 90vw;
 }
