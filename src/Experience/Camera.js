@@ -26,15 +26,16 @@ export default class Camera {
       far
     );
 
-    this.instance.position.set(0, 35, 50);
+    this.instance.position.set(0, 40, 50);
+    this.instance.rotation.reorder('YXZ');
 
-    // this.instance.lookAt(0, 0, -20);
+    this.instance.lookAt(0, 0, -30);
 
     this.scene.add(this.instance);
   }
 
   setControls() {
-    this.controls = new Controls(this.instance, this.canvas, [0, 0, -20]);
+    this.controls = new Controls(this.instance, this.canvas, [0, 0, -30]);
     // this.controls = new OrbitControls(this.instance, this.canvas);
     // this.controls.enableDamping = true;
   }

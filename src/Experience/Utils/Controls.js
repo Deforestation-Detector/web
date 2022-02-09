@@ -1,34 +1,32 @@
-import { Euler, PerspectiveCamera, Vector2, Vector3 } from 'three';
+import { Vector2, Vector3 } from 'three';
 import Experience from '..';
 
 const v = new Vector3();
-const RADIUS = 80;
+const negZ = new Vector3(0, 0, -1);
 
 export default class Controls {
-  constructor(camera, canvas, target) {
+  constructor(camera, canvas) {
     this.experience = new Experience();
 
     this.camera = camera;
     this.canvas = canvas;
 
     this.position = new Vector3();
-    this.target = new Vector3();
-    this.lerpedTarget = new Vector3();
+    this.rotation = new Vector3();
+    this.lerpedRotation = new Vector3();
     this.mouse = new Vector2();
     this.dragging = false;
 
+    this.keys = {
+      left: false,
+      up: false,
+      right: false,
+      down: false,
+    };
+
     this.position.copy(this.camera.position);
-    if (target) {
-      if (target instanceof Vector3) {
-        this.camera.lookAt(target);
-        this.target.copy(target);
-        this.lerpedTarget.copy(target);
-      } else {
-        this.camera.lookAt(...target);
-        this.target.set(...target);
-        this.lerpedTarget.set(...target);
-      }
-    }
+    this.camera.rotation.toVector3(this.rotation);
+    this.camera.rotation.toVector3(this.lerpedRotation);
 
     this.setEventHandlers();
   }
@@ -55,27 +53,121 @@ export default class Controls {
         let dx = this.mouse.x - x;
         let dy = this.mouse.y - y;
 
-        v.set(
-          this.target.x - this.position.x,
-          0,
-          this.target.z - this.position.z
-        );
+        v.copy(negZ).applyQuaternion(this.camera.quaternion);
+        v.y = 0;
+        v.normalize();
 
-        v.multiplyScalar(dy * 0.125);
+        v.multiplyScalar(dy * 20);
         this.position.add(v);
-        this.target.add(v);
+
+        this.rotation.y += dx;
 
         this.mouse.set(x, y);
+      }
+    });
+
+    window.addEventListener('keydown', (e) => {
+      switch (e.key) {
+        case 'a': {
+          this.keys.left = true;
+          break;
+        }
+        case 'ArrowLeft': {
+          this.keys.left = true;
+          break;
+        }
+        case 'w': {
+          this.keys.up = true;
+          break;
+        }
+        case 'ArrowUp': {
+          this.keys.up = true;
+          break;
+        }
+        case 'd': {
+          this.keys.right = true;
+          break;
+        }
+        case 'ArrowRight': {
+          this.keys.right = true;
+          break;
+        }
+        case 's': {
+          this.keys.down = true;
+          break;
+        }
+        case 'ArrowDown': {
+          this.keys.down = true;
+          break;
+        }
+      }
+    });
+
+    window.addEventListener('keyup', (e) => {
+      switch (e.key) {
+        case 'a': {
+          this.keys.left = false;
+          break;
+        }
+        case 'ArrowLeft': {
+          this.keys.left = false;
+          break;
+        }
+        case 'w': {
+          this.keys.up = false;
+          break;
+        }
+        case 'ArrowUp': {
+          this.keys.up = false;
+          break;
+        }
+        case 'd': {
+          this.keys.right = false;
+          break;
+        }
+        case 'ArrowRight': {
+          this.keys.right = false;
+          break;
+        }
+        case 's': {
+          this.keys.down = false;
+          break;
+        }
+        case 'ArrowDown': {
+          this.keys.down = false;
+          break;
+        }
       }
     });
   }
 
   update() {
-    this.lerpedTarget.lerp(this.target, 0.1);
-    this.camera.lookAt(this.lerpedTarget);
+    if (this.keys.up) {
+      v.copy(negZ).applyQuaternion(this.camera.quaternion);
+      v.y = 0;
+      v.normalize();
 
-    this.camera.position.lerp(this.position, 0.1);
+      // v.multiplyScalar(0.1);
+      this.position.add(v);
+    }
+    if (this.keys.down) {
+      v.copy(negZ).applyQuaternion(this.camera.quaternion);
+      v.y = 0;
+      v.normalize();
 
-    this.camera.updateProjectionMatrix();
+      // v.multiplyScalar(0.1);
+      this.position.sub(v);
+    }
+    if (this.keys.left) {
+      this.rotation.y += 0.025;
+    }
+    if (this.keys.right) {
+      this.rotation.y -= 0.025;
+    }
+
+    this.camera.position.lerp(this.position, 0.025);
+
+    this.lerpedRotation.lerp(this.rotation, 0.1);
+    this.camera.rotation.setFromVector3(this.lerpedRotation);
   }
 }

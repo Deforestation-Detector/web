@@ -1,7 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
-// const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   entry: [path.resolve(__dirname, 'src/index.js')],
@@ -21,7 +21,7 @@ module.exports = {
         theme_color: '#333366',
       },
     }),
-    // new MiniCssExtractPlugin(),
+    new MiniCssExtractPlugin(),
   ],
   module: {
     // rules to handle certain file types
@@ -34,7 +34,7 @@ module.exports = {
       // CSS
       {
         test: /\.s[ac]ss$/,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
       },
       // Images
       {
