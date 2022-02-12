@@ -6,9 +6,13 @@
 
 uniform vec3 uColor;
 uniform float uTime;
+uniform vec3 uFogColor;
+uniform float uFogDensity;
+
 
 varying vec2 vUv;
 varying vec3 vPos;
+varying float vFogDist;
 
 #define S smoothstep
 
@@ -95,19 +99,83 @@ vec2 cellular(vec3 P) {
 #endif
 }
 
+#pragma glslify: snoise3 = require(glsl-noise/simplex/3d)
+
+/*
+author: Patricio Gonzalez Vivo
+description: Fractal Brownian Motion
+use: fbm(<vec2> pos)
+options:
+    FBM_OCTAVES: numbers of octaves. Default is 4.
+    FBM_NOISE_FNC(POS_UV): noise function to use Default 'snoise(POS_UV)' (simplex noise)
+    FBM_VALUE_INITIAL: initial value. Default is 0.
+    FBM_SCALE_SCALAR: scalar. Defualt is 2.
+    FBM_AMPLITUD_INITIAL: initial amplitud value. Default is 0.5
+    FBM_AMPLITUD_SCALAR: amplitud scalar. Default is 0.5
+license: |
+    Copyright (c) 2021 Patricio Gonzalez Vivo.
+    Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.    
+*/
+
+#ifndef FBM_OCTAVES
+#define FBM_OCTAVES 4
+#endif
+
+#ifndef FBM_VALUE_INITIAL
+#define FBM_VALUE_INITIAL 0.0
+#endif
+
+#ifndef FBM_SCALE_SCALAR
+#define FBM_SCALE_SCALAR 2.0
+#endif
+
+#ifndef FBM_AMPLITUD_INITIAL
+#define FBM_AMPLITUD_INITIAL 0.5
+#endif
+
+#ifndef FBM_AMPLITUD_SCALAR
+#define FBM_AMPLITUD_SCALAR 0.5
+#endif
+
+#ifndef FNC_FBM
+#define FNC_FBM
+
+float fbm(in vec3 pos) {
+    // Initial values
+    float value = FBM_VALUE_INITIAL;
+    float amplitud = FBM_AMPLITUD_INITIAL;
+
+    // Loop of octaves
+    for (int i = 0; i < FBM_OCTAVES; i++) {
+        value += amplitud * snoise3(pos);
+        pos *= FBM_SCALE_SCALAR;
+        amplitud *= FBM_AMPLITUD_SCALAR;
+    }
+    return value;
+}
+#endif
+
 void main() {
   vec2 st = vUv * 2.0 - 1.0;
 
   float distFromCenter = S(0.75, 1.0, length(st.x));
 
-  vec2 flow = vPos.xz * 0.1 + vec2(uTime * 0.00005, -uTime * 0.00025);
+  vec2 flow = vPos.xz * 0.1 + vec2(uTime * 0.00001, -uTime * 0.000125);
 
-  vec2 foams = cellular(vec3(flow, uTime * 0.00025));
+  vec2 foams = cellular(vec3(flow, uTime * 0.00015));
 
   vec3 foamColor = mix(uColor, vec3(1.0), 0.5);
 
+  // float noise = clamp(fbm(vec3(vPos.xz / 20.0, uTime * 0.0001)), 0.0, 1.0);
+  // float heightFog = clamp(1.0 - vPos.y / 2.0, 0.0, 1.0) * noise;
+  // float distanceFog = 1.0 - exp(-vFogDist * vFogDist * uFogDensity * uFogDensity);
+
   vec3 color = mix(uColor, foamColor, S(0.25, 1.0, foams.x));
   color = mix(color, foamColor, distFromCenter);
+  // color = mix(color, uFogColor, heightFog);
+  // color = mix(color, uFogColor, distanceFog);
 
   gl_FragColor = vec4(color,1.0);
 }

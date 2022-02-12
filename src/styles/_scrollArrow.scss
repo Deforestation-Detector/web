@@ -7,7 +7,7 @@
   width: 20px;
   height: 20px;
   margin: -20px 0 0 -20px;
-  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
   border-left: none;
   border-top: none;
   border-right: 2px #fff solid;
@@ -15,7 +15,7 @@
 }
 
 .arrow:before {
-  content: "";
+  content: '';
   width: 20px;
   height: 20px;
   margin: -10px 0 0 -10px;
@@ -30,10 +30,13 @@
 
 @keyframes arrow {
   0% {
+    opacity: 0;
+    transform: translate(-10px, -10px);
+  }
+  50% {
     opacity: 1;
   }
   100% {
     opacity: 0;
-    transform: translate(-10px, -10px);
   }
 }

@@ -1,5 +1,5 @@
-@use "scrollArrow";
-@use "animations" as *;
+@use 'scrollArrow';
+@use 'animations' as *;
 @use './fonts' as *;
 @use './utils' as *;
 
@@ -11,10 +11,11 @@
 
   transition: $transitionIn;
   z-index: 10;
-  overflow: scroll;
+  overflow: auto;
   overflow-x: hidden;
   pointer-events: all;
   touch-action: all;
+  scroll-behavior: smooth;
 
   scroll-snap-type: y mandatory;
   &:not(.in) {
@@ -25,7 +26,7 @@
 
   scrollbar-width: none;
   -ms-overflow-style: none;
-  ::-webkit-scrollbar {
+  &::-webkit-scrollbar {
     display: none;
   }
 
@@ -37,7 +38,7 @@
     top: 5%;
   }
 
-  h1{
+  h1 {
     position: relative;
     right: 30px;
     margin: 30px;
@@ -58,17 +59,16 @@
   scroll-snap-align: start;
 }
 
-@media screen and (max-width:500px) {
-  .scrollComponent{
+@media screen and (max-width: 500px) {
+  .scrollComponent {
     display: block;
     flex-wrap: wrap;
     max-width: 100%;
-    left:13%;
+    left: 13%;
     font-size: 3.5vw;
   }
 
-  .aboutSections{
+  .aboutSections {
     max-width: 80%;
   }
-
-} 
+}

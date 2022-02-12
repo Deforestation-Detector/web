@@ -19,6 +19,7 @@
   "dependencies": {
     "css-loader": "^6.5.1",
     "file-loader": "^6.2.0",
+    "glsl-blend": "^1.0.3",
     "glsl-inverse": "^1.0.0",
     "glsl-map": "^1.0.1",
     "glsl-noise": "^0.0.0",

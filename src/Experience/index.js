@@ -4,6 +4,7 @@ import Renderer from './Renderer';
 import { Mesh, Raycaster, Scene } from 'three';
 import World from './World';
 import sources from './sources';
+import State from './State';
 
 export default class Experience {
   constructor(canvas) {
@@ -23,6 +24,11 @@ export default class Experience {
       console.error('Could not find canvas element.');
       return;
     }
+
+    /**
+     * State
+     */
+    this.state = new State();
 
     /**
      * Debug

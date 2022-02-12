@@ -100,6 +100,9 @@ export default class Controls {
           this.keys.down = true;
           break;
         }
+        case 'p': {
+          this.position.y -= 5;
+        }
       }
     });
 

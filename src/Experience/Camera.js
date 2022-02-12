@@ -1,10 +1,9 @@
 import Experience from '.';
 import { PerspectiveCamera } from 'three';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import Controls from './Utils/Controls';
 
 export default class Camera {
-  constructor(fov = 35, near = 0.1, far = 2000) {
+  constructor(fov = 35, near = 0.1, far = 200) {
     // grab singleton instance of Experience
     this.experience = new Experience();
     this.sizes = this.experience.sizes;
@@ -26,18 +25,16 @@ export default class Camera {
       far
     );
 
-    this.instance.position.set(0, 40, 50);
+    this.instance.position.set(0, 20, 50);
     this.instance.rotation.reorder('YXZ');
 
-    this.instance.lookAt(0, 0, -30);
+    this.instance.lookAt(0, 0, 10);
 
     this.scene.add(this.instance);
   }
 
   setControls() {
-    this.controls = new Controls(this.instance, this.canvas, [0, 0, -30]);
-    // this.controls = new OrbitControls(this.instance, this.canvas);
-    // this.controls.enableDamping = true;
+    this.controls = new Controls(this.instance, this.canvas);
   }
 
   resize() {
