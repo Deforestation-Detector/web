@@ -29,6 +29,7 @@ export default class Experience {
      * State
      */
     this.state = new State();
+    this.state.init();
 
     /**
      * Debug
@@ -150,9 +151,7 @@ export default class Experience {
      * HANDLE TRANSITION TO/FROM INFO PAGE
      */
     document.getElementById('investigateBtn').onclick = () => {
-      document.getElementById('infoPage').classList.add('in');
-      document.getElementById('backdrop').classList.add('in');
-      document.getElementById('labelListWrapper').classList.remove('in');
+      this.state.viewState.setView('investigate');
     };
     document.getElementById('infoPage').onclick = () => {
       document.getElementById('infoPage').classList.remove('in');

@@ -8,7 +8,7 @@ export default class ViewState {
     this.state = this.experience.state;
 
     this.#currentView = 'loading';
-    this.views = ['loading', 'landing', 'exploring', 'about'];
+    this.views = ['loading', 'landing', 'exploring', 'about', 'investigate'];
 
     this.viewingTile;
   }
@@ -30,9 +30,18 @@ export default class ViewState {
 
   handleDomChanges(oldView, newView) {
     // handle transitions here
+    console.log(this.state);
+
     switch (newView) {
       case 'landing': {
         this.state.domElements.landingPage.classList.add('in');
+        break;
+      }
+      case 'investigate': {
+        this.state.domElements.infoPage.classList.add('in');
+        this.state.domElements.backdrop.classList.add('in');
+        this.state.domElements.labelListWrapper.classList.remove('in');
+
         break;
       }
       default: {
