@@ -22,6 +22,12 @@
     touch-action: none;
   }
 
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
   .downArrow {
     bottom: 5%;
   }
@@ -38,7 +44,7 @@
     font-size: $medHeaderFontSize;
   }
 
-  #aboutBack{
+  #aboutBack {
     position: sticky;
     border: none;
     margin-left: 5%;
@@ -59,7 +65,6 @@
   scroll-snap-align: start;
 }
 
-
 @media screen and (max-width: 500px) {
   .scrollComponent {
     display: block;
@@ -67,7 +72,7 @@
     max-width: 100%;
     font-size: 3.5vw;
 
-    #aboutBack{
+    #aboutBack {
       top: 20%;
       margin-left: 5%;
     }
