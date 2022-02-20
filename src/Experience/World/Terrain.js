@@ -9,6 +9,7 @@ import {
   sRGBEncoding,
   RGBFormat,
   PerspectiveCamera,
+  RGBAFormat,
 } from 'three';
 
 import Experience from '../index.js';
@@ -41,320 +42,363 @@ export default class Terrain {
 
   update() {
     for (let obj of this.objects) {
-      obj.material.uniforms.uTime.value = this.experience.clock.elapsed;
+      if (obj.material.uniforms) {
+        obj.material.uniforms.uTime.value = this.experience.clock.elapsed;
+      }
     }
   }
 
   traverseModel() {
     this.islands = [];
 
-    var islandsLightmap = this.resources.items['islandsLightMap'];
-    islandsLightmap.flipY = false;
-    islandsLightmap.format = LuminanceFormat;
+    // var islandsLightmap = this.resources.items['islandsLightMap'];
+    // islandsLightmap.flipY = false;
+    // islandsLightmap.format = LuminanceFormat;
 
-    var detailsLightmap = this.resources.items['detailsLightMap'];
-    detailsLightmap.flipY = false;
-    detailsLightmap.format = LuminanceFormat;
+    // var detailsLightmap = this.resources.items['detailsLightMap'];
+    // detailsLightmap.flipY = false;
+    // detailsLightmap.format = LuminanceFormat;
 
-    var roundTreesLightmap = this.resources.items['roundTreesLightMap'];
-    roundTreesLightmap.flipY = false;
-    roundTreesLightmap.format = LuminanceFormat;
+    // var roundTreesLightmap = this.resources.items['roundTreesLightMap'];
+    // roundTreesLightmap.flipY = false;
+    // roundTreesLightmap.format = LuminanceFormat;
 
-    var tallTreesLightmap = this.resources.items['tallTreesLightMap'];
-    tallTreesLightmap.flipY = false;
-    tallTreesLightmap.format = LuminanceFormat;
+    // var tallTreesLightmap = this.resources.items['tallTreesLightMap'];
+    // tallTreesLightmap.flipY = false;
+    // tallTreesLightmap.format = LuminanceFormat;
 
-    var looseTreesLightmap = this.resources.items['looseTreesLightMap'];
-    looseTreesLightmap.flipY = false;
-    looseTreesLightmap.format = LuminanceFormat;
+    // var looseTreesLightmap = this.resources.items['looseTreesLightMap'];
+    // looseTreesLightmap.flipY = false;
+    // looseTreesLightmap.format = LuminanceFormat;
 
     this.model.scene.traverse((child) => {
-      if (
-        child instanceof Mesh &&
-        ['large_island', 'top_of_large_island', 'medium_island'].includes(
-          child.name
-        )
-      ) {
-        child.material = new ShaderMaterial({
-          vertexShader: landscapeVertexShader,
-          fragmentShader: landscapeFragmentShader,
-          toneMapped: true,
-          transparent: true,
-          uniforms: {
-            uWind: { value: 0 },
-            uTime: { value: 0 },
-            uColor: { value: new Color('#8eff75') },
-            uFogColor: { value: new Color('#d0f5df') },
-            uFogDensity: { value: 0.012 },
-            uFogHeightFactor: { value: 0.075 },
-            uLightmapIntensity: { value: 1 },
-            uLightmap: { type: 't', value: islandsLightmap },
-          },
-        });
+      if (child instanceof Mesh) {
+        if (
+          ['bake1', 'bake2', 'bake3', 'bake4', 'bake5'].includes(child.name)
+        ) {
+          let tex = this.resources.items[child.name];
 
-        this.islands.push(child);
-        this.objects.push(child);
-      } else if (child instanceof Mesh && child.name === 'beach') {
-        child.material = new ShaderMaterial({
-          vertexShader: landscapeVertexShader,
-          fragmentShader: landscapeFragmentShader,
-          toneMapped: true,
-          uniforms: {
-            uWind: { value: 0 },
-            uTime: { value: 0 },
-            uColor: { value: new Color('#ffd191') },
-            uFogColor: { value: new Color('#d0f5df') },
-            uFogDensity: { value: 0.012 },
-            uFogHeightFactor: { value: 0.075 },
-            uLightmapIntensity: { value: 1 },
-            uLightmap: { type: 't', value: islandsLightmap },
-          },
-        });
+          tex.flipY = false;
+          tex.format = RGBFormat;
 
-        this.beach = child;
-        this.objects.push(child);
-      } else if (child instanceof Mesh && child.name === 'small_island') {
-        child.material = new ShaderMaterial({
-          vertexShader: landscapeVertexShader,
-          fragmentShader: landscapeFragmentShader,
-          toneMapped: true,
-          uniforms: {
-            uWind: { value: 0 },
-            uTime: { value: 0 },
-            uColor: { value: new Color('#ffd191') },
-            uFogColor: { value: new Color('#d0f5df') },
-            uFogDensity: { value: 0.012 },
-            uFogHeightFactor: { value: 0.075 },
-            uLightmapIntensity: { value: 1 },
-            uLightmap: { type: 't', value: islandsLightmap },
-          },
-        });
+          child.material = child.material = new ShaderMaterial({
+            vertexShader: landscapeVertexShader,
+            fragmentShader: landscapeFragmentShader,
+            toneMapped: true,
+            transparent: false,
+            uniforms: {
+              uWind: { value: 0 },
+              uTime: { value: 0 },
+              uColor: { value: new Color('#fff') },
+              uFogColor: { value: new Color('#d0f5df') },
+              uFogDensity: { value: 0.012 },
+              uFogHeightFactor: { value: 0.075 },
+              uLightmapIntensity: { value: 1 },
+              uLightmap: { type: 't', value: tex },
+            },
+          });
 
-        this.smallIsland = child;
-        this.objects.push(child);
-      } else if (child instanceof Mesh && child.name === 'river') {
-        child.material = RiverMaterial;
-        child.material.uniforms.uColor.value.setStyle('#5b63d4');
-
-        this.river = child;
-        this.objects.push(child);
-      } else if (child instanceof Mesh && child.name === 'pine_leaves') {
-        child.material = new ShaderMaterial({
-          vertexShader: landscapeVertexShader,
-          fragmentShader: landscapeFragmentShader,
-          toneMapped: true,
-          uniforms: {
-            uWind: { value: 0 },
-            uTime: { value: 0 },
-            uColor: { value: new Color('#111D13') },
-            uFogColor: { value: new Color('#d0f5df') },
-            uFogDensity: { value: 0.012 },
-            uFogHeightFactor: { value: 0.075 },
-            uLightmapIntensity: { value: 1.25 },
-            uLightmap: { type: 't', value: detailsLightmap },
-          },
-        });
-
-        this.pineLeaves = child;
-        this.objects.push(child);
-      } else if (child instanceof Mesh && child.name === 'logs') {
-        child.material = new ShaderMaterial({
-          vertexShader: landscapeVertexShader,
-          fragmentShader: landscapeFragmentShader,
-          toneMapped: true,
-          uniforms: {
-            uWind: { value: 0 },
-            uTime: { value: 0 },
-            uColor: { value: new Color('#996828') },
-            uFogColor: { value: new Color('#d0f5df') },
-            uFogDensity: { value: 0.012 },
-            uFogHeightFactor: { value: 0.075 },
-            uLightmap: { type: 't', value: detailsLightmap },
-            uLightmapIntensity: { value: 1 },
-          },
-        });
-
-        this.logs = child;
-        this.objects.push(child);
-      } else if (child instanceof Mesh && child.name === 'round_leaves') {
-        child.material = new ShaderMaterial({
-          vertexShader: landscapeVertexShader,
-          fragmentShader: landscapeFragmentShader,
-          toneMapped: true,
-          uniforms: {
-            uWind: { value: 0 },
-            uTime: { value: 0 },
-            uColor: { value: new Color('#5cc778') },
-            uFogColor: { value: new Color('#d0f5df') },
-            uFogDensity: { value: 0.012 },
-            uFogHeightFactor: { value: 0.075 },
-            uLightmap: { type: 't', value: roundTreesLightmap },
-            uLightmapIntensity: { value: 2 },
-          },
-        });
-
-        this.roundLeaves = child;
-        this.objects.push(child);
-      } else if (child instanceof Mesh && child.name === 'tall_leaves') {
-        child.material = new ShaderMaterial({
-          vertexShader: landscapeVertexShader,
-          fragmentShader: landscapeFragmentShader,
-          toneMapped: true,
-          uniforms: {
-            uTime: { value: 0 },
-            uColor: { value: new Color('#41ff4e') },
-            uFogColor: { value: new Color('#d0f5df') },
-            uFogDensity: { value: 0.012 },
-            uWind: { value: 1 },
-            uFogHeightFactor: { value: 0.075 },
-            uLightmap: { type: 't', value: tallTreesLightmap },
-            uLightmapIntensity: { value: 2 },
-          },
-        });
-
-        this.tallLeaves = child;
-        this.objects.push(child);
-      } else if (
-        child instanceof Mesh &&
-        ['road', 'rocks'].includes(child.name)
-      ) {
-        child.material = new ShaderMaterial({
-          vertexShader: landscapeVertexShader,
-          fragmentShader: landscapeFragmentShader,
-          toneMapped: true,
-          uniforms: {
-            uWind: { value: 0 },
-            uTime: { value: 0 },
-            uColor: { value: new Color('#8b8bb3') },
-            uFogColor: { value: new Color('#d0f5df') },
-            uFogDensity: { value: 0.012 },
-            uFogHeightFactor: { value: 0.075 },
-            uLightmap: { type: 't', value: detailsLightmap },
-            uLightmapIntensity: { value: 1.5 },
-          },
-        });
-
-        if (child.name === 'rocks') {
-          child.material.side = DoubleSide;
+          if (child.name === 'bake1') {
+            child.position.y -= 0.05;
+          }
         }
 
-        this.rocks = child;
-        this.objects.push(child);
-      } else if (child instanceof Mesh && child.name === 'soil') {
-        child.material = new ShaderMaterial({
-          vertexShader: landscapeVertexShader,
-          fragmentShader: landscapeFragmentShader,
-          toneMapped: true,
-          uniforms: {
-            uWind: { value: 0 },
-            uTime: { value: 0 },
-            uColor: { value: new Color('#3d301c') },
-            uFogColor: { value: new Color('#d0f5df') },
-            uFogDensity: { value: 0.012 },
-            uFogHeightFactor: { value: 0.075 },
-            uLightmap: { type: 't', value: detailsLightmap },
-            uLightmapIntensity: { value: 1.5 },
-          },
-        });
+        if (child.name === 'river') {
+          child.material = RiverMaterial;
+          child.material.uniforms.uColor.value.setStyle('#5b63d4');
 
-        this.soil = child;
-        this.objects.push(child);
-      } else if (child instanceof Mesh && child.name === 'house') {
-        child.material = new ShaderMaterial({
-          vertexShader: landscapeVertexShader,
-          fragmentShader: landscapeFragmentShader,
-          toneMapped: true,
-          uniforms: {
-            uWind: { value: 0 },
-            uTime: { value: 0 },
-            uColor: { value: new Color('#bbb') },
-            uFogColor: { value: new Color('#d0f5df') },
-            uFogDensity: { value: 0.012 },
-            uFogHeightFactor: { value: 0.075 },
-            uLightmap: { type: 't', value: detailsLightmap },
-            uLightmapIntensity: { value: 1.5 },
-          },
-        });
+          this.river = child;
+        }
 
-        this.house = child;
-        this.objects.push(child);
-      } else if (child instanceof Mesh && child.name === 'roof') {
-        child.material = new ShaderMaterial({
-          vertexShader: landscapeVertexShader,
-          fragmentShader: landscapeFragmentShader,
-          toneMapped: true,
-          uniforms: {
-            uWind: { value: 0 },
-            uTime: { value: 0 },
-            uColor: { value: new Color('#333') },
-            uFogColor: { value: new Color('#d0f5df') },
-            uFogDensity: { value: 0.012 },
-            uFogHeightFactor: { value: 0.075 },
-            uLightmap: { type: 't', value: detailsLightmap },
-            uLightmapIntensity: { value: 1.5 },
-          },
-        });
-
-        this.roof = child;
-        this.objects.push(child);
-      } else if (child instanceof Mesh && child.name === 'agriculture') {
-        child.material = new ShaderMaterial({
-          vertexShader: landscapeVertexShader,
-          fragmentShader: landscapeFragmentShader,
-          toneMapped: true,
-          uniforms: {
-            uWind: { value: 0 },
-            uTime: { value: 0 },
-            uColor: { value: new Color('#ffd900') },
-            uFogColor: { value: new Color('#d0f5df') },
-            uFogDensity: { value: 0.012 },
-            uFogHeightFactor: { value: 0.075 },
-            uLightmap: { type: 't', value: detailsLightmap },
-            uLightmapIntensity: { value: 1.5 },
-          },
-        });
-
-        this.agriculture = child;
-        this.objects.push(child);
-      } else if (child instanceof Mesh && child.name === 'loose_leaves') {
-        child.material = new ShaderMaterial({
-          vertexShader: landscapeVertexShader,
-          fragmentShader: landscapeFragmentShader,
-          toneMapped: true,
-          uniforms: {
-            uWind: { value: 0 },
-            uTime: { value: 0 },
-            uColor: { value: new Color('#badf73') },
-            uFogColor: { value: new Color('#d0f5df') },
-            uFogDensity: { value: 0.012 },
-            uFogHeightFactor: { value: 0.075 },
-            uLightmap: { type: 't', value: looseTreesLightmap },
-            uLightmapIntensity: { value: 1 },
-          },
-        });
-
-        this.looseLeaves = child;
-        this.objects.push(child);
-      } else if (child instanceof Mesh && child.name === 'marshland') {
-        child.material = new ShaderMaterial({
-          vertexShader: landscapeVertexShader,
-          fragmentShader: landscapeFragmentShader,
-          toneMapped: true,
-          uniforms: {
-            uWind: { value: 0 },
-            uTime: { value: 0 },
-            uColor: { value: new Color('#152200') },
-            uFogColor: { value: new Color('#d0f5df') },
-            uFogDensity: { value: 0.012 },
-            uFogHeightFactor: { value: 0.075 },
-            uLightmap: { type: 't', value: islandsLightmap },
-            uLightmapIntensity: { value: 1 },
-          },
-        });
-
-        this.marshland = child;
         this.objects.push(child);
       }
+
+      // if (
+      //   child instanceof Mesh &&
+      //   ['large_island', 'top_of_large_island', 'medium_island'].includes(
+      //     child.name
+      //   )
+      // ) {
+      // child.material = new ShaderMaterial({
+      //   vertexShader: landscapeVertexShader,
+      //   fragmentShader: landscapeFragmentShader,
+      //   toneMapped: true,
+      //   transparent: true,
+      //   uniforms: {
+      //     uWind: { value: 0 },
+      //     uTime: { value: 0 },
+      //     uColor: { value: new Color('#8eff75') },
+      //     uFogColor: { value: new Color('#d0f5df') },
+      //     uFogDensity: { value: 0.012 },
+      //     uFogHeightFactor: { value: 0.075 },
+      //     uLightmapIntensity: { value: 1 },
+      //     uLightmap: { type: 't', value: islandsLightmap },
+      //   },
+      // });
+
+      //   this.islands.push(child);
+      //   this.objects.push(child);
+      // } else if (child instanceof Mesh && child.name === 'beach') {
+      //   child.material = new ShaderMaterial({
+      //     vertexShader: landscapeVertexShader,
+      //     fragmentShader: landscapeFragmentShader,
+      //     toneMapped: true,
+      //     uniforms: {
+      //       uWind: { value: 0 },
+      //       uTime: { value: 0 },
+      //       uColor: { value: new Color('#ffd191') },
+      //       uFogColor: { value: new Color('#d0f5df') },
+      //       uFogDensity: { value: 0.012 },
+      //       uFogHeightFactor: { value: 0.075 },
+      //       uLightmapIntensity: { value: 1 },
+      //       uLightmap: { type: 't', value: islandsLightmap },
+      //     },
+      //   });
+
+      //   this.beach = child;
+      //   this.objects.push(child);
+      // } else if (child instanceof Mesh && child.name === 'small_island') {
+      //   child.material = new ShaderMaterial({
+      //     vertexShader: landscapeVertexShader,
+      //     fragmentShader: landscapeFragmentShader,
+      //     toneMapped: true,
+      //     uniforms: {
+      //       uWind: { value: 0 },
+      //       uTime: { value: 0 },
+      //       uColor: { value: new Color('#ffd191') },
+      //       uFogColor: { value: new Color('#d0f5df') },
+      //       uFogDensity: { value: 0.012 },
+      //       uFogHeightFactor: { value: 0.075 },
+      //       uLightmapIntensity: { value: 1 },
+      //       uLightmap: { type: 't', value: islandsLightmap },
+      //     },
+      //   });
+
+      //   this.smallIsland = child;
+      //   this.objects.push(child);
+      // } else if (child instanceof Mesh && child.name === 'river') {
+      //   child.material = RiverMaterial;
+      //   child.material.uniforms.uColor.value.setStyle('#5b63d4');
+
+      //   this.river = child;
+      //   this.objects.push(child);
+      // } else if (child instanceof Mesh && child.name === 'pine_leaves') {
+      //   child.material = new ShaderMaterial({
+      //     vertexShader: landscapeVertexShader,
+      //     fragmentShader: landscapeFragmentShader,
+      //     toneMapped: true,
+      //     uniforms: {
+      //       uWind: { value: 0 },
+      //       uTime: { value: 0 },
+      //       uColor: { value: new Color('#111D13') },
+      //       uFogColor: { value: new Color('#d0f5df') },
+      //       uFogDensity: { value: 0.012 },
+      //       uFogHeightFactor: { value: 0.075 },
+      //       uLightmapIntensity: { value: 1.25 },
+      //       uLightmap: { type: 't', value: detailsLightmap },
+      //     },
+      //   });
+
+      //   this.pineLeaves = child;
+      //   this.objects.push(child);
+      // } else if (child instanceof Mesh && child.name === 'logs') {
+      //   child.material = new ShaderMaterial({
+      //     vertexShader: landscapeVertexShader,
+      //     fragmentShader: landscapeFragmentShader,
+      //     toneMapped: true,
+      //     uniforms: {
+      //       uWind: { value: 0 },
+      //       uTime: { value: 0 },
+      //       uColor: { value: new Color('#996828') },
+      //       uFogColor: { value: new Color('#d0f5df') },
+      //       uFogDensity: { value: 0.012 },
+      //       uFogHeightFactor: { value: 0.075 },
+      //       uLightmap: { type: 't', value: detailsLightmap },
+      //       uLightmapIntensity: { value: 1 },
+      //     },
+      //   });
+
+      //   this.logs = child;
+      //   this.objects.push(child);
+      // } else if (child instanceof Mesh && child.name === 'round_leaves') {
+      //   child.material = new ShaderMaterial({
+      //     vertexShader: landscapeVertexShader,
+      //     fragmentShader: landscapeFragmentShader,
+      //     toneMapped: true,
+      //     uniforms: {
+      //       uWind: { value: 0 },
+      //       uTime: { value: 0 },
+      //       uColor: { value: new Color('#5cc778') },
+      //       uFogColor: { value: new Color('#d0f5df') },
+      //       uFogDensity: { value: 0.012 },
+      //       uFogHeightFactor: { value: 0.075 },
+      //       uLightmap: { type: 't', value: roundTreesLightmap },
+      //       uLightmapIntensity: { value: 2 },
+      //     },
+      //   });
+
+      //   this.roundLeaves = child;
+      //   this.objects.push(child);
+      // } else if (child instanceof Mesh && child.name === 'tall_leaves') {
+      //   child.material = new ShaderMaterial({
+      //     vertexShader: landscapeVertexShader,
+      //     fragmentShader: landscapeFragmentShader,
+      //     toneMapped: true,
+      //     uniforms: {
+      //       uTime: { value: 0 },
+      //       uColor: { value: new Color('#41ff4e') },
+      //       uFogColor: { value: new Color('#d0f5df') },
+      //       uFogDensity: { value: 0.012 },
+      //       uWind: { value: 1 },
+      //       uFogHeightFactor: { value: 0.075 },
+      //       uLightmap: { type: 't', value: tallTreesLightmap },
+      //       uLightmapIntensity: { value: 2 },
+      //     },
+      //   });
+
+      //   this.tallLeaves = child;
+      //   this.objects.push(child);
+      // } else if (
+      //   child instanceof Mesh &&
+      //   ['road', 'rocks'].includes(child.name)
+      // ) {
+      //   child.material = new ShaderMaterial({
+      //     vertexShader: landscapeVertexShader,
+      //     fragmentShader: landscapeFragmentShader,
+      //     toneMapped: true,
+      //     uniforms: {
+      //       uWind: { value: 0 },
+      //       uTime: { value: 0 },
+      //       uColor: { value: new Color('#8b8bb3') },
+      //       uFogColor: { value: new Color('#d0f5df') },
+      //       uFogDensity: { value: 0.012 },
+      //       uFogHeightFactor: { value: 0.075 },
+      //       uLightmap: { type: 't', value: detailsLightmap },
+      //       uLightmapIntensity: { value: 1.5 },
+      //     },
+      //   });
+
+      //   if (child.name === 'rocks') {
+      //     child.material.side = DoubleSide;
+      //   }
+
+      //   this.rocks = child;
+      //   this.objects.push(child);
+      // } else if (child instanceof Mesh && child.name === 'soil') {
+      //   child.material = new ShaderMaterial({
+      //     vertexShader: landscapeVertexShader,
+      //     fragmentShader: landscapeFragmentShader,
+      //     toneMapped: true,
+      //     uniforms: {
+      //       uWind: { value: 0 },
+      //       uTime: { value: 0 },
+      //       uColor: { value: new Color('#3d301c') },
+      //       uFogColor: { value: new Color('#d0f5df') },
+      //       uFogDensity: { value: 0.012 },
+      //       uFogHeightFactor: { value: 0.075 },
+      //       uLightmap: { type: 't', value: detailsLightmap },
+      //       uLightmapIntensity: { value: 1.5 },
+      //     },
+      //   });
+
+      //   this.soil = child;
+      //   this.objects.push(child);
+      // } else if (child instanceof Mesh && child.name === 'house') {
+      //   child.material = new ShaderMaterial({
+      //     vertexShader: landscapeVertexShader,
+      //     fragmentShader: landscapeFragmentShader,
+      //     toneMapped: true,
+      //     uniforms: {
+      //       uWind: { value: 0 },
+      //       uTime: { value: 0 },
+      //       uColor: { value: new Color('#bbb') },
+      //       uFogColor: { value: new Color('#d0f5df') },
+      //       uFogDensity: { value: 0.012 },
+      //       uFogHeightFactor: { value: 0.075 },
+      //       uLightmap: { type: 't', value: detailsLightmap },
+      //       uLightmapIntensity: { value: 1.5 },
+      //     },
+      //   });
+
+      //   this.house = child;
+      //   this.objects.push(child);
+      // } else if (child instanceof Mesh && child.name === 'roof') {
+      //   child.material = new ShaderMaterial({
+      //     vertexShader: landscapeVertexShader,
+      //     fragmentShader: landscapeFragmentShader,
+      //     toneMapped: true,
+      //     uniforms: {
+      //       uWind: { value: 0 },
+      //       uTime: { value: 0 },
+      //       uColor: { value: new Color('#333') },
+      //       uFogColor: { value: new Color('#d0f5df') },
+      //       uFogDensity: { value: 0.012 },
+      //       uFogHeightFactor: { value: 0.075 },
+      //       uLightmap: { type: 't', value: detailsLightmap },
+      //       uLightmapIntensity: { value: 1.5 },
+      //     },
+      //   });
+
+      //   this.roof = child;
+      //   this.objects.push(child);
+      // } else if (child instanceof Mesh && child.name === 'agriculture') {
+      //   child.material = new ShaderMaterial({
+      //     vertexShader: landscapeVertexShader,
+      //     fragmentShader: landscapeFragmentShader,
+      //     toneMapped: true,
+      //     uniforms: {
+      //       uWind: { value: 0 },
+      //       uTime: { value: 0 },
+      //       uColor: { value: new Color('#ffd900') },
+      //       uFogColor: { value: new Color('#d0f5df') },
+      //       uFogDensity: { value: 0.012 },
+      //       uFogHeightFactor: { value: 0.075 },
+      //       uLightmap: { type: 't', value: detailsLightmap },
+      //       uLightmapIntensity: { value: 1.5 },
+      //     },
+      //   });
+
+      //   this.agriculture = child;
+      //   this.objects.push(child);
+      // } else if (child instanceof Mesh && child.name === 'loose_leaves') {
+      //   child.material = new ShaderMaterial({
+      //     vertexShader: landscapeVertexShader,
+      //     fragmentShader: landscapeFragmentShader,
+      //     toneMapped: true,
+      //     uniforms: {
+      //       uWind: { value: 0 },
+      //       uTime: { value: 0 },
+      //       uColor: { value: new Color('#badf73') },
+      //       uFogColor: { value: new Color('#d0f5df') },
+      //       uFogDensity: { value: 0.012 },
+      //       uFogHeightFactor: { value: 0.075 },
+      //       uLightmap: { type: 't', value: looseTreesLightmap },
+      //       uLightmapIntensity: { value: 1 },
+      //     },
+      //   });
+
+      //   this.looseLeaves = child;
+      //   this.objects.push(child);
+      // } else if (child instanceof Mesh && child.name === 'marshland') {
+      //   child.material = new ShaderMaterial({
+      //     vertexShader: landscapeVertexShader,
+      //     fragmentShader: landscapeFragmentShader,
+      //     toneMapped: true,
+      //     uniforms: {
+      //       uWind: { value: 0 },
+      //       uTime: { value: 0 },
+      //       uColor: { value: new Color('#152200') },
+      //       uFogColor: { value: new Color('#d0f5df') },
+      //       uFogDensity: { value: 0.012 },
+      //       uFogHeightFactor: { value: 0.075 },
+      //       uLightmap: { type: 't', value: islandsLightmap },
+      //       uLightmapIntensity: { value: 1 },
+      //     },
+      //   });
+
+      //   this.marshland = child;
+      //   this.objects.push(child);
+      // }
     });
   }
 

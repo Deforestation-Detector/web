@@ -17,13 +17,22 @@
 import terrainModel from '../models/terrain.glb';
 
 /**
+ * BAKED MAPS
+ */
+import bake1 from '../img/baked/bake1.jpg';
+import bake2 from '../img/baked/bake2.jpg';
+import bake3 from '../img/baked/bake3.jpg';
+import bake4 from '../img/baked/bake4.jpg';
+import bake5 from '../img/baked/bake5.jpg';
+
+/**
  * LIGHT MAPS
  */
-import islandsLightMap from '../img/lightmaps/islandsLightmap.jpg';
-import detailsLightMap from '../img/lightmaps/detailsLightmap.jpg';
-import roundTreesLightMap from '../img/lightmaps/roundTreesLightmap.jpg';
-import tallTreesLightMap from '../img/lightmaps/tallTreesLightmap.jpg';
-import looseTreesLightMap from '../img/lightmaps/looseTreesLightmap.jpg';
+// import islandsLightMap from '../img/lightmaps/islandsLightmap.jpg';
+// import detailsLightMap from '../img/lightmaps/detailsLightmap.jpg';
+// import roundTreesLightMap from '../img/lightmaps/roundTreesLightmap.jpg';
+// import tallTreesLightMap from '../img/lightmaps/tallTreesLightmap.jpg';
+// import looseTreesLightMap from '../img/lightmaps/looseTreesLightmap.jpg';
 
 /**
  * MATCAPS
@@ -94,32 +103,59 @@ export default [
     path: terrainModel,
   },
 
+  // BAKED MAPS
+  {
+    name: 'bake1',
+    type: 'texture',
+    path: bake1,
+  },
+  {
+    name: 'bake2',
+    type: 'texture',
+    path: bake2,
+  },
+  {
+    name: 'bake3',
+    type: 'texture',
+    path: bake3,
+  },
+  {
+    name: 'bake4',
+    type: 'texture',
+    path: bake4,
+  },
+  {
+    name: 'bake5',
+    type: 'texture',
+    path: bake5,
+  },
+
   // LIGHT MAPS
-  {
-    name: 'islandsLightMap',
-    type: 'texture',
-    path: islandsLightMap,
-  },
-  {
-    name: 'detailsLightMap',
-    type: 'texture',
-    path: detailsLightMap,
-  },
-  {
-    name: 'roundTreesLightMap',
-    type: 'texture',
-    path: roundTreesLightMap,
-  },
-  {
-    name: 'tallTreesLightMap',
-    type: 'texture',
-    path: tallTreesLightMap,
-  },
-  {
-    name: 'looseTreesLightMap',
-    type: 'texture',
-    path: looseTreesLightMap,
-  },
+  // {
+  //   name: 'islandsLightMap',
+  //   type: 'texture',
+  //   path: islandsLightMap,
+  // },
+  // {
+  //   name: 'detailsLightMap',
+  //   type: 'texture',
+  //   path: detailsLightMap,
+  // },
+  // {
+  //   name: 'roundTreesLightMap',
+  //   type: 'texture',
+  //   path: roundTreesLightMap,
+  // },
+  // {
+  //   name: 'tallTreesLightMap',
+  //   type: 'texture',
+  //   path: tallTreesLightMap,
+  // },
+  // {
+  //   name: 'looseTreesLightMap',
+  //   type: 'texture',
+  //   path: looseTreesLightMap,
+  // },
 
   // MATCAPS
   // {

@@ -8,10 +8,14 @@ uniform sampler2D uLightmap;
 varying vec2 vUv;
 varying vec3 vPos;
 varying float vFogDist;
+varying float vFogRim;
 
 #define S smoothstep
 #define FOG_START 10.0
 #define FOG_END 40.0
+#define FOG_RIM_START 45.0
+#define FOG_RIM_END 74.0
+
 
 #pragma glslify: snoise3 = require(glsl-noise/simplex/3d)
 
@@ -83,6 +87,8 @@ void main() {
 
   // float fogFactor = clamp((FOG_END - vFogDist) / (FOG_END - FOG_START), 0.0, 1.0);
 
+  float fogRimFactor = 1.0 - clamp((FOG_RIM_END - vFogRim) / (FOG_RIM_END - FOG_RIM_START), 0.0, 1.0);
+
   color *= S(0.0, 1.0, shadows.rgb) * uLightmapIntensity;
   
   #if defined( TONE_MAPPING )
@@ -90,6 +96,7 @@ void main() {
   #endif
 
   // color = mix(color, uFogColor, heightFog);
+  color = mix(color, uFogColor, fogRimFactor);
   // color = mix(color, uFogColor, distanceFog);
 
   gl_FragColor = vec4(color, 1.0);

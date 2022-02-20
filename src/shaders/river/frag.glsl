@@ -13,8 +13,11 @@ uniform float uFogDensity;
 varying vec2 vUv;
 varying vec3 vPos;
 varying float vFogDist;
+varying float vFogRim;
 
 #define S smoothstep
+#define FOG_RIM_START 45.0
+#define FOG_RIM_END 74.0
 
 #pragma glslify: snoise3 = require(glsl-noise/simplex/3d)
 
@@ -160,8 +163,6 @@ float fbm(in vec3 pos) {
 void main() {
   vec2 st = vUv * 2.0 - 1.0;
 
-  float distFromCenter = S(0.75, 1.0, length(st.x));
-
   vec2 flow = vPos.xz * 0.1 + vec2(uTime * 0.00001, -uTime * 0.000125);
 
   vec2 foams = cellular(vec3(flow, uTime * 0.00015));
@@ -173,9 +174,13 @@ void main() {
   // float distanceFog = 1.0 - exp(-vFogDist * vFogDist * uFogDensity * uFogDensity);
 
   vec3 color = mix(uColor, foamColor, S(0.25, 1.0, foams.x));
-  color = mix(color, foamColor, distFromCenter);
   // color = mix(color, uFogColor, heightFog);
   // color = mix(color, uFogColor, distanceFog);
 
-  gl_FragColor = vec4(color,1.0);
+  float fogRimFactor = 1.0 - clamp((FOG_RIM_END - vFogRim) / (FOG_RIM_END - FOG_RIM_START), 0.0, 1.0);
+  color = mix(color, uFogColor, fogRimFactor);
+
+  float alpha = clamp(foams.x, 0.25, 0.45);
+
+  gl_FragColor = vec4(color, alpha);
 }

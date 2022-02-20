@@ -144,7 +144,7 @@ span:nth-child(5) {
   width: 20px;
   height: 20px;
   margin: -20px 0 0 -20px;
-  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
   border-left: none;
   border-top: none;
   border-right: 2px #fff solid;
@@ -170,43 +170,49 @@ span:nth-child(5) {
 
 @-webkit-keyframes arrow {
   0% {
+    opacity: 0;
+    transform: translate(-10px, -10px);
+  }
+  50% {
     opacity: 1;
   }
   100% {
     opacity: 0;
-    transform: translate(-10px, -10px);
   }
 }
 
 @keyframes arrow {
   0% {
+    opacity: 0;
+    transform: translate(-10px, -10px);
+  }
+  50% {
     opacity: 1;
   }
   100% {
     opacity: 0;
-    transform: translate(-10px, -10px);
   }
 }
 .scrollComponent {
-  position: absolute;
+  position: relative;
   max-height: 100vh;
-  width: 70%;
   transition: opacity ease-in-out 0.5s;
   z-index: 10;
-  overflow: scroll;
+  overflow: auto;
+  overflow-x: hidden;
   pointer-events: all;
   touch-action: all;
+  scroll-behavior: smooth;
   -ms-scroll-snap-type: y mandatory;
       scroll-snap-type: y mandatory;
   scrollbar-width: none;
-  -ms-overflow-style: none;
 }
 .scrollComponent:not(.in) {
   opacity: 0;
   pointer-events: none;
   touch-action: none;
 }
-.scrollComponent ::-webkit-scrollbar {
+.scrollComponent::-webkit-scrollbar {
   display: none;
 }
 .scrollComponent .downArrow {
@@ -216,6 +222,20 @@ span:nth-child(5) {
   transform: rotate(225deg);
   top: 5%;
 }
+.scrollComponent h1 {
+  position: relative;
+  right: 30px;
+  margin: 30px;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(2rem, 1.5vw + 1.75rem, 6rem);
+}
+.scrollComponent #aboutBack {
+  position: -webkit-sticky;
+  position: sticky;
+  border: none;
+  margin-left: 5%;
+  top: 50%;
+}
 
 .aboutSections {
   display: flex;
@@ -223,13 +243,35 @@ span:nth-child(5) {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  left: 20%;
   height: 100vh;
+  width: 65%;
   scroll-snap-align: start;
 }
 
+@media screen and (max-width: 500px) {
+  .scrollComponent {
+    display: block;
+    flex-wrap: wrap;
+    max-width: 100%;
+    font-size: 3.5vw;
+  }
+  .scrollComponent #aboutBack {
+    top: 20%;
+    margin-left: 5%;
+  }
+
+  .aboutSections {
+    max-width: 70%;
+  }
+}
 #labelListWrapper {
   pointer-events: none;
   touch-action: none;
+  text-shadow: 0 0 5px #000;
+  overflow: visible;
+  line-height: 32px;
+  margin-top: 40px;
 }
 #labelListWrapper.in #investigateBtn {
   pointer-events: all;
@@ -249,7 +291,7 @@ span:nth-child(5) {
 }
 
 .tileLabel {
-  max-width: 300px;
+  max-width: 200px;
 }
 
 button {
@@ -272,6 +314,21 @@ button#investigateBtn:hover, button#updateLabelsBtn:hover {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
+@media screen and (max-width: 700px) {
+  #infoPage {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 100px 0;
+    text-align: center;
+    height: 70%;
+    font-size: 2.5vw;
+  }
+
+  .tileLabel {
+    max-width: 200px;
+    width: 100%;
+  }
+}
 #landing {
   position: fixed;
   inset: 0;
@@ -380,7 +437,9 @@ svg {
   justify-content: center;
   left: 0;
   right: 0;
-  background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.6) 100%);
+}
+.headerWrapper * {
+  overflow: visible;
 }
 .headerWrapper header {
   width: clamp(300px, 100%, 1500px);
@@ -394,6 +453,8 @@ svg {
   pointer-events: all;
   touch-action: all;
   transition: opacity ease-in-out 0.5s;
+  text-shadow: 0 0 5px #000;
+  overflow: visible;
 }
 .headerWrapper header:not(.in) {
   opacity: 0;

@@ -2,6 +2,7 @@ import { Vector2, Vector3 } from 'three';
 import Experience from '..';
 
 const v = new Vector3();
+const v2 = new Vector3();
 const negZ = new Vector3(0, 0, -1);
 
 export default class Controls {
@@ -53,15 +54,27 @@ export default class Controls {
         let dx = this.mouse.x - x;
         let dy = this.mouse.y - y;
 
-        v.copy(negZ).applyQuaternion(this.camera.quaternion);
-        v.y = 0;
-        v.normalize();
+        let dir = Math.abs(dy) - Math.abs(dx);
 
-        v.multiplyScalar(dy * 20);
-        this.position.add(v);
+        if (dir > 0) {
+          v.copy(negZ).applyQuaternion(this.camera.quaternion);
+          v.y = 0;
+          v.normalize();
 
-        this.rotation.y += dx;
+          v.multiplyScalar(dy * 20);
 
+          v2.copy(this.position).add(v);
+          v2.y = 0;
+
+          if (v2.length() <= 75.0) {
+            v2.y = this.position.y;
+            this.position.copy(v2);
+          }
+        }
+
+        if (dir <= 0) {
+          this.rotation.y += dx;
+        }
         this.mouse.set(x, y);
       }
     });
@@ -150,16 +163,28 @@ export default class Controls {
       v.y = 0;
       v.normalize();
 
-      // v.multiplyScalar(0.1);
-      this.position.add(v);
+      v2.copy(this.position);
+      v2.add(v);
+      v2.y = 0;
+
+      if (v2.length() <= 75.0) {
+        v2.y = this.camera.position.y;
+        this.position.copy(v2);
+      }
     }
     if (this.keys.down) {
       v.copy(negZ).applyQuaternion(this.camera.quaternion);
       v.y = 0;
       v.normalize();
 
-      // v.multiplyScalar(0.1);
-      this.position.sub(v);
+      v2.copy(this.position);
+      v2.sub(v);
+      v2.y = 0;
+
+      if (v2.length() <= 75.0) {
+        v2.y = this.camera.position.y;
+        this.position.copy(v2);
+      }
     }
     if (this.keys.left) {
       this.rotation.y += 0.025;
@@ -168,7 +193,7 @@ export default class Controls {
       this.rotation.y -= 0.025;
     }
 
-    this.camera.position.lerp(this.position, 0.025);
+    this.camera.position.lerp(this.position, 0.1);
 
     this.lerpedRotation.lerp(this.rotation, 0.1);
     this.camera.rotation.setFromVector3(this.lerpedRotation);

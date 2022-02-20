@@ -4,9 +4,16 @@
   pointer-events: none;
   touch-action: none;
 
+  text-shadow: 0 0 5px #000;
+
+  &,
+  & * {
+    overflow: visible;
+  }
+
   line-height: 32px;
   margin-top: 40px;
-  
+
   &.in #investigateBtn {
     pointer-events: all;
     touch-action: all;
@@ -53,23 +60,19 @@ button {
   }
 }
 
-@media screen and (max-width:700px) {
-  
-  #infoPage{
+@media screen and (max-width: 700px) {
+  #infoPage {
     display: flex;
     flex-wrap: wrap;
     padding: 100px 0;
     text-align: center;
 
-
     height: 70%;
     font-size: 2.5vw;
   }
 
-  .tileLabel{
+  .tileLabel {
     max-width: 200px;
-    width:100%;
+    width: 100%;
   }
-
-
 }

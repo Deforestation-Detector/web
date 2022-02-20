@@ -4,6 +4,7 @@ uniform float uTime;
 varying vec2 vUv;
 varying vec3 vPos;
 varying float vFogDist;
+varying float vFogRim;
 
 void main() {
   vec3 pos = position;
@@ -15,4 +16,5 @@ void main() {
   vUv = uv;
   vPos = modelPos.xyz;
   vFogDist = distance(modelPos.xyz, cameraPosition);
+  vFogRim = length(modelPos.xz);
 }
