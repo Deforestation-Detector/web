@@ -16,6 +16,8 @@ export default class State extends EventEmitter {
   constructor() {
     super(); // calls extended class's constructor
 
+    this.domElements = {};
+
     this.experience = new Experience();
     this.setDomElements();
   }
