@@ -1,4 +1,4 @@
-@use "./fonts" as *;
+@use './fonts' as *;
 
 #labelListWrapper {
   pointer-events: none;
@@ -89,7 +89,7 @@ button {
 .closeBtn:after {
   position: absolute;
   left: 15px;
-  content: " ";
+  content: ' ';
   height: 33px;
   width: 2px;
   background-color: white;

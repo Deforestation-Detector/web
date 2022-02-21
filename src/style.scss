@@ -1,11 +1,11 @@
-@use "styles/fonts";
-@use "styles/loading";
-@use "styles/about";
-@use "styles/info";
-@use "styles/landing";
-@use "styles/scrollArrow";
-@use "styles/animations" as *;
-@use "styles/utils" as *;
+@use 'styles/fonts';
+@use 'styles/loading';
+@use 'styles/about';
+@use 'styles/info';
+@use 'styles/landing';
+@use 'styles/scrollArrow';
+@use 'styles/animations' as *;
+@use 'styles/utils' as *;
 
 * {
   margin: 0;
