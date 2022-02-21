@@ -269,9 +269,11 @@ span:nth-child(5) {
   pointer-events: none;
   touch-action: none;
   text-shadow: 0 0 5px #000;
-  overflow: visible;
   line-height: 32px;
   margin-top: 40px;
+}
+#labelListWrapper, #labelListWrapper * {
+  overflow: visible;
 }
 #labelListWrapper.in #investigateBtn {
   pointer-events: all;
@@ -293,6 +295,9 @@ span:nth-child(5) {
 .tileLabel {
   max-width: 200px;
 }
+.tileLabel:not(.natural) {
+  color: crimson;
+}
 
 button {
   background-color: rgba(255, 255, 255, 0);
@@ -312,6 +317,37 @@ button#investigateBtn, button#updateLabelsBtn {
 }
 button#investigateBtn:hover, button#updateLabelsBtn:hover {
   background-color: rgba(255, 255, 255, 0.1);
+}
+
+.closeBtn {
+  position: absolute;
+  right: 32px;
+  top: 32px;
+  width: 32px;
+  height: 32px;
+  opacity: 0.3;
+}
+
+.closeBtn:hover {
+  opacity: 1;
+}
+
+.closeBtn:before,
+.closeBtn:after {
+  position: absolute;
+  left: 15px;
+  content: " ";
+  height: 33px;
+  width: 2px;
+  background-color: #333;
+}
+
+.closeBtn:before {
+  transform: rotate(45deg);
+}
+
+.closeBtn:after {
+  transform: rotate(-45deg);
 }
 
 @media screen and (max-width: 700px) {
@@ -426,7 +462,12 @@ svg {
   opacity: 0;
 }
 
-#content > *:not(#landing):not(#learnMore) {
+canvas {
+  position: absolute;
+  z-index: 5;
+}
+
+#content > *:not(#landing):not(#learnMore):not(canvas) {
   width: clamp(300px, 100%, 1500px);
   max-width: 90vw;
 }
@@ -445,6 +486,7 @@ svg {
   width: clamp(300px, 100%, 1500px);
   max-width: 90vw;
   height: clamp(75px, 10vh, 120px);
+  z-index: 10;
   color: white;
   display: flex;
   justify-content: space-between;
@@ -458,6 +500,8 @@ svg {
 }
 .headerWrapper header:not(.in) {
   opacity: 0;
+}
+.headerWrapper header:not(.in), .headerWrapper header:not(.in) * {
   pointer-events: none;
   touch-action: none;
 }
@@ -492,7 +536,7 @@ svg {
 #backdrop {
   position: fixed;
   inset: 0;
-  z-index: 0;
+  z-index: 5;
   background-color: rgba(0, 0, 0, 0.5);
   opacity: 1;
   pointer-events: all;
