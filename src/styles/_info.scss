@@ -76,14 +76,15 @@ button {
 
 .closeBtn {
   position: absolute;
-  right: 32px;
-  top: 32px;
+  right: 5%;
+  top: 25%;
   width: 32px;
   height: 32px;
   opacity: 1;
 }
 .closeBtn:hover {
   opacity: 0.6;
+  cursor: pointer;
 }
 .closeBtn:before,
 .closeBtn:after {
@@ -115,5 +116,11 @@ button {
   .tileLabel {
     max-width: 200px;
     width: 100%;
+  }
+
+  .closeBtn {
+    position: absolute;
+    right: 5%;
+    top: 10%;
   }
 }
