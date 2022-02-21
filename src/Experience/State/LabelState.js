@@ -113,7 +113,6 @@ export default class LabelState {
 
     // Event Handler for clicking on info page (to leave it)
     this.state.domElements.infoPageNode.onclick = () => {
-      console.log("clicked");
       this.state.trigger("doneInvestigating");
     };
     this.state.on("doneInvestigating", () => {

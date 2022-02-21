@@ -29,6 +29,10 @@
       </div>
     </div>
 
+    <canvas id="webGL" width="400" height="400">
+      <p>Please use a browser that supports the canvas element.</p>
+    </canvas>
+
     <div id="backdrop" class="in"></div>
 
     <div class="headerWrapper">
@@ -47,27 +51,23 @@
         <button id="learnMoreBtn">learn more</button>
       </div>
 
-      
-
       <div id="learnMore" class="scrollComponent">
-
         <button id="aboutBack">
           <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="29.194"
-          height="16.14"
-          viewBox="0 0 39.194 26.14"
-          id="learnMoreBackBtn"
-        >
-          <path
-            id="Icon_ionic-ios-arrow-round-back"
-            data-name="Icon ionic-ios-arrow-round-back"
-            d="M22.081,11.752a1.779,1.779,0,0,1,.014,2.5l-8.264,8.291H45.32a1.77,1.77,0,0,1,0,3.54H13.831l8.277,8.291a1.792,1.792,0,0,1-.014,2.5A1.763,1.763,0,0,1,19.6,36.87L8.386,25.57h0a1.987,1.987,0,0,1-.368-.558,1.689,1.689,0,0,1-.136-.681,1.774,1.774,0,0,1,.5-1.239L19.6,11.793A1.734,1.734,0,0,1,22.081,11.752Z"
-            transform="translate(-7.882 -11.252)"
-            fill="#fff"
-          />
-        </svg>
-
+            xmlns="http://www.w3.org/2000/svg"
+            width="29.194"
+            height="16.14"
+            viewBox="0 0 39.194 26.14"
+            id="learnMoreBackBtn"
+          >
+            <path
+              id="Icon_ionic-ios-arrow-round-back"
+              data-name="Icon ionic-ios-arrow-round-back"
+              d="M22.081,11.752a1.779,1.779,0,0,1,.014,2.5l-8.264,8.291H45.32a1.77,1.77,0,0,1,0,3.54H13.831l8.277,8.291a1.792,1.792,0,0,1-.014,2.5A1.763,1.763,0,0,1,19.6,36.87L8.386,25.57h0a1.987,1.987,0,0,1-.368-.558,1.689,1.689,0,0,1-.136-.681,1.774,1.774,0,0,1,.5-1.239L19.6,11.793A1.734,1.734,0,0,1,22.081,11.752Z"
+              transform="translate(-7.882 -11.252)"
+              fill="#fff"
+            />
+          </svg>
         </button>
 
         <div class="aboutSections">
@@ -110,9 +110,14 @@
             deforestation.
           </p>
           <a href="https://act.ran.org/page/17241/donate/1" target="_blank"
-            >RAN’s Protect-an-Acre program</a >
-          <a href="https://www.edf.org/" target="_blank">Environmental Defense Fund</a>
-          <a href="https://www.rainforestfund.org/" target="_blank">Rainforest Fund</a>          
+            >RAN’s Protect-an-Acre program</a
+          >
+          <a href="https://www.edf.org/" target="_blank"
+            >Environmental Defense Fund</a
+          >
+          <a href="https://www.rainforestfund.org/" target="_blank"
+            >Rainforest Fund</a
+          >
           <a href="https://amazonwatch.org/" target="_blank">Amazon Watch</a>
         </div>
       </div>
@@ -132,40 +137,43 @@
 
       <!-- Information Page -->
       <div id="infoPage" class="domComponent">
-        <div class="tileLabel">
-          <h1>Tile Label 1</h1>
-          <p>
-            This is a description of the label. This will describe whatever the
-            label means/indicates.
-          </p>
-        </div>
-        <div class="tileLabel">
-          <h1>Tile Label 2</h1>
-          <p>
-            This is a description of the label. This will describe whatever the
-            label means/indicates.
-          </p>
-        </div>
-        <div class="tileLabel">
-          <h1>Tile Label 3</h1>
-          <p>
-            This is a description of the label. This will describe whatever the
-            label means/indicates.
-          </p>
-        </div>
-        <div class="tileLabel">
-          <h1>Tile Label 4</h1>
-          <p>
-            This is a description of the label. This will describe whatever the
-            label means/indicates.
-          </p>
-        </div>
-        <div class="tileLabel">
-          <h1>Tile Label 5</h1>
-          <p>
-            This is a description of the label. This will describe whatever the
-            label means/indicates.
-          </p>
+        <div class="closeBtn"></div>
+        <div class="tileLabelWrapper">
+          <div class="tileLabel">
+            <h1>Tile Label 1</h1>
+            <p>
+              This is a description of the label. This will describe whatever
+              the label means/indicates.
+            </p>
+          </div>
+          <div class="tileLabel">
+            <h1>Tile Label 2</h1>
+            <p>
+              This is a description of the label. This will describe whatever
+              the label means/indicates.
+            </p>
+          </div>
+          <div class="tileLabel">
+            <h1>Tile Label 3</h1>
+            <p>
+              This is a description of the label. This will describe whatever
+              the label means/indicates.
+            </p>
+          </div>
+          <div class="tileLabel">
+            <h1>Tile Label 4</h1>
+            <p>
+              This is a description of the label. This will describe whatever
+              the label means/indicates.
+            </p>
+          </div>
+          <div class="tileLabel">
+            <h1>Tile Label 5</h1>
+            <p>
+              This is a description of the label. This will describe whatever
+              the label means/indicates.
+            </p>
+          </div>
         </div>
       </div>
 
@@ -178,49 +186,5 @@
         <p>Label 5</p>
         <button id="investigateBtn">Investigate</button>
       </div>
-
-      <!-- Information Page -->
-      <div id="infoPage" class="domComponent">
-        <div class="tileLabel">
-          <h1>Tile Label 1</h1>
-          <p>
-            This is a description of the label. This will describe whatever the
-            label means/indicates.
-          </p>
-        </div>
-        <div class="tileLabel">
-          <h1>Tile Label 2</h1>
-          <p>
-            This is a description of the label. This will describe whatever the
-            label means/indicates.
-          </p>
-        </div>
-        <div class="tileLabel">
-          <h1>Tile Label 3</h1>
-          <p>
-            This is a description of the label. This will describe whatever the
-            label means/indicates.
-          </p>
-        </div>
-        <div class="tileLabel">
-          <h1>Tile Label 4</h1>
-          <p>
-            This is a description of the label. This will describe whatever the
-            label means/indicates.
-          </p>
-        </div>
-        <div class="tileLabel">
-          <h1>Tile Label 5</h1>
-          <p>
-            This is a description of the label. This will describe whatever the
-            label means/indicates.
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <canvas id="webGL" width="400" height="400">
-      <p>Please use a browser that supports the canvas element.</p>
-    </canvas>
   </body>
 </html>

@@ -1,11 +1,11 @@
-@use 'styles/fonts';
-@use 'styles/loading';
-@use 'styles/about';
-@use 'styles/info';
-@use 'styles/landing';
-@use 'styles/scrollArrow';
-@use 'styles/animations' as *;
-@use 'styles/utils' as *;
+@use "styles/fonts";
+@use "styles/loading";
+@use "styles/about";
+@use "styles/info";
+@use "styles/landing";
+@use "styles/scrollArrow";
+@use "styles/animations" as *;
+@use "styles/utils" as *;
 
 * {
   margin: 0;
@@ -55,7 +55,12 @@ svg {
   }
 }
 
-#content > *:not(#landing):not(#learnMore) {
+canvas {
+  position: absolute;
+  z-index: 5;
+}
+
+#content > *:not(#landing):not(#learnMore):not(canvas) {
   width: clamp(300px, 100%, 1500px);
   max-width: 90vw;
 }
@@ -81,6 +86,7 @@ svg {
     width: clamp(300px, 100%, 1500px);
     max-width: 90vw;
     height: clamp(75px, 10vh, 120px);
+    z-index: 10;
 
     color: white;
 
@@ -143,7 +149,7 @@ svg {
 #backdrop {
   position: fixed;
   inset: 0;
-  z-index: 0;
+  z-index: 5;
   background-color: $backDropColor;
 
   opacity: 1;
