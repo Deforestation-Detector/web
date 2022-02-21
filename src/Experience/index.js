@@ -108,63 +108,6 @@ export default class Experience {
   }
 
   init() {
-    /**
-     *  HANDLE TRANSITIONS TO/FROM LEARN MORE PAGE
-     * */
-    let showAr = [
-      document.getElementById('learnMoreNavLink'),
-      document.getElementById('learnMoreBtn'),
-    ];
-    showAr.forEach((btn) => {
-      btn.onclick = () => {
-        document.getElementById('learnMore').classList.add('in');
-        document.getElementById('backdrop').classList.add('in');
-        document.getElementById('labelListWrapper').classList.remove('in');
-        document.getElementById('landing').classList.remove('in');
-      };
-    });
-
-    let hideAr = [
-      document.getElementById('learnMoreBackBtn'),
-      document.getElementById('aboutBack')
-    ];
-    hideAr.forEach((btn) => {
-      btn.onclick = () => {
-        document.getElementById('learnMore').classList.remove('in');
-        document.getElementById('backdrop').classList.remove('in');
-        document.getElementById('landing').classList.add('in');
-        // Check to see if we've started exploring before adding the label list
-        // Otherwise it pops up after exiting learn more page from landing page
-        if (
-          document.getElementById('backdrop').classList.contains('exploring')
-        ) {
-          document.getElementById('labelListWrapper').classList.add('in');
-        }
-        // Scroll to top after exiting learn more page.
-        // Delay is to hide scroll until exit animation is over.
-        setTimeout(function () {
-          document.getElementById('learnMore').scrollTop = 0;
-        }, 500);
-      };
-    });
-
-    /**
-     * HANDLE TRANSITION TO EXPLORE
-     */
-    document.getElementById('exploreBtn').onclick = () => {
-      let landingEl = document.getElementById('landing');
-      let backdropEl = document.getElementById('backdrop');
-
-      backdropEl.classList.remove('in');
-      landingEl.classList.remove('in');
-
-      backdropEl.classList.add('exploring');
-      landingEl.classList.add('exploring');
-
-      document.getElementById('header').classList.add('in');
-      document.getElementById('labelListWrapper').classList.add('in');
-    };
-
     document.getElementById('loadpage').classList.remove('in');
   }
 
