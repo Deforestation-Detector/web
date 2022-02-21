@@ -2,6 +2,8 @@ import Experience from '..';
 import EventEmitter from '../Utils/EventEmitter';
 import ViewState from './ViewState';
 import LabelState from './LabelState';
+import AboutState from './AboutState';
+import ExploreState from './ExploreState';
 
 /**
  * The state object maintains the state of our application. Note that it extends from our
@@ -25,10 +27,13 @@ export default class State extends EventEmitter {
   init() {
     this.viewState = new ViewState();
     this.labelState = new LabelState();
+    this.aboutState = new AboutState();
+    this.exploreState = new ExploreState();
   }
 
   setDomElements() {
     this.domElements = {
+      content: document.getElementById('content'),
       loadingPage: document.getElementById('loadpage'),
       landingPage: document.getElementById('landing'),
       infoPage: document.getElementById('infoPage'),

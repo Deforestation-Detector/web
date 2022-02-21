@@ -1,4 +1,4 @@
-import Experience from "..";
+import Experience from '..';
 
 export default class LabelState {
   constructor() {
