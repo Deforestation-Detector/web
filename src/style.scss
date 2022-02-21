@@ -116,12 +116,14 @@ canvas {
       font-family: fonts.$serif;
     }
 
-    .navLink {
-      cursor: pointer;
-      font-weight: 200;
+    &.in {
+      .navLink {
+        cursor: pointer;
+        font-weight: 200;
 
-      pointer-events: all;
-      touch-action: all;
+        pointer-events: all;
+        touch-action: all;
+      }
     }
   }
 }

@@ -508,7 +508,7 @@ canvas {
 .headerWrapper header h2 {
   font-family: "Cormorant Garamond", serif;
 }
-.headerWrapper header .navLink {
+.headerWrapper header.in .navLink {
   cursor: pointer;
   font-weight: 200;
   pointer-events: all;
