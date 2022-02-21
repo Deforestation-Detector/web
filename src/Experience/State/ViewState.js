@@ -30,7 +30,6 @@ export default class ViewState {
 
   handleDomChanges(oldView, newView) {
     // handle transitions here
-    console.log(this.state);
 
     switch (newView) {
       case 'landing': {
@@ -41,6 +40,16 @@ export default class ViewState {
         this.state.domElements.infoPage.classList.add('in');
         this.state.domElements.backdrop.classList.add('in');
         this.state.domElements.labelListWrapper.classList.remove('in');
+        this.state.domElements.header.classList.remove('in');
+
+        break;
+      }
+      case 'exploring': {
+        this.state.domElements.infoPage.classList.remove('in');
+        this.state.domElements.backdrop.classList.remove('in');
+        this.state.domElements.learnMore.classList.remove('in');
+        this.state.domElements.header.classList.add('in');
+        this.state.domElements.labelListWrapper.classList.add('in');
 
         break;
       }

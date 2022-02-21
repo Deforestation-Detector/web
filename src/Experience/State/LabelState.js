@@ -40,17 +40,36 @@ export default class LabelState {
       ...currDomElements,
       labelListNode: document.getElementById("labelList"),
       infoPageNode: document.getElementById("infoPage"),
-      updateButton: document.getElementById('updateLabelsBtn'),
+      investigateButton: document.getElementById("investigateBtn"),
+      updateButton: document.getElementById("updateLabelsBtn"),
     };
-
   }
-  
+
   setEventHandlers() {
     // Event Handler for update button
     this.state.domElements.updateButton.onclick = () => {
-      this.state.trigger('labelsUpdated');
-    }
-    this.state.on('labelsUpdated', () => {this.updateTest()});
+      this.state.trigger("labelsUpdated");
+    };
+    this.state.on("labelsUpdated", () => {
+      this.updateTest();
+    });
+
+    // Event Handler for investigate button
+    this.state.domElements.investigateButton.onclick = () => {
+      this.state.trigger("investigating");
+    };
+    this.state.on("investigating", () => {
+      this.state.viewState.setView("investigate");
+    });
+
+    // Event Handler for clicking on info page (to leave it)
+    this.state.domElements.infoPageNode.onclick = () => {
+      console.log('clicked')
+      this.state.trigger("doneInvestigating");
+    };
+    this.state.on("doneInvestigating", () => {
+      this.state.viewState.setView("exploring");
+    });
   }
 
   updateLabels(labelArray) {

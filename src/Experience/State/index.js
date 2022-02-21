@@ -32,8 +32,10 @@ export default class State extends EventEmitter {
       loadingPage: document.getElementById('loadpage'),
       landingPage: document.getElementById('landing'),
       infoPage: document.getElementById('infoPage'),
+      learnMore: document.getElementById('learnMore'),
       backdrop: document.getElementById('backdrop'),
       labelListWrapper: document.getElementById('labelListWrapper'),
+      header: document.getElementById('header'),
     };
   }
 }

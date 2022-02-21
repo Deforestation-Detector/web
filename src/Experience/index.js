@@ -149,19 +149,6 @@ export default class Experience {
     });
 
     /**
-     * HANDLE TRANSITION TO/FROM INFO PAGE
-     */
-    document.getElementById('investigateBtn').onclick = () => {
-      this.state.viewState.setView('investigate');
-    };
-    document.getElementById('infoPage').onclick = () => {
-      document.getElementById('infoPage').classList.remove('in');
-      document.getElementById('backdrop').classList.remove('in');
-      document.getElementById('labelListWrapper').classList.add('in');
-      document.getElementById('landing').classList.add('in');
-    };
-
-    /**
      * HANDLE TRANSITION TO EXPLORE
      */
     document.getElementById('exploreBtn').onclick = () => {
