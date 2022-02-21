@@ -64,7 +64,7 @@ export default class LabelState {
       },
       blooming: {
         description: "This is the description for the blooming label.",
-        natural: false,
+        natural: true,
       },
       selective_logging: {
         description: "This is the description for the selective logging label.",
@@ -89,6 +89,7 @@ export default class LabelState {
       ...currDomElements,
       labelListNode: document.getElementById("labelList"),
       infoPageNode: document.getElementById("infoPage"),
+      tileLabelWrapper: document.querySelector(".tileLabelWrapper"),
       investigateButton: document.getElementById("investigateBtn"),
       updateButton: document.getElementById("updateLabelsBtn"),
     };
@@ -122,10 +123,10 @@ export default class LabelState {
 
   updateLabels(labelArray) {
     let labelListNode = this.state.domElements.labelListNode;
-    let infoPageNode = this.state.domElements.infoPageNode;
+    let tileLabelWrapper = this.state.domElements.tileLabelWrapper;
     // Clear label list and info page
     labelListNode.innerHTML = "";
-    infoPageNode.innerHTML = "";
+    tileLabelWrapper.innerHTML = "";
     // Iterate through passed labels
     labelArray.forEach((label) => {
       if (Object.keys(this.labels).includes(label)) {
@@ -153,7 +154,7 @@ export default class LabelState {
         labelWrapper.appendChild(labelDescription);
 
         // Add label wrapper to info page
-        infoPageNode.appendChild(labelWrapper);
+        tileLabelWrapper.appendChild(labelWrapper);
       }
     });
   }
