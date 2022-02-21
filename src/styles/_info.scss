@@ -1,4 +1,4 @@
-@use './fonts' as *;
+@use "./fonts" as *;
 
 #labelListWrapper {
   pointer-events: none;
@@ -34,6 +34,10 @@
 
 .tileLabel {
   max-width: 200px;
+
+  &:not(.natural) {
+    color: crimson;
+  }
 }
 
 button {

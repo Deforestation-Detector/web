@@ -6,25 +6,74 @@ export default class LabelState {
     this.state = this.experience.state;
 
     this.labels = {
-      haze: "This is the description for the haze label.",
-      primary: "This is the description for the primary label.",
-      agriculture: "This is the description for the agriculture label.",
-      clear: "This is the description for the clear label.",
-      water: "This is the description for the water label.",
-      habitation: "This is the description for the habitation label.",
-      road: "This is the description for the road label.",
-      cultivation: "This is the description for the cultivation label.",
-      slash_burn: "This is the description for the slash burn label.",
-      cloudy: "This is the description for the cloudy label.",
-      partly_cloudy: "This is the description for the partly cloudy label.",
-      conventional_mine:
-        "This is the description for the conventional mine label.",
-      bare_ground: "This is the description for the bare ground label.",
-      artisinal_mine: "This is the description for the artisinal mine label.",
-      blooming: "This is the description for the blooming label.",
-      selective_logging:
-        "This is the description for the selective logging label.",
-      blow_down: "This is the description for the blow down label.",
+      haze: {
+        description: "This is the description for the haze label.",
+        natural: true,
+      },
+      primary: {
+        description: "This is the description for the primary label.",
+        natural: true,
+      },
+      agriculture: {
+        description: "This is the description for the agriculture label.",
+        natural: false,
+      },
+      clear: {
+        description: "This is the description for the clear label.",
+        natural: true,
+      },
+      water: {
+        description: "This is the description for the water label.",
+        natural: true,
+      },
+      habitation: {
+        description: "This is the description for the habitation label.",
+        natural: false,
+      },
+      road: {
+        description: "This is the description for the road label.",
+        natural: false,
+      },
+      cultivation: {
+        description: "This is the description for the cultivation label.",
+        natural: false,
+      },
+      slash_burn: {
+        description: "This is the description for the slash burn label.",
+        natural: false,
+      },
+      cloudy: {
+        description: "This is the description for the cloudy label.",
+        natural: true,
+      },
+      partly_cloudy: {
+        description: "This is the description for the partly cloudy label.",
+        natural: true,
+      },
+      conventional_mine: {
+        description: "This is the description for the conventional mine label.",
+        natural: false,
+      },
+      bare_ground: {
+        description: "This is the description for the bare ground label.",
+        natural: true,
+      },
+      artisinal_mine: {
+        description: "This is the description for the artisinal mine label.",
+        natural: false,
+      },
+      blooming: {
+        description: "This is the description for the blooming label.",
+        natural: false,
+      },
+      selective_logging: {
+        description: "This is the description for the selective logging label.",
+        natural: false,
+      },
+      blow_down: {
+        description: "This is the description for the blow down label.",
+        natural: true,
+      },
     };
 
     this.labelList = ["Label 1", "Label 2", "Label 3", "Label 4", "Label 5"];
@@ -64,7 +113,7 @@ export default class LabelState {
 
     // Event Handler for clicking on info page (to leave it)
     this.state.domElements.infoPageNode.onclick = () => {
-      console.log('clicked')
+      console.log("clicked");
       this.state.trigger("doneInvestigating");
     };
     this.state.on("doneInvestigating", () => {
@@ -85,6 +134,7 @@ export default class LabelState {
         let formattedLabel = label.replaceAll("_", " ");
         // Add label to list
         let labelToInsert = document.createElement("p");
+
         labelToInsert.innerHTML = formattedLabel;
         labelListNode.appendChild(labelToInsert);
 
@@ -95,8 +145,11 @@ export default class LabelState {
         let labelDescription = document.createElement("p");
         // Fill nodes
         labelWrapper.classList.add("tileLabel");
+        if (this.labels[label].natural) {
+          labelWrapper.classList.add("natural");
+        }
         labelTitle.innerHTML = formattedLabel;
-        labelDescription.innerHTML = this.labels[label];
+        labelDescription.innerHTML = this.labels[label].description;
         labelWrapper.appendChild(labelTitle);
         labelWrapper.appendChild(labelDescription);
 
