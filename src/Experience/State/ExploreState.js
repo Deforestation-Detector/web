@@ -14,8 +14,10 @@ export default class ExploreState {
 
     this.state.domElements = {
       ...currDomElements,
-      exploreBtn: document.getElementById("exploreBtn"), //explore button into map component
-      
+      backdrop: document.getElementById('backdrop'),
+      header: document.getElementById('header'),
+      labelListWrapper: document.getElementById('labelListWrapper'),
+      exploreBtn: document.getElementById('exploreBtn'), //explore button into map component
     };
   }
 
@@ -27,5 +29,11 @@ export default class ExploreState {
     this.state.on('exploration', () => {
       this.state.viewState.setView('exploring');
     });
+  }
+
+  setState() {
+    this.state.domElements.backdrop.classList.add('exploring');
+    this.state.domElements.header.classList.add('in');
+    this.state.domElements.labelListWrapper.classList.add('in');
   }
 }

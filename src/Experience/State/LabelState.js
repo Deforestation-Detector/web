@@ -7,76 +7,76 @@ export default class LabelState {
 
     this.labels = {
       haze: {
-        description: "This is the description for the haze label.",
+        description: 'This is the description for the haze label.',
         natural: true,
       },
       primary: {
-        description: "This is the description for the primary label.",
+        description: 'This is the description for the primary label.',
         natural: true,
       },
       agriculture: {
-        description: "This is the description for the agriculture label.",
+        description: 'This is the description for the agriculture label.',
         natural: false,
       },
       clear: {
-        description: "This is the description for the clear label.",
+        description: 'This is the description for the clear label.',
         natural: true,
       },
       water: {
-        description: "This is the description for the water label.",
+        description: 'This is the description for the water label.',
         natural: true,
       },
       habitation: {
-        description: "This is the description for the habitation label.",
+        description: 'This is the description for the habitation label.',
         natural: false,
       },
       road: {
-        description: "This is the description for the road label.",
+        description: 'This is the description for the road label.',
         natural: false,
       },
       cultivation: {
-        description: "This is the description for the cultivation label.",
+        description: 'This is the description for the cultivation label.',
         natural: false,
       },
       slash_burn: {
-        description: "This is the description for the slash burn label.",
+        description: 'This is the description for the slash burn label.',
         natural: false,
       },
       cloudy: {
-        description: "This is the description for the cloudy label.",
+        description: 'This is the description for the cloudy label.',
         natural: true,
       },
       partly_cloudy: {
-        description: "This is the description for the partly cloudy label.",
+        description: 'This is the description for the partly cloudy label.',
         natural: true,
       },
       conventional_mine: {
-        description: "This is the description for the conventional mine label.",
+        description: 'This is the description for the conventional mine label.',
         natural: false,
       },
       bare_ground: {
-        description: "This is the description for the bare ground label.",
+        description: 'This is the description for the bare ground label.',
         natural: true,
       },
       artisinal_mine: {
-        description: "This is the description for the artisinal mine label.",
+        description: 'This is the description for the artisinal mine label.',
         natural: false,
       },
       blooming: {
-        description: "This is the description for the blooming label.",
+        description: 'This is the description for the blooming label.',
         natural: true,
       },
       selective_logging: {
-        description: "This is the description for the selective logging label.",
+        description: 'This is the description for the selective logging label.',
         natural: false,
       },
       blow_down: {
-        description: "This is the description for the blow down label.",
+        description: 'This is the description for the blow down label.',
         natural: true,
       },
     };
 
-    this.labelList = ["Label 1", "Label 2", "Label 3", "Label 4", "Label 5"];
+    this.labelList = ['Label 1', 'Label 2', 'Label 3', 'Label 4', 'Label 5'];
 
     this.setDomElements();
     this.setEventHandlers();
@@ -87,37 +87,38 @@ export default class LabelState {
 
     this.state.domElements = {
       ...currDomElements,
-      labelListNode: document.getElementById("labelList"),
-      infoPageNode: document.getElementById("infoPage"),
-      tileLabelWrapper: document.querySelector(".tileLabelWrapper"),
-      investigateButton: document.getElementById("investigateBtn"),
-      updateButton: document.getElementById("updateLabelsBtn"),
+      backdrop: document.getElementById('backdrop'),
+      labelListNode: document.getElementById('labelList'),
+      infoPage: document.getElementById('infoPage'),
+      tileLabelWrapper: document.querySelector('.tileLabelWrapper'),
+      investigateButton: document.getElementById('investigateBtn'),
+      updateButton: document.getElementById('updateLabelsBtn'),
     };
   }
 
   setEventHandlers() {
     // Event Handler for update button
     this.state.domElements.updateButton.onclick = () => {
-      this.state.trigger("labelsUpdated");
+      this.state.trigger('labelsUpdated');
     };
-    this.state.on("labelsUpdated", () => {
+    this.state.on('labelsUpdated', () => {
       this.updateTest();
     });
 
     // Event Handler for investigate button
     this.state.domElements.investigateButton.onclick = () => {
-      this.state.trigger("investigating");
+      this.state.trigger('investigating');
     };
-    this.state.on("investigating", () => {
-      this.state.viewState.setView("investigate");
+    this.state.on('investigating', () => {
+      this.state.viewState.setView('investigate');
     });
 
     // Event Handler for clicking on info page (to leave it)
-    this.state.domElements.infoPageNode.onclick = () => {
-      this.state.trigger("doneInvestigating");
+    this.state.domElements.infoPage.onclick = () => {
+      this.state.trigger('doneInvestigating');
     };
-    this.state.on("doneInvestigating", () => {
-      this.state.viewState.setView("exploring");
+    this.state.on('doneInvestigating', () => {
+      this.state.viewState.setView('exploring');
     });
   }
 
@@ -125,28 +126,28 @@ export default class LabelState {
     let labelListNode = this.state.domElements.labelListNode;
     let tileLabelWrapper = this.state.domElements.tileLabelWrapper;
     // Clear label list and info page
-    labelListNode.innerHTML = "";
-    tileLabelWrapper.innerHTML = "";
+    labelListNode.innerHTML = '';
+    tileLabelWrapper.innerHTML = '';
     // Iterate through passed labels
-    labelArray.forEach((label) => {
+    labelArray.forEach(label => {
       if (Object.keys(this.labels).includes(label)) {
         // Replace any underscores with spaces
-        let formattedLabel = label.replaceAll("_", " ");
+        let formattedLabel = label.replaceAll('_', ' ');
         // Add label to list
-        let labelToInsert = document.createElement("p");
+        let labelToInsert = document.createElement('p');
 
         labelToInsert.innerHTML = formattedLabel;
         labelListNode.appendChild(labelToInsert);
 
         // Add label description to info page
         // Create nodes
-        let labelWrapper = document.createElement("div");
-        let labelTitle = document.createElement("h1");
-        let labelDescription = document.createElement("p");
+        let labelWrapper = document.createElement('div');
+        let labelTitle = document.createElement('h1');
+        let labelDescription = document.createElement('p');
         // Fill nodes
-        labelWrapper.classList.add("tileLabel");
+        labelWrapper.classList.add('tileLabel');
         if (this.labels[label].natural) {
-          labelWrapper.classList.add("natural");
+          labelWrapper.classList.add('natural');
         }
         labelTitle.innerHTML = formattedLabel;
         labelDescription.innerHTML = this.labels[label].description;
@@ -164,9 +165,14 @@ export default class LabelState {
     let remainingLabels = Object.keys(this.labels);
     while (newLabels.length < 5) {
       var temp = remainingLabels[(remainingLabels.length * Math.random()) << 0];
-      remainingLabels = remainingLabels.filter((el) => el !== temp);
+      remainingLabels = remainingLabels.filter(el => el !== temp);
       newLabels.push(temp);
     }
     this.updateLabels(newLabels);
+  }
+
+  setState() {
+    this.state.domElements.infoPage.classList.add('in');
+    this.state.domElements.backdrop.classList.add('in');
   }
 }

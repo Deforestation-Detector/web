@@ -1,6 +1,7 @@
 import Experience from '..';
 import EventEmitter from '../Utils/EventEmitter';
 import ViewState from './ViewState';
+import LandingState from './LandingState';
 import LabelState from './LabelState';
 import AboutState from './AboutState';
 import ExploreState from './ExploreState';
@@ -26,6 +27,7 @@ export default class State extends EventEmitter {
 
   init() {
     this.viewState = new ViewState();
+    this.landingState = new LandingState();
     this.labelState = new LabelState();
     this.aboutState = new AboutState();
     this.exploreState = new ExploreState();
@@ -34,13 +36,6 @@ export default class State extends EventEmitter {
   setDomElements() {
     this.domElements = {
       content: document.getElementById('content'),
-      loadingPage: document.getElementById('loadpage'),
-      landingPage: document.getElementById('landing'),
-      infoPage: document.getElementById('infoPage'),
-      learnMore: document.getElementById('learnMore'),
-      backdrop: document.getElementById('backdrop'),
-      labelListWrapper: document.getElementById('labelListWrapper'),
-      header: document.getElementById('header'),
     };
   }
 }

@@ -14,6 +14,8 @@ export default class AboutState {
 
     this.state.domElements = {
       ...currDomElements,
+      backdrop: document.getElementById('backdrop'), //backdrop
+      learnMore: document.getElementById('learnMore'), //learn more page
       learnMoreNav: document.getElementById('learnMoreNavLink'), //navigation bar
       learnMoreLan: document.getElementById('learnMoreBtn'), //landing page
       aboutBack: document.getElementById('aboutBack'), //learn more back button
@@ -40,7 +42,7 @@ export default class AboutState {
       this.state.trigger('leftAbout');
     };
     this.state.on('leftAbout', () => {
-        //delayed scroll to top before removing learn more page
+      //delayed scroll to top before removing learn more page
       setTimeout(() => {
         this.state.domElements.learnMore.scrollTop = 0;
       }, 500);
@@ -51,5 +53,10 @@ export default class AboutState {
         this.state.viewState.setView('landing');
       }
     });
+  }
+
+  setState() {
+    this.state.domElements.learnMore.classList.add('in');
+    this.state.domElements.backdrop.classList.add('in');
   }
 }

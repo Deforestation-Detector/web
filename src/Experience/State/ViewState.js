@@ -36,26 +36,19 @@ export default class ViewState {
 
     switch (newView) {
       case 'landing': {
-        this.state.domElements.landingPage.classList.add('in');
+        this.state.landingState.setState();
         break;
       }
       case 'investigate': {
-        this.state.domElements.infoPage.classList.add('in');
-        this.state.domElements.backdrop.classList.add('in');
-
+        this.state.labelState.setState();
         break;
       }
       case 'exploring': {
-        this.state.domElements.backdrop.classList.add('exploring');
-        this.state.domElements.header.classList.add('in');
-        this.state.domElements.labelListWrapper.classList.add('in');
-
+        this.state.exploreState.setState();
         break;
       }
       case 'about': {
-        this.state.domElements.learnMore.classList.add('in');
-        this.state.domElements.backdrop.classList.add('in');
-
+        this.state.aboutState.setState();
         break;
       }
       default: {
@@ -68,7 +61,7 @@ export default class ViewState {
   resetState() {
     var elems = document.getElementsByClassName('in');
 
-    while (elems[0]){
+    while (elems[0]) {
       elems[0].classList.remove('in');
     }
 
