@@ -26,6 +26,9 @@ body {
 a {
   color: orange;
   text-decoration: none;
+  &:hover {
+    opacity: 0.7;
+  }
 }
 
 svg {
