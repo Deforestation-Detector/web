@@ -7,16 +7,6 @@ export default class AboutState {
 
     this.setDomElements();
     this.setEventHandlers();
-
-    this.state.on('viewchange', () => {
-      let newView = this.state.viewState.getView();
-
-      if (newView === 'about') {
-        this.state.domElements.learnMore.classList.add('in');
-      } else {
-        this.state.domElements.learnMore.classList.remove('in');
-      }
-    });
   }
 
   setDomElements() {
@@ -40,12 +30,9 @@ export default class AboutState {
 
       if (view === 'about') {
         this.state.domElements.learnMore.classList.add('in');
+      } else {
+        this.state.domElements.learnMore.classList.remove('in');
       }
     });
-  }
-
-  setState() {
-    this.state.domElements.learnMore.classList.add('in');
-    this.state.domElements.backdrop.classList.add('in');
   }
 }

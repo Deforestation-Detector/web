@@ -90,8 +90,8 @@ export default class LabelState {
       backdrop: document.getElementById('backdrop'),
       labelListNode: document.getElementById('labelList'),
       infoPage: document.getElementById('infoPage'),
+      closeBtn: document.querySelector('.closeBtn'),
       tileLabelWrapper: document.querySelector('.tileLabelWrapper'),
-      investigateButton: document.getElementById('investigateBtn'),
       updateButton: document.getElementById('updateLabelsBtn'),
     };
   }
@@ -105,20 +105,25 @@ export default class LabelState {
       this.updateTest();
     });
 
-    // Event Handler for investigate button
-    this.state.domElements.investigateButton.onclick = () => {
-      this.state.trigger('investigating');
-    };
-    this.state.on('investigating', () => {
-      this.state.viewState.setView('investigate');
-    });
-
-    // Event Handler for clicking on info page (to leave it)
-    this.state.domElements.infoPage.onclick = () => {
+    // Event Handler for clicking on close button
+    this.state.domElements.closeBtn.onclick = () => {
       this.state.trigger('doneInvestigating');
     };
     this.state.on('doneInvestigating', () => {
-      this.state.viewState.setView('exploring');
+      this.state.viewState.back();
+    });
+
+    // Event Handler for handling state change
+    this.state.on('viewchange', () => {
+      let view = this.state.viewState.getView();
+
+      if (view === 'investigate') {
+        this.state.domElements.backdrop.classList.add('in');
+        this.state.domElements.infoPage.classList.add('in');
+      } else {
+        this.state.domElements.backdrop.classList.remove('in');
+        this.state.domElements.infoPage.classList.remove('in');
+      }
     });
   }
 
@@ -169,10 +174,5 @@ export default class LabelState {
       newLabels.push(temp);
     }
     this.updateLabels(newLabels);
-  }
-
-  setState() {
-    this.state.domElements.infoPage.classList.add('in');
-    this.state.domElements.backdrop.classList.add('in');
   }
 }
