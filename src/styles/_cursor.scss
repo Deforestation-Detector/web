@@ -1,0 +1,75 @@
+@use './animations';
+
+#cursor {
+  position: absolute;
+  top: -1000px;
+  left: -1000px;
+  overflow: visible;
+
+  pointer-events: none;
+  touch-action: none;
+
+  z-index: 100;
+
+  width: 6vw;
+  height: 6vw;
+
+  transform: translate(-50%, -50%) scale(1);
+  transform-origin: center;
+  opacity: 0;
+
+  border-radius: 50%;
+  border: 0.125rem solid rgba(255, 255, 255, 0.5);
+
+  transition: animations.$transitionIn, transform ease-in-out 0.25s;
+
+  &.in {
+    opacity: 1;
+  }
+
+  &.moving {
+    transform: translate(-50%, -50%) scale(0.5);
+
+    span {
+      opacity: 0;
+    }
+  }
+
+  span {
+    position: absolute;
+    top: -1.5rem;
+    left: 50%;
+    font-size: 0.8rem;
+    opacity: 1;
+    overflow: visible;
+    font-family: monospace;
+
+    transition: opacity ease-in-out 0.15s;
+
+    color: white;
+    text-shadow: 0 0 5px #000;
+
+    transform-origin: 0 calc(3vw + 1.5rem);
+  }
+
+  .wrapper {
+    position: absolute;
+    inset: 0;
+    overflow: visible;
+
+    animation-name: rotateCursor;
+    animation-duration: 12s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+  }
+}
+
+@keyframes rotateCursor {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(-360deg);
+  }
+}

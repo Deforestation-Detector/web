@@ -135,6 +135,29 @@ span:nth-child(5) {
     border-bottom-width: 1px;
   }
 }
+#cursor {
+  position: absolute;
+  top: -1000px;
+  left: -1000px;
+  pointer-events: none;
+  touch-action: none;
+  z-index: 100;
+  width: 3vw;
+  height: 3vw;
+  transform: translate(-50%, -50%) scale(1);
+  transform-origin: center;
+  opacity: 0;
+  border-radius: 50%;
+  border: 0.125rem solid white;
+  transition: opacity ease-in-out 0.5s, transform ease-in-out 0.25s;
+}
+#cursor.in {
+  opacity: 0.5;
+}
+#cursor.idle {
+  transform: translate(-50%, -50%) scale(2);
+}
+
 .arrow,
 .arrow:before {
   position: absolute;
@@ -284,16 +307,18 @@ span:nth-child(5) {
   touch-action: all;
 }
 
-#infoPage {
+.tileLabelWrapper {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
+  width: 100%;
 }
 
 .tileLabel {
   max-width: 200px;
+  margin: 5px;
 }
 .tileLabel:not(.natural) {
   color: crimson;
@@ -321,15 +346,16 @@ button#investigateBtn:hover, button#updateLabelsBtn:hover {
 
 .closeBtn {
   position: absolute;
-  right: 32px;
-  top: 32px;
+  right: 5%;
+  top: 25%;
   width: 32px;
   height: 32px;
-  opacity: 0.3;
+  opacity: 1;
 }
 
 .closeBtn:hover {
-  opacity: 1;
+  opacity: 0.6;
+  cursor: pointer;
 }
 
 .closeBtn:before,
@@ -339,7 +365,7 @@ button#investigateBtn:hover, button#updateLabelsBtn:hover {
   content: " ";
   height: 33px;
   width: 2px;
-  background-color: #333;
+  background-color: white;
 }
 
 .closeBtn:before {
@@ -363,6 +389,12 @@ button#investigateBtn:hover, button#updateLabelsBtn:hover {
   .tileLabel {
     max-width: 200px;
     width: 100%;
+  }
+
+  .closeBtn {
+    position: absolute;
+    right: 5%;
+    top: 10%;
   }
 }
 #landing {
@@ -432,6 +464,14 @@ button#investigateBtn:hover, button#updateLabelsBtn:hover {
   z-index: 10000;
 }
 
+.statsPanel {
+  z-index: 1000;
+  overflow: visible;
+}
+.statsPanel canvas {
+  z-index: 1000;
+}
+
 body {
   font-family: "Poppins", sans-serif;
 }
@@ -439,6 +479,9 @@ body {
 a {
   color: orange;
   text-decoration: none;
+}
+a:hover {
+  opacity: 0.7;
 }
 
 svg {
@@ -465,6 +508,12 @@ svg {
 canvas {
   position: absolute;
   z-index: 5;
+  cursor: -webkit-grab;
+  cursor: grab;
+}
+canvas:active {
+  cursor: -webkit-grabbing;
+  cursor: grabbing;
 }
 
 #content > *:not(#landing):not(#learnMore):not(canvas) {
@@ -543,7 +592,7 @@ canvas {
   touch-action: all;
   transition: opacity ease-in-out 0.5s;
 }
-#backdrop:not(.in).exploring {
+#backdrop:not(.in) {
   opacity: 0;
   pointer-events: none;
   touch-action: none;

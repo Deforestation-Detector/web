@@ -8,6 +8,7 @@ const negZ = new Vector3(0, 0, -1);
 export default class Controls {
   constructor(camera, canvas) {
     this.experience = new Experience();
+    this.state = this.experience.state;
 
     this.camera = camera;
     this.canvas = canvas;
@@ -16,7 +17,6 @@ export default class Controls {
     this.rotation = new Vector3();
     this.lerpedRotation = new Vector3();
     this.mouse = new Vector2();
-    this.dragging = false;
 
     this.keys = {
       left: false,
@@ -33,8 +33,8 @@ export default class Controls {
   }
 
   setEventHandlers() {
-    this.canvas.addEventListener('mousedown', (e) => {
-      this.dragging = true;
+    this.canvas.addEventListener('mousedown', e => {
+      this.state.cursorState.dragging = true;
 
       let x = (e.clientX / this.canvas.width) * 2.0 - 1.0;
       let y = (-e.clientY / this.canvas.height) * 2.0 + 1.0;
@@ -42,12 +42,12 @@ export default class Controls {
       this.mouse.set(x, y);
     });
 
-    this.canvas.addEventListener('mouseup', (e) => {
-      this.dragging = false;
+    this.canvas.addEventListener('mouseup', e => {
+      this.state.cursorState.dragging = false;
     });
 
-    this.canvas.addEventListener('mousemove', (e) => {
-      if (this.dragging) {
+    this.canvas.addEventListener('mousemove', e => {
+      if (this.state.cursorState.dragging) {
         let x = (e.clientX / window.innerWidth) * 2.0 - 1.0;
         let y = (-e.clientY / window.innerHeight) * 2.0 + 1.0;
 
@@ -56,7 +56,7 @@ export default class Controls {
 
         let dir = Math.abs(dy) - Math.abs(dx);
 
-        if (dir > 0) {
+        if (true || dir > 0) {
           v.copy(negZ).applyQuaternion(this.camera.quaternion);
           v.y = 0;
           v.normalize();
@@ -72,14 +72,14 @@ export default class Controls {
           }
         }
 
-        if (dir <= 0) {
-          this.rotation.y += dx;
+        if (true || dir <= 0) {
+          this.rotation.y -= dx * 0.75;
         }
         this.mouse.set(x, y);
       }
     });
 
-    window.addEventListener('keydown', (e) => {
+    window.addEventListener('keydown', e => {
       switch (e.key) {
         case 'a': {
           this.keys.left = true;
@@ -119,7 +119,7 @@ export default class Controls {
       }
     });
 
-    window.addEventListener('keyup', (e) => {
+    window.addEventListener('keyup', e => {
       switch (e.key) {
         case 'a': {
           this.keys.left = false;

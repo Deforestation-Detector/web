@@ -1,5 +1,6 @@
 @use 'styles/fonts';
 @use 'styles/loading';
+@use 'styles/cursor';
 @use 'styles/about';
 @use 'styles/info';
 @use 'styles/landing';
@@ -17,6 +18,15 @@
 
 .tp-dfwv {
   z-index: 10000;
+}
+
+.statsPanel {
+  z-index: 1000;
+  overflow: visible;
+
+  canvas {
+    z-index: 1000;
+  }
 }
 
 body {
@@ -61,6 +71,11 @@ svg {
 canvas {
   position: absolute;
   z-index: 5;
+  cursor: grab;
+
+  &:active {
+    cursor: grabbing;
+  }
 }
 
 #content > *:not(#landing):not(#learnMore):not(canvas) {
@@ -166,7 +181,7 @@ canvas {
 
   transition: $transitionIn;
 
-  &:not(.in).exploring {
+  &:not(.in) {
     opacity: 0;
     pointer-events: none;
     touch-action: none;

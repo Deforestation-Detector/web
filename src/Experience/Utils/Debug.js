@@ -7,6 +7,8 @@ export default class Debug {
 
     if (this.active) {
       this.stats = new Stats();
+      this.stats.dom.classList.add('statsPanel');
+      console.log(this.stats.dom);
       document.body.appendChild(this.stats.dom);
       this.pane = new Pane({ title: 'Config', expanded: false });
     }

@@ -26,6 +26,21 @@ export default class Experience {
     }
 
     /**
+     * Clock
+     */
+    this.clock = new Clock();
+
+    this.clock.on('tick', () => {
+      if (this.debug.active) {
+        this.debug.stats.begin();
+        this.update();
+        this.debug.stats.end();
+      } else {
+        this.update();
+      }
+    });
+
+    /**
      * State
      */
     this.state = new State();
@@ -43,21 +58,6 @@ export default class Experience {
 
     this.sizes.on('resize', () => {
       this.resize();
-    });
-
-    /**
-     * Clock
-     */
-    this.clock = new Clock();
-
-    this.clock.on('tick', () => {
-      if (this.debug.active) {
-        this.debug.stats.begin();
-        this.update();
-        this.debug.stats.end();
-      } else {
-        this.update();
-      }
     });
 
     /**
@@ -132,7 +132,7 @@ export default class Experience {
     this.sizes.off('resize');
     this.clock.off('tick');
 
-    this.scene.traverse((child) => {
+    this.scene.traverse(child => {
       if (child instanceof Mesh) {
         child.geometry.dispose();
 

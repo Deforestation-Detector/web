@@ -14,26 +14,32 @@ export default class ExploreState {
 
     this.state.domElements = {
       ...currDomElements,
-      backdrop: document.getElementById('backdrop'),
       header: document.getElementById('header'),
       labelListWrapper: document.getElementById('labelListWrapper'),
-      exploreBtn: document.getElementById('exploreBtn'), //explore button into map component
+      learnMoreNav: document.getElementById('learnMoreNavLink'),
+      investigateBtn: document.getElementById('investigateBtn'),
     };
   }
 
   setEventHandlers() {
-    // Eveent Handler for Explore button
-    this.state.domElements.exploreBtn.onclick = () => {
-      this.state.trigger('exploration');
+    this.state.domElements.learnMoreNav.onclick = () => {
+      this.state.viewState.setView('about');
     };
-    this.state.on('exploration', () => {
-      this.state.viewState.setView('exploring');
-    });
-  }
 
-  setState() {
-    this.state.domElements.backdrop.classList.add('exploring');
-    this.state.domElements.header.classList.add('in');
-    this.state.domElements.labelListWrapper.classList.add('in');
+    this.state.domElements.investigateBtn.onclick = () => {
+      this.state.viewState.setView('investigate');
+    };
+
+    this.state.on('viewchange', () => {
+      let view = this.state.viewState.getView();
+
+      if (view === 'exploring') {
+        this.state.domElements.header.classList.add('in');
+        this.state.domElements.labelListWrapper.classList.add('in');
+      } else {
+        this.state.domElements.header.classList.remove('in');
+        this.state.domElements.labelListWrapper.classList.remove('in');
+      }
+    });
   }
 }

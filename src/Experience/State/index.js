@@ -5,6 +5,8 @@ import LandingState from './LandingState';
 import LabelState from './LabelState';
 import AboutState from './AboutState';
 import ExploreState from './ExploreState';
+import BackdropState from './BackdropState';
+import CursorState from './CursorState';
 
 /**
  * The state object maintains the state of our application. Note that it extends from our
@@ -31,6 +33,8 @@ export default class State extends EventEmitter {
     this.labelState = new LabelState();
     this.aboutState = new AboutState();
     this.exploreState = new ExploreState();
+    this.backdropState = new BackdropState();
+    this.cursorState = new CursorState();
   }
 
   setDomElements() {
