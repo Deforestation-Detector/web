@@ -10,61 +10,40 @@ export default class ViewState {
     this.#currentView = 'loading';
     this.views = ['loading', 'landing', 'exploring', 'about', 'investigate'];
 
-    this.viewingTile;
+    this.viewHistory = ['landing'];
   }
 
   setView(newView) {
-    if (!this.views.includes(newView)) return;
+    if (!this.views.includes(newView)) {
+      console.error('Tried to transition to a non-existent view: ', newView);
+      return;
+    }
 
     let oldView = this.#currentView; // might be needed
 
-    this.handleDomChanges(oldView, newView);
+    // this.handleDomChanges(oldView, newView);
+    this.viewHistory.push(newView);
     this.#currentView = newView;
 
     this.experience.state.trigger('viewchange');
   }
 
+  back() {
+    // remove current view from hist
+    this.viewHistory.pop();
+
+    // pop last view from hist, it will be pushed again after the below code
+    let lastView = this.viewHistory.pop();
+
+    // go back to last view
+    this.setView(lastView);
+  }
+
+  getLastView() {
+    return this.viewHistory[this.viewHistory.length - 1];
+  }
+
   getView() {
     return this.#currentView;
-  }
-
-  handleDomChanges(oldView, newView) {
-    // handle transitions here
-
-    // Reset the state
-    this.resetState();
-
-    switch (newView) {
-      case 'landing': {
-        this.state.landingState.setState();
-        break;
-      }
-      case 'investigate': {
-        this.state.labelState.setState();
-        break;
-      }
-      case 'exploring': {
-        this.state.exploreState.setState();
-        break;
-      }
-      case 'about': {
-        this.state.aboutState.setState();
-        break;
-      }
-      default: {
-        break;
-      }
-    }
-  }
-
-  // Removes everything from the page to create a clean slate for state management
-  resetState() {
-    var elems = document.getElementsByClassName('in');
-
-    while (elems[0]) {
-      elems[0].classList.remove('in');
-    }
-
-    this.state.domElements.content.classList.add('in');
   }
 }
