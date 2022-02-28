@@ -1,4 +1,5 @@
 import Experience from '..';
+// Import image paths
 import hazeImg from '../../img/labelImages/haze.png';
 import primaryImg from '../../img/labelImages/primary.png';
 import agricultureImg from '../../img/labelImages/agriculture.png';
@@ -186,6 +187,13 @@ export default class LabelState {
     <p>${label.description}</p>`;
     labelImg.src = `${label.url}`;
     labelImg.alt = `Image of ${formattedElement}`;
+
+    // Check if label is natural and update class
+    if (label.natural) {
+      tileLabel.classList.add('natural');
+    } else {
+      tileLabel.classList.remove('natural');
+    }
   }
 
   // updateLabels(labelArray) {
