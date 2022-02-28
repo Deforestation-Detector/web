@@ -1,37 +1,64 @@
 @use './animations';
 
-#cursor {
-  position: absolute;
-  top: -1000px;
-  left: -1000px;
-  overflow: visible;
+$cursorSize: clamp(100px, 6vw, 400px);
 
-  pointer-events: none;
-  touch-action: none;
+#cursorWrapper {
+  position: fixed;
+  overflow: visible;
+  z-index: 1000;
+
+  width: $cursorSize;
+  height: $cursorSize;
+
+  display: grid;
+  place-items: center;
+
+  &,
+  & * {
+    pointer-events: none;
+    touch-action: none;
+
+    // will-change: transform;
+  }
+}
+
+#cursor {
+  position: relative;
+  overflow: visible;
 
   z-index: 100;
 
-  width: 6vw;
-  height: 6vw;
+  width: $cursorSize;
+  height: $cursorSize;
 
-  transform: translate(-50%, -50%) scale(1);
+  transform: scale(1);
   transform-origin: center;
   opacity: 0;
 
   border-radius: 50%;
   border: 0.125rem solid rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0);
 
-  transition: animations.$transitionIn, transform ease-in-out 0.25s;
+  transition: animations.$transitionIn, transform ease-in-out 0.25s,
+    background-color ease-in-out 0.25s;
 
   &.in {
     opacity: 1;
   }
 
-  &.moving {
-    transform: translate(-50%, -50%) scale(0.5);
+  &.moving:not(.intersecting) {
+    transform: scale(0.5);
 
     span {
       opacity: 0;
+    }
+  }
+
+  &.intersecting {
+    cursor: pointer;
+
+    .ripple {
+      animation-name: rippleAnimation;
     }
   }
 
@@ -49,7 +76,30 @@
     color: white;
     text-shadow: 0 0 5px #000;
 
-    transform-origin: 0 calc(3vw + 1.5rem);
+    transform-origin: 0 calc($cursorSize * 0.5 + 1.5rem);
+  }
+
+  .ripple {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    border-radius: 50%;
+
+    background: radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0) 35%,
+      rgba(255, 255, 255, 0.5) 50%,
+      rgba(255, 255, 255, 0) 65%,
+      rgba(255, 255, 255, 0) 100%
+    );
+
+    mix-blend-mode: lighten;
+
+    animation-name: none;
+    animation-timing-function: ease-out;
+    animation-iteration-count: infinite;
+    animation-duration: 1.25s;
   }
 
   .wrapper {
@@ -71,5 +121,19 @@
 
   100% {
     transform: rotate(-360deg);
+  }
+}
+
+@keyframes rippleAnimation {
+  0% {
+    opacity: 1;
+
+    transform: scale(0.5);
+  }
+
+  100% {
+    opacity: 0;
+
+    transform: scale(1.5);
   }
 }
