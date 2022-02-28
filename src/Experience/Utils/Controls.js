@@ -33,7 +33,7 @@ export default class Controls {
   }
 
   setEventHandlers() {
-    this.canvas.addEventListener('mousedown', e => {
+    this.canvas.addEventListener('mousedown', (e) => {
       this.state.cursorState.dragging = true;
 
       let x = (e.clientX / this.canvas.width) * 2.0 - 1.0;
@@ -42,11 +42,11 @@ export default class Controls {
       this.mouse.set(x, y);
     });
 
-    this.canvas.addEventListener('mouseup', e => {
+    this.canvas.addEventListener('mouseup', (e) => {
       this.state.cursorState.dragging = false;
     });
 
-    this.canvas.addEventListener('mousemove', e => {
+    this.canvas.addEventListener('mousemove', (e) => {
       if (this.state.cursorState.dragging) {
         let x = (e.clientX / window.innerWidth) * 2.0 - 1.0;
         let y = (-e.clientY / window.innerHeight) * 2.0 + 1.0;
@@ -79,7 +79,7 @@ export default class Controls {
       }
     });
 
-    window.addEventListener('keydown', e => {
+    window.addEventListener('keydown', (e) => {
       switch (e.key) {
         case 'a': {
           this.keys.left = true;
@@ -119,7 +119,7 @@ export default class Controls {
       }
     });
 
-    window.addEventListener('keyup', e => {
+    window.addEventListener('keyup', (e) => {
       switch (e.key) {
         case 'a': {
           this.keys.left = false;

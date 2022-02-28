@@ -22,6 +22,7 @@ export default class State extends EventEmitter {
     super(); // calls extended class's constructor
 
     this.domElements = {};
+    this.intersectObjects = [];
 
     this.experience = new Experience();
     this.setDomElements();
