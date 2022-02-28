@@ -3,7 +3,7 @@
   "tabWidth": 2,
   "semi": true,
   "singleQuote": true,
-  "arrowParens": "avoid",
+  "arrowParens": "always",
   "jsxSingleQuote": true,
   "proseWrap": "preserve"
 }

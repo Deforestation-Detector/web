@@ -24,6 +24,7 @@ import bake2 from '../img/baked/bake2.jpg';
 import bake3 from '../img/baked/bake3.jpg';
 import bake4 from '../img/baked/bake4.jpg';
 import bake5 from '../img/baked/bake5.jpg';
+import bake6 from '../img/baked/bake6.jpg';
 
 /**
  * LIGHT MAPS
@@ -128,6 +129,11 @@ export default [
     name: 'bake5',
     type: 'texture',
     path: bake5,
+  },
+  {
+    name: 'bake6',
+    type: 'texture',
+    path: bake6,
   },
 
   // LIGHT MAPS
