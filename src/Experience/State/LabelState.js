@@ -207,7 +207,6 @@ export default class LabelState {
 
   initializeImages() {
     for (const label of Object.keys(this.labels)) {
-      console.log(`The key is ${label}`);
       var labelObj = this.labels[label];
       var img = document.createElement('img');
       img.id = `${label}Img`;
