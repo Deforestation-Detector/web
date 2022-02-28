@@ -115,6 +115,7 @@ export default class LabelState {
 
     this.setDomElements();
     this.setEventHandlers();
+    this.initializeImages();
   }
 
   setDomElements() {
@@ -127,6 +128,7 @@ export default class LabelState {
       infoPage: document.getElementById('infoPage'),
       closeBtn: document.querySelector('.closeBtn'),
       tileLabel: document.querySelector('.tileLabel'),
+      layeredImgs: document.getElementById('layeredImgs'),
       // tileLabelWrapper: document.querySelector('.tileLabelWrapper'),
       labelImg: document.getElementById('labelImage'),
       updateButton: document.getElementById('updateLabelsBtn'),
@@ -170,78 +172,49 @@ export default class LabelState {
     // Grab the click element (likely from a state grab)
     // For now, use a random label
     let keys = Object.keys(this.labels);
-    let element = keys[(keys.length * Math.random()) << 0];
-    // let element = 'haze';
+    let label = keys[(keys.length * Math.random()) << 0];
 
     let labelListNode = this.state.domElements.labelListNode;
     let tileLabel = this.state.domElements.tileLabel;
-    let labelImg = this.state.domElements.labelImg;
-    let formattedElement = element.replaceAll('_', ' ');
-    let label = this.labels[element];
+    let layeredImgs = this.state.domElements.layeredImgs;
+    let formattedLabel = label.replaceAll('_', ' ');
+    let labelObj = this.labels[label];
 
     // Update label list in Explore view
-    labelListNode.innerHTML = `<p>${formattedElement}</p>`;
+    labelListNode.innerHTML = `<p>${formattedLabel}</p>`;
 
     // Update Information Page
-    tileLabel.innerHTML = `<h1>${formattedElement}</h1>
-    <p>${label.description}</p>`;
-    labelImg.src = `${label.url}`;
-    labelImg.alt = `Image of ${formattedElement}`;
+    tileLabel.innerHTML = `<h1>${formattedLabel}</h1>
+    <p>${labelObj.description}</p>`;
+
+    // Remove any visible images
+    for (let child of layeredImgs.childNodes) {
+      if (child.classList.contains('in')) {
+        child.classList.remove('in');
+      }
+    }
+
+    // Add desired image
+    document.getElementById(`${label}Img`).classList.add('in');
 
     // Check if label is natural and update class
-    if (label.natural) {
+    if (labelObj.natural) {
       tileLabel.classList.add('natural');
     } else {
       tileLabel.classList.remove('natural');
     }
   }
 
-  // updateLabels(labelArray) {
-  //   let labelListNode = this.state.domElements.labelListNode;
-  //   let tileLabelWrapper = this.state.domElements.tileLabelWrapper;
-  //   // Clear label list and info page
-  //   labelListNode.innerHTML = '';
-  //   tileLabelWrapper.innerHTML = '';
-  //   // Iterate through passed labels
-  //   labelArray.forEach(label => {
-  //     if (Object.keys(this.labels).includes(label)) {
-  //       // Replace any underscores with spaces
-  //       let formattedLabel = label.replaceAll('_', ' ');
-  //       // Add label to list
-  //       let labelToInsert = document.createElement('p');
-
-  //       labelToInsert.innerHTML = formattedLabel;
-  //       labelListNode.appendChild(labelToInsert);
-
-  //       // Add label description to info page
-  //       // Create nodes
-  //       let labelWrapper = document.createElement('div');
-  //       let labelTitle = document.createElement('h1');
-  //       let labelDescription = document.createElement('p');
-  //       // Fill nodes
-  //       labelWrapper.classList.add('tileLabel');
-  //       if (this.labels[label].natural) {
-  //         labelWrapper.classList.add('natural');
-  //       }
-  //       labelTitle.innerHTML = formattedLabel;
-  //       labelDescription.innerHTML = this.labels[label].description;
-  //       labelWrapper.appendChild(labelTitle);
-  //       labelWrapper.appendChild(labelDescription);
-
-  //       // Add label wrapper to info page
-  //       tileLabelWrapper.appendChild(labelWrapper);
-  //     }
-  //   });
-  // }
-
-  // updateTest() {
-  //   let newLabels = [];
-  //   let remainingLabels = Object.keys(this.labels);
-  //   while (newLabels.length < 1) {
-  //     var temp = remainingLabels[(remainingLabels.length * Math.random()) << 0];
-  //     remainingLabels = remainingLabels.filter(el => el !== temp);
-  //     newLabels.push(temp);
-  //   }
-  //   this.updateLabels(newLabels);
-  // }
+  initializeImages() {
+    for (const label of Object.keys(this.labels)) {
+      console.log(`The key is ${label}`);
+      var labelObj = this.labels[label];
+      var img = document.createElement('img');
+      img.id = `${label}Img`;
+      img.src = labelObj.url;
+      img.alt = `Image of ${label}`;
+      img.classList.add('labelImage');
+      this.state.domElements.layeredImgs.appendChild(img);
+    }
+  }
 }
