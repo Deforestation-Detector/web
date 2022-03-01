@@ -135,29 +135,130 @@ span:nth-child(5) {
     border-bottom-width: 1px;
   }
 }
-#cursor {
-  position: absolute;
-  top: -1000px;
-  left: -1000px;
+#cursorWrapper {
+  position: fixed;
+  overflow: visible;
+  z-index: 1000;
+  width: clamp(100px, 6vw, 400px);
+  height: clamp(100px, 6vw, 400px);
+  display: grid;
+  place-items: center;
+}
+#cursorWrapper, #cursorWrapper * {
   pointer-events: none;
   touch-action: none;
+}
+
+#cursor {
+  position: relative;
+  overflow: visible;
   z-index: 100;
-  width: 3vw;
-  height: 3vw;
-  transform: translate(-50%, -50%) scale(1);
+  width: clamp(100px, 6vw, 400px);
+  height: clamp(100px, 6vw, 400px);
+  transform: scale(1);
   transform-origin: center;
   opacity: 0;
   border-radius: 50%;
-  border: 0.125rem solid white;
-  transition: opacity ease-in-out 0.5s, transform ease-in-out 0.25s;
+  border: 0.125rem solid rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0);
+  transition: opacity ease-in-out 0.5s, transform ease-in-out 0.25s, background-color ease-in-out 0.25s;
 }
 #cursor.in {
-  opacity: 0.5;
+  opacity: 1;
 }
-#cursor.idle {
-  transform: translate(-50%, -50%) scale(2);
+#cursor.moving:not(.intersecting) {
+  transform: scale(0.5);
+}
+#cursor.moving:not(.intersecting) span {
+  opacity: 0;
+}
+#cursor.intersecting {
+  cursor: pointer;
+}
+#cursor.intersecting .ripple {
+  -webkit-animation-name: rippleAnimation;
+          animation-name: rippleAnimation;
+}
+#cursor span {
+  position: absolute;
+  top: -1.5rem;
+  left: 50%;
+  font-size: 0.8rem;
+  opacity: 1;
+  overflow: visible;
+  font-family: monospace;
+  transition: opacity ease-in-out 0.15s;
+  color: white;
+  text-shadow: 0 0 5px #000;
+  transform-origin: 0 calc($cursorSize * 0.5 + 1.5rem);
+}
+#cursor .ripple {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0) 65%, rgba(255, 255, 255, 0) 100%);
+  mix-blend-mode: lighten;
+  -webkit-animation-name: none;
+          animation-name: none;
+  -webkit-animation-timing-function: ease-out;
+          animation-timing-function: ease-out;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-duration: 1.25s;
+          animation-duration: 1.25s;
+}
+#cursor .wrapper {
+  position: absolute;
+  inset: 0;
+  overflow: visible;
+  -webkit-animation-name: rotateCursor;
+          animation-name: rotateCursor;
+  -webkit-animation-duration: 12s;
+          animation-duration: 12s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
 }
 
+@-webkit-keyframes rotateCursor {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes rotateCursor {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+@-webkit-keyframes rippleAnimation {
+  0% {
+    opacity: 1;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.5);
+  }
+}
+@keyframes rippleAnimation {
+  0% {
+    opacity: 1;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.5);
+  }
+}
 .arrow,
 .arrow:before {
   position: absolute;
@@ -307,6 +408,14 @@ span:nth-child(5) {
   touch-action: all;
 }
 
+#infoPage {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
 .tileLabelWrapper {
   display: flex;
   flex-wrap: wrap;
@@ -374,6 +483,20 @@ button#investigateBtn:hover, button#updateLabelsBtn:hover {
 
 .closeBtn:after {
   transform: rotate(-45deg);
+}
+
+#layeredImgs {
+  display: flex;
+  justify-content: center;
+}
+
+.labelImage {
+  position: relative;
+  max-width: 50%;
+  height: auto;
+}
+.labelImage:not(.in) {
+  display: none;
 }
 
 @media screen and (max-width: 700px) {
@@ -536,13 +659,13 @@ canvas:active {
   max-width: 90vw;
   height: clamp(75px, 10vh, 120px);
   z-index: 10;
+  pointer-events: none;
+  touch-action: none;
   color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
   opacity: 1;
-  pointer-events: all;
-  touch-action: all;
   transition: opacity ease-in-out 0.5s;
   text-shadow: 0 0 5px #000;
   overflow: visible;

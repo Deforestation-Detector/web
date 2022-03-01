@@ -105,6 +105,8 @@ canvas {
     max-width: 90vw;
     height: clamp(75px, 10vh, 120px);
     z-index: 10;
+    pointer-events: none;
+    touch-action: none;
 
     color: white;
 
@@ -113,8 +115,6 @@ canvas {
     align-items: center;
 
     opacity: 1;
-    pointer-events: all;
-    touch-action: all;
     transition: $transitionIn;
 
     text-shadow: 0 0 5px #000;
