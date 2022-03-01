@@ -130,19 +130,26 @@
       </div>
 
       <!-- Label List in Explore View -->
-      <div id="labelListWrapper" class="domComponent">
+      <!-- <div id="labelListWrapper" class="domComponent">
         <h1>This Area Affected By:</h1>
         <div id="labelList">
           <p>Label 1</p>
         </div>
         <button id="investigateBtn">Investigate</button>
         <button id="updateLabelsBtn">Update Labels</button>
-      </div>
+      </div> -->
 
       <!-- Information Page -->
       <div id="infoPage" class="domComponent">
         <div class="closeBtn"></div>
-        <div class="tileLabelWrapper">
+        <div id="labelInfo">
+          <h1 id="labelName">Tile Label 1</h1>
+          <p id="labelDescr">
+            This is a description of the label. This will describe whatever
+            the label means/indicates.
+          </p>
+        </div>
+        <!-- <div class="tileLabelWrapper">
           <div class="tileLabel">
             <h1>Tile Label 1</h1>
             <p>
@@ -150,18 +157,8 @@
               the label means/indicates.
             </p>
           </div>
-        </div>
+        </div> -->
         <div id="layeredImgs"></div>  
-      </div>
-
-      <div id="labelList" class="domComponent">
-        <h1>This Area Affected By:</h1>
-        <p>Label 1</p>
-        <p>Label 2</p>
-        <p>Label 3</p>
-        <p>Label 4</p>
-        <p>Label 5</p>
-        <button id="investigateBtn">Investigate</button>
       </div>
   </body>
 </html>

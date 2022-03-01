@@ -124,29 +124,31 @@ export default class LabelState {
     this.state.domElements = {
       ...currDomElements,
       backdrop: document.getElementById('backdrop'),
-      labelListNode: document.getElementById('labelList'),
+      // labelListNode: document.getElementById('labelList'),
       infoPage: document.getElementById('infoPage'),
       closeBtn: document.querySelector('.closeBtn'),
-      tileLabel: document.querySelector('.tileLabel'),
+      // tileLabel: document.querySelector('.tileLabel'),
       layeredImgs: document.getElementById('layeredImgs'),
       // tileLabelWrapper: document.querySelector('.tileLabelWrapper'),
-      labelImg: document.getElementById('labelImage'),
-      updateButton: document.getElementById('updateLabelsBtn'),
+      // labelImg: document.getElementById('labelImage'),
+      // updateButton: document.getElementById('updateLabelsBtn'),
+      labelInfo: document.getElementById('labelInfo'),
+      labelName: document.getElementById('labelName'),
+      labelDescr: document.getElementById('labelDescr'),
     };
   }
 
   setEventHandlers() {
     // Event Handler for update button
-    this.state.domElements.updateButton.onclick = () => {
-      this.state.trigger('labelsUpdated');
-    };
-    this.state.on('labelsUpdated', () => {
-      this.updateLabel();
-    });
+    // this.state.domElements.updateButton.onclick = () => {
+    //   this.state.trigger('labelsUpdated');
+    // };
+    // this.state.on('labelsUpdated', () => {
+    //   this.updateLabel();
+    // });
 
     // Event Handler for clicking on close button
     this.state.domElements.closeBtn.onclick = () => {
-      console.log('clicked the close button');
       this.state.trigger('doneInvestigating');
     };
     this.state.on('doneInvestigating', () => {
@@ -177,18 +179,23 @@ export default class LabelState {
     // let keys = Object.keys(this.labels);
     // let label = keys[(keys.length * Math.random()) << 0];
 
-    let labelListNode = this.state.domElements.labelListNode;
-    let tileLabel = this.state.domElements.tileLabel;
+    // let labelListNode = this.state.domElements.labelListNode;
+    let labelInfo = this.state.domElements.labelInfo;
+    let labelName = this.state.domElements.labelName;
+    let labelDescr = this.state.domElements.labelDescr;
+    // let tileLabel = this.state.domElements.tileLabel;
     let layeredImgs = this.state.domElements.layeredImgs;
     let formattedLabel = label.replaceAll('_', ' ');
     let labelObj = this.labels[label];
 
     // Update label list in Explore view
-    labelListNode.innerHTML = `<p>${formattedLabel}</p>`;
+    // labelListNode.innerHTML = `<p>${formattedLabel}</p>`;
 
     // Update Information Page
-    tileLabel.innerHTML = `<h1>${formattedLabel}</h1>
-    <p>${labelObj.description}</p>`;
+    labelName.innerHTML = formattedLabel;
+    labelDescr.innerHTML = labelObj.description;
+    // tileLabel.innerHTML = `<h1>${formattedLabel}</h1>
+    // <p>${labelObj.description}</p>`;
 
     // Remove any visible images
     for (let child of layeredImgs.childNodes) {
@@ -202,9 +209,11 @@ export default class LabelState {
 
     // Check if label is natural and update class
     if (labelObj.natural) {
-      tileLabel.classList.add('natural');
+      labelInfo.classList.add('natural');
+      // tileLabel.classList.add('natural');
     } else {
-      tileLabel.classList.remove('natural');
+      labelInfo.classList.remove('natural');
+      // tileLabel.classList.remove('natural');
     }
   }
 
