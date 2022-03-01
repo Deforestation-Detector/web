@@ -166,14 +166,11 @@ span:nth-child(5) {
 #cursor.in {
   opacity: 1;
 }
-#cursor.moving:not(.intersecting) {
+#cursor.moving:not(.intersecting), #cursor.dragging {
   transform: scale(0.5);
 }
-#cursor.moving:not(.intersecting) span {
+#cursor.moving:not(.intersecting) span, #cursor.dragging span {
   opacity: 0;
-}
-#cursor.intersecting {
-  cursor: pointer;
 }
 #cursor.intersecting .ripple {
   -webkit-animation-name: rippleAnimation;
@@ -637,6 +634,9 @@ canvas {
 canvas:active {
   cursor: -webkit-grabbing;
   cursor: grabbing;
+}
+canvas.intersecting {
+  cursor: pointer;
 }
 
 #content > *:not(#landing):not(#learnMore):not(canvas) {

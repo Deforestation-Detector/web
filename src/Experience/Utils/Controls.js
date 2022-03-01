@@ -48,6 +48,7 @@ export default class Controls {
 
     this.canvas.addEventListener('mousemove', (e) => {
       if (this.state.cursorState.dragging) {
+        this.state.cursorState.setIntersection(null);
         let x = (e.clientX / window.innerWidth) * 2.0 - 1.0;
         let y = (-e.clientY / window.innerHeight) * 2.0 + 1.0;
 
@@ -66,7 +67,7 @@ export default class Controls {
           v2.copy(this.position).add(v);
           v2.y = 0;
 
-          if (v2.length() <= 75.0) {
+          if (v2.length() <= 100.0) {
             v2.y = this.position.y;
             this.position.copy(v2);
           }
@@ -167,7 +168,7 @@ export default class Controls {
       v2.add(v);
       v2.y = 0;
 
-      if (v2.length() <= 75.0) {
+      if (v2.length() <= 100.0) {
         v2.y = this.camera.position.y;
         this.position.copy(v2);
       }
@@ -181,7 +182,7 @@ export default class Controls {
       v2.sub(v);
       v2.y = 0;
 
-      if (v2.length() <= 75.0) {
+      if (v2.length() <= 100.0) {
         v2.y = this.camera.position.y;
         this.position.copy(v2);
       }
@@ -191,6 +192,12 @@ export default class Controls {
     }
     if (this.keys.right) {
       this.rotation.y -= 0.025;
+    }
+
+    if (Object.values(this.keys).find((val) => val === true)) {
+      this.state.domElements.cursor.classList.add('dragging');
+    } else {
+      this.state.domElements.cursor.classList.remove('dragging');
     }
 
     this.camera.position.lerp(this.position, 0.1);

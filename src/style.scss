@@ -76,6 +76,10 @@ canvas {
   &:active {
     cursor: grabbing;
   }
+
+  &.intersecting {
+    cursor: pointer;
+  }
 }
 
 #content > *:not(#landing):not(#learnMore):not(canvas) {

@@ -17,7 +17,7 @@ export default class CursorState {
   }
 
   setIntersection(obj) {
-    if (obj instanceof Mesh) {
+    if (obj === null || obj instanceof Mesh) {
       this.#intersecting = obj;
     } else {
       console.error('tried to set an invalid intersection');
@@ -48,6 +48,10 @@ export default class CursorState {
       this.handleClick(e);
     });
 
+    document.addEventListener('mouseup', (e) => {
+      this.handleMouseUp(e);
+    });
+
     this.state.on('viewchange', () => {
       this.handleViewChange();
     });
@@ -63,6 +67,10 @@ export default class CursorState {
 
   handleMouseMove(e) {
     this.state.domElements.cursorWrapper.style.transform = `translate(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%))`;
+
+    if (this.dragging) {
+      this.state.domElements.cursor.classList.add('dragging');
+    }
 
     this.state.domElements.cursor.classList.add('moving');
     this.state.cursorState.lastMove = performance.now();
@@ -81,6 +89,7 @@ export default class CursorState {
     if (intersections.length === 0) {
       this.#intersecting = null;
       this.state.domElements.cursor.classList.remove('intersecting');
+      this.experience.canvas.classList.remove('intersecting');
       this.setText();
     } else if (!this.dragging) {
       let name = intersections[0].object.name;
@@ -88,6 +97,10 @@ export default class CursorState {
       this.#intersecting = name.replaceAll('raycast', '').toLowerCase();
       this.state.trigger('intersected');
     }
+  }
+
+  handleMouseUp(e) {
+    this.state.domElements.cursor.classList.remove('dragging');
   }
 
   handleClick(e) {
@@ -108,6 +121,7 @@ export default class CursorState {
 
   handleIntersection() {
     this.state.domElements.cursor.classList.add('intersecting');
+    this.experience.canvas.classList.add('intersecting');
 
     this.setText('Click to learn more');
   }

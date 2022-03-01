@@ -46,7 +46,8 @@ $cursorSize: clamp(100px, 6vw, 400px);
     opacity: 1;
   }
 
-  &.moving:not(.intersecting) {
+  &.moving:not(.intersecting),
+  &.dragging {
     transform: scale(0.5);
 
     span {
@@ -55,8 +56,6 @@ $cursorSize: clamp(100px, 6vw, 400px);
   }
 
   &.intersecting {
-    cursor: pointer;
-
     .ripple {
       animation-name: rippleAnimation;
     }
