@@ -1,28 +1,28 @@
 @use './fonts' as *;
 
-#labelListWrapper {
-  pointer-events: none;
-  touch-action: none;
+// #labelListWrapper {
+//   pointer-events: none;
+//   touch-action: none;
 
-  text-shadow: 0 0 5px #000;
+//   text-shadow: 0 0 5px #000;
 
-  &,
-  & * {
-    overflow: visible;
-  }
+//   &,
+//   & * {
+//     overflow: visible;
+//   }
 
-  line-height: 32px;
-  margin-top: 40px;
+//   line-height: 32px;
+//   margin-top: 40px;
 
-  &.in #investigateBtn {
-    pointer-events: all;
-    touch-action: all;
-  }
-  &.in #updateLabelsBtn {
-    pointer-events: all;
-    touch-action: all;
-  }
-}
+//   &.in #investigateBtn {
+//     pointer-events: all;
+//     touch-action: all;
+//   }
+//   &.in #updateLabelsBtn {
+//     pointer-events: all;
+//     touch-action: all;
+//   }
+// }
 
 #infoPage {
   display: flex;
@@ -31,48 +31,53 @@
   justify-content: space-evenly;
   align-items: center;
 }
-
-.tileLabelWrapper {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
-
-  width: 100%;
-}
-.tileLabel {
-  max-width: 200px;
-  margin: 5px;
-
+#labelInfo {
   &:not(.natural) {
-    color: crimson;
+    color: #ff1f1f;
   }
 }
 
-button {
-  background-color: rgba(255, 255, 255, 0);
-  font-family: $sans-serif;
-  font-weight: 200;
-  cursor: pointer;
+// .tileLabelWrapper {
+//   display: flex;
+//   flex-wrap: wrap;
+//   flex-direction: row;
+//   justify-content: space-evenly;
+//   align-items: center;
 
-  &#investigateBtn,
-  &#updateLabelsBtn {
-    color: white;
-    border: 1px solid white;
-    padding: 1rem 1.5rem;
+//   width: 100%;
+// }
+// .tileLabel {
+//   max-width: 200px;
+//   margin: 5px;
 
-    width: fit-content;
+//   &:not(.natural) {
+//     color: crimson;
+//   }
+// }
 
-    font-size: 1.125rem;
+// button {
+//   background-color: rgba(255, 255, 255, 0);
+//   font-family: $sans-serif;
+//   font-weight: 200;
+//   cursor: pointer;
 
-    transition: background-color 0.2s ease-in-out;
+//   &#investigateBtn,
+//   &#updateLabelsBtn {
+//     color: white;
+//     border: 1px solid white;
+//     padding: 1rem 1.5rem;
 
-    &:hover {
-      background-color: rgba(255, 255, 255, 0.1);
-    }
-  }
-}
+//     width: fit-content;
+
+//     font-size: 1.125rem;
+
+//     transition: background-color 0.2s ease-in-out;
+
+//     &:hover {
+//       background-color: rgba(255, 255, 255, 0.1);
+//     }
+//   }
+// }
 
 .closeBtn {
   position: absolute;
