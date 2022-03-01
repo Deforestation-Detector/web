@@ -146,6 +146,7 @@ export default class LabelState {
 
     // Event Handler for clicking on close button
     this.state.domElements.closeBtn.onclick = () => {
+      console.log('clicked the close button');
       this.state.trigger('doneInvestigating');
     };
     this.state.on('doneInvestigating', () => {
@@ -157,6 +158,10 @@ export default class LabelState {
       let view = this.state.viewState.getView();
 
       if (view === 'investigate') {
+        // Update the label
+        let element = this.state.cursorState.getIntersection();
+        this.updateLabel(element);
+        // Set the state
         this.state.domElements.backdrop.classList.add('in');
         this.state.domElements.infoPage.classList.add('in');
       } else {
@@ -164,15 +169,13 @@ export default class LabelState {
         this.state.domElements.infoPage.classList.remove('in');
       }
     });
-
-    this.state.on('elementClicked', this.updateLabel);
   }
 
-  updateLabel() {
+  updateLabel(label) {
     // Grab the click element (likely from a state grab)
     // For now, use a random label
-    let keys = Object.keys(this.labels);
-    let label = keys[(keys.length * Math.random()) << 0];
+    // let keys = Object.keys(this.labels);
+    // let label = keys[(keys.length * Math.random()) << 0];
 
     let labelListNode = this.state.domElements.labelListNode;
     let tileLabel = this.state.domElements.tileLabel;

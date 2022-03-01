@@ -105,7 +105,7 @@ export default class CursorState {
 
   handleClick(e) {
     if (this.#intersecting) {
-      this.state.trigger('investigate');
+      this.state.viewState.setView('investigate');
     }
   }
 
