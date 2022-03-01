@@ -27,13 +27,46 @@
 #infoPage {
   display: flex;
   flex-wrap: wrap;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+
+  // Text shadow for a little legibility on varied background
+  & p {
+    text-shadow: 0.07em 0 black, 0 0.07em black, -0.07em 0 black,
+      0 -0.07em black;
+  }
+  & h1 {
+    text-shadow: 0.05em 0 black, 0 0.05em black, -0.05em 0 black,
+      0 -0.05em black;
+  }
 }
 #labelInfo {
+  width: 50%;
   &:not(.natural) {
     color: #ff1f1f;
+  }
+}
+#labelName {
+  margin: 10px;
+}
+#labelDescr {
+  text-align: justify;
+  text-justify: inter-word;
+  margin: 10px;
+}
+
+#layeredImgs {
+  display: flex;
+  justify-content: center;
+}
+.labelImage {
+  position: relative;
+  max-width: 50%;
+  height: auto;
+
+  &:not(.in) {
+    display: none;
   }
 }
 
@@ -82,7 +115,7 @@
 .closeBtn {
   position: absolute;
   right: 5%;
-  top: 25%;
+  top: 5%;
   width: 32px;
   height: 32px;
   opacity: 1;
@@ -107,35 +140,29 @@
   transform: rotate(-45deg);
 }
 
-#layeredImgs {
-  display: flex;
-  justify-content: center;
-}
-.labelImage {
-  position: relative;
-  max-width: 50%;
-  height: auto;
-
-  &:not(.in) {
-    display: none;
-  }
-}
-
 @media screen and (max-width: 700px) {
   #infoPage {
     display: flex;
     flex-wrap: wrap;
     padding: 100px 0;
-    text-align: center;
+    // text-align: center;
 
-    height: 70%;
+    // height: 70%;
     font-size: 2.5vw;
   }
 
-  .tileLabel {
-    max-width: 200px;
-    width: 100%;
+  #labelInfo {
+    width: 75%;
   }
+
+  .labelImage {
+    max-width: 75%;
+    height: auto;
+  }
+  // .tileLabel {
+  //   max-width: 200px;
+  //   width: 100%;
+  // }
 
   .closeBtn {
     position: absolute;

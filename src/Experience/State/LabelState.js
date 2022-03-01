@@ -1,22 +1,22 @@
 import Experience from '..';
 // Import image paths
-import hazeImg from '../../img/labelImages/haze.jpeg';
-import primaryImg from '../../img/labelImages/primary.jpeg';
 import agricultureImg from '../../img/labelImages/agriculture.jpeg';
-import clearImg from '../../img/labelImages/clear.jpeg';
-import waterImg from '../../img/labelImages/water.jpeg';
-import habitationImg from '../../img/labelImages/habitation.jpeg';
-import roadImg from '../../img/labelImages/road.jpeg';
-import cultivationImg from '../../img/labelImages/cultivation.jpeg';
-import slashBurnImg from '../../img/labelImages/slash_burn.jpeg';
-import cloudyImg from '../../img/labelImages/cloudy.jpeg';
-import partlyCloudyImg from '../../img/labelImages/partly_cloudy.jpeg';
-import conventionalMineImg from '../../img/labelImages/conventional_mine.jpeg';
-import bareGroundImg from '../../img/labelImages/bare_ground.jpeg';
 import artisinalMineImg from '../../img/labelImages/artisinal_mine.jpeg';
+import bareGroundImg from '../../img/labelImages/bare_ground.jpeg';
 import bloomingImg from '../../img/labelImages/blooming.jpeg';
-import selectiveLoggingImg from '../../img/labelImages/selective_logging.jpeg';
 import blowDownImg from '../../img/labelImages/blow_down.jpeg';
+import clearImg from '../../img/labelImages/clear.jpeg';
+import cloudyImg from '../../img/labelImages/cloudy.jpeg';
+import conventionalMineImg from '../../img/labelImages/conventional_mine.jpeg';
+import cultivationImg from '../../img/labelImages/cultivation.jpeg';
+import habitationImg from '../../img/labelImages/habitation.jpeg';
+import hazeImg from '../../img/labelImages/haze.jpeg';
+import partlyCloudyImg from '../../img/labelImages/partly_cloudy.jpeg';
+import primaryImg from '../../img/labelImages/primary.jpeg';
+import roadImg from '../../img/labelImages/road.jpeg';
+import selectiveLoggingImg from '../../img/labelImages/selective_logging.jpeg';
+import slashBurnImg from '../../img/labelImages/slash_burn.jpeg';
+import waterImg from '../../img/labelImages/water.jpeg';
 
 export default class LabelState {
   constructor() {
@@ -24,90 +24,95 @@ export default class LabelState {
     this.state = this.experience.state;
 
     this.labels = {
-      haze: {
-        description: 'This is the description for the haze label.',
-        natural: true,
-        url: hazeImg,
-      },
-      primary: {
-        description: 'This is the description for the primary label.',
-        natural: true,
-        url: primaryImg,
-      },
       agriculture: {
-        description: 'This is the description for the agriculture label.',
+        description:
+          'This is an agriculture feature. Agriculture is the practice of cultivating plants and livestock. While certain levels of agriculture are necessary for survival, large-scale agriculture has been shown to have negative effects on the environment. Clearing forests to make room for agriculture destroys native animal habitation and raising commercial livestock leads to an abundance of extra greenhouse gas production.',
         natural: false,
         url: agricultureImg,
-      },
-      clear: {
-        description: 'This is the description for the clear label.',
-        natural: true,
-        url: clearImg,
-      },
-      water: {
-        description: 'This is the description for the water label.',
-        natural: true,
-        url: waterImg,
-      },
-      habitation: {
-        description: 'This is the description for the habitation label.',
-        natural: false,
-        url: habitationImg,
-      },
-      road: {
-        description: 'This is the description for the road label.',
-        natural: false,
-        url: roadImg,
-      },
-      cultivation: {
-        description: 'This is the description for the cultivation label.',
-        natural: false,
-        url: cultivationImg,
-      },
-      slash_burn: {
-        description: 'This is the description for the slash burn label.',
-        natural: false,
-        url: slashBurnImg,
-      },
-      cloudy: {
-        description: 'This is the description for the cloudy label.',
-        natural: true,
-        url: cloudyImg,
-      },
-      partly_cloudy: {
-        description: 'This is the description for the partly cloudy label.',
-        natural: true,
-        url: partlyCloudyImg,
-      },
-      conventional_mine: {
-        description: 'This is the description for the conventional mine label.',
-        natural: false,
-        url: conventionalMineImg,
-      },
-      bare_ground: {
-        description: 'This is the description for the bare ground label.',
-        natural: true,
-        url: bareGroundImg,
       },
       artisinal_mine: {
         description: 'This is the description for the artisinal mine label.',
         natural: false,
         url: artisinalMineImg,
       },
+      bare_ground: {
+        description: 'This is the description for the bare ground label.',
+        natural: true,
+        url: bareGroundImg,
+      },
       blooming: {
         description: 'This is the description for the blooming label.',
         natural: true,
         url: bloomingImg,
+      },
+      blow_down: {
+        description: 'This is the description for the blow down label.',
+        natural: true,
+        url: blowDownImg,
+      },
+      clear: {
+        description: 'This is the description for the clear label.',
+        natural: true,
+        url: clearImg,
+      },
+      cloudy: {
+        description: 'This is the description for the cloudy label.',
+        natural: true,
+        url: cloudyImg,
+      },
+      conventional_mine: {
+        description: 'This is the description for the conventional mine label.',
+        natural: false,
+        url: conventionalMineImg,
+      },
+      cultivation: {
+        description:
+          'This is a cultivation feature. Cultivation refers to the preparing of land to be used for agricultural purposes. Land cultivation is often invasive and destructive. Commonly used fertilizers and pesticides contain chemicals which damage the land and eventually leech and flow into bodies of water, further affecting the wildlife.',
+        natural: false,
+        url: cultivationImg,
+      },
+      habitation: {
+        description:
+          'This is a habitation feature. Habitation refers to the construction of living spaces and dwelling of people in those spaces. Human settlements, especially in the Amazon, are disruptive to the native wildlife and usually space must be cleared for their construction.',
+        natural: false,
+        url: habitationImg,
+      },
+      haze: {
+        description: 'This is the description for the haze label.',
+        natural: true,
+        url: hazeImg,
+      },
+      partly_cloudy: {
+        description: 'This is the description for the partly cloudy label.',
+        natural: true,
+        url: partlyCloudyImg,
+      },
+      primary: {
+        description: 'This is the description for the primary label.',
+        natural: true,
+        url: primaryImg,
+      },
+      road: {
+        description:
+          'This is a road feature. Roads are essential to allow people to transport food, supplies, and themselves around the rainforest. Unfortunately, building them usually involves clearing out large strips of the rainforest and can disrupt the wildlife.',
+        natural: false,
+        url: roadImg,
       },
       selective_logging: {
         description: 'This is the description for the selective logging label.',
         natural: false,
         url: selectiveLoggingImg,
       },
-      blow_down: {
-        description: 'This is the description for the blow down label.',
+      slash_burn: {
+        description: 'This is the description for the slash burn label.',
+        natural: false,
+        url: slashBurnImg,
+      },
+      water: {
+        description:
+          'This is a water feature. Water is an important component of rainforests, sustaining the varied plant life and animals. The Amazon is home to the Amazon River, the largest river by discharge volume of water in the world.',
         natural: true,
-        url: blowDownImg,
+        url: waterImg,
       },
     };
 

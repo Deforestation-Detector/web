@@ -104,8 +104,10 @@ export default class CursorState {
   }
 
   handleClick(e) {
-    if (this.#intersecting) {
-      this.state.viewState.setView('investigate');
+    if (this.state.viewState.getView() === 'exploring') {
+      if (this.#intersecting) {
+        this.state.viewState.setView('investigate');
+      }
     }
   }
 
