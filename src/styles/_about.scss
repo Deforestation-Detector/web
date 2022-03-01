@@ -15,7 +15,7 @@
   touch-action: all;
   scroll-behavior: smooth;
 
-  scroll-snap-type: y mandatory;
+  //scroll-snap-type: y mandatory;
   &:not(.in) {
     opacity: 0;
     pointer-events: none;
@@ -38,7 +38,6 @@
 
   h1 {
     position: relative;
-    //right: 30px;
     margin: 30px;
     font-family: $serif;
     font-size: $medHeaderFontSize;
@@ -76,10 +75,10 @@
 }
 
 #sectionTwo{
-  height: 170vh;
+  height: 230vh;
   background-color: rgb(236, 236, 232);
   opacity: .95; 
-  
+
   h1, p {
     color: rgb(37, 37, 37);
   }
@@ -87,24 +86,23 @@
 }
 
 .colWrapper{
+  //background-color: red;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  margin-right: 6%;
+  //margin-right: 6%;
+  width: 100vw;
+  height: 500px;
 
 }
 
 .aboutCol{
-  width:450px;
+  width:550px;
   margin: 10px;
-  margin-bottom: 30px;
-  min-height: 30px;
+  margin-top: 30px;
 
-  p{
-    width: 100%;
-  }
-  img{
+  p, img {
     width: 100%;
   }
 }
