@@ -159,6 +159,8 @@ export default class Controls {
   }
 
   update() {
+    if (this.state.viewState.getView() !== 'exploring') return;
+
     if (this.keys.up) {
       v.copy(negZ).applyQuaternion(this.camera.quaternion);
       v.y = 0;
