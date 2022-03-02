@@ -33,7 +33,7 @@ export default class Controls {
   }
 
   setEventHandlers() {
-    this.canvas.addEventListener('mousedown', (e) => {
+    this.canvas.addEventListener('pointerdown', (e) => {
       this.state.cursorState.dragging = true;
 
       let x = (e.clientX / this.canvas.width) * 2.0 - 1.0;
@@ -42,11 +42,11 @@ export default class Controls {
       this.mouse.set(x, y);
     });
 
-    this.canvas.addEventListener('mouseup', (e) => {
+    this.canvas.addEventListener('pointerup', (e) => {
       this.state.cursorState.dragging = false;
     });
 
-    this.canvas.addEventListener('mousemove', (e) => {
+    this.canvas.addEventListener('pointermove', (e) => {
       if (this.state.cursorState.dragging) {
         this.state.cursorState.setIntersection(null);
         let x = (e.clientX / window.innerWidth) * 2.0 - 1.0;

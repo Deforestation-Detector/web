@@ -10,6 +10,7 @@ export default class CursorState {
 
     this.dragging = false;
     this.lastMove = performance.now();
+    this.lastMouseDown = null;
 
     this.setDomElements();
     this.setHandlers();
@@ -44,8 +45,8 @@ export default class CursorState {
       this.handleMouseMove(e);
     });
 
-    document.addEventListener('click', (e) => {
-      this.handleClick(e);
+    document.addEventListener('mousedown', (e) => {
+      this.handleMouseDown(e);
     });
 
     document.addEventListener('mouseup', (e) => {
@@ -99,12 +100,17 @@ export default class CursorState {
     }
   }
 
-  handleMouseUp(e) {
-    this.state.domElements.cursor.classList.remove('dragging');
+  handleMouseDown(e) {
+    this.lastMouseDown = performance.now() / 1000;
   }
 
-  handleClick(e) {
-    if (this.state.viewState.getView() === 'exploring') {
+  handleMouseUp(e) {
+    let t = performance.now() / 1000;
+    let clicked = t - this.lastMouseDown <= 0.5;
+
+    this.state.domElements.cursor.classList.remove('dragging');
+
+    if (this.state.viewState.getView() === 'exploring' && clicked) {
       if (this.#intersecting) {
         this.state.viewState.setView('investigate');
       }
