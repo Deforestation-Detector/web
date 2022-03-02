@@ -125,7 +125,7 @@ export default class CursorState {
     this.state.domElements.cursor.classList.add('intersecting');
     this.experience.canvas.classList.add('intersecting');
 
-    this.setText('Click to learn more');
+    this.setText('Click to learn more.');
   }
 
   update() {
@@ -137,7 +137,7 @@ export default class CursorState {
     }
   }
 
-  setText(t = 'Use WASD or arrow keys to move') {
+  setText(t = 'Use WASD or arrow keys to move.') {
     let text = t
       .split('')
       .map(
