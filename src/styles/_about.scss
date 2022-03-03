@@ -42,7 +42,7 @@
     font-family: $serif;
     font-size: $medHeaderFontSize;
   }
-  p{
+  p {
     margin-right: 5%;
   }
 
@@ -52,6 +52,8 @@
     border: none;
     margin-left: 5%;
     top: 50%;
+
+    background-color: rgba(0, 0, 0, 0);
   }
 }
 
@@ -63,29 +65,28 @@
   flex-direction: column;
   height: 100vh;
 
-  
-  h1{
+  h1 {
     width: 70%;
   }
-  p{
+  p {
     width: 65%;
   }
 
   scroll-snap-align: start;
 }
 
-#sectionTwo{
+#sectionTwo {
   height: 230vh;
   background-color: rgb(236, 236, 232);
-  opacity: .95; 
+  opacity: 0.95;
 
-  h1, p {
+  h1,
+  p {
     color: rgb(37, 37, 37);
   }
-  
 }
 
-.colWrapper{
+.colWrapper {
   //background-color: red;
   display: flex;
   flex-wrap: wrap;
@@ -94,15 +95,15 @@
   //margin-right: 6%;
   width: 100vw;
   height: 500px;
-
 }
 
-.aboutCol{
-  width:550px;
+.aboutCol {
+  width: 550px;
   margin: 10px;
   margin-top: 30px;
 
-  p, img {
+  p,
+  img {
     width: 100%;
   }
 }
@@ -110,7 +111,6 @@
 .aboutCol > * {
   flex: 1 1 50%;
 }
-
 
 @media screen and (max-width: 500px) {
   .scrollComponent {
