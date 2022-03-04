@@ -10,7 +10,20 @@ export default class ViewState {
     this.#currentView = 'loading';
     this.views = ['loading', 'landing', 'exploring', 'about', 'investigate'];
 
+    this.setHandlers();
+
     this.viewHistory = ['landing'];
+  }
+
+  setHandlers() {
+    document.addEventListener('keydown', (e) => {
+      if (
+        e.key === 'Escape' &&
+        ['investigate', 'about'].includes(this.#currentView)
+      ) {
+        this.back();
+      }
+    });
   }
 
   setView(newView) {

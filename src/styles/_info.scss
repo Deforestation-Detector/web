@@ -1,23 +1,34 @@
 @use './fonts' as *;
+@use './utils' as *;
 
 #infoPage {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
+  display: grid;
+
+  grid-template-areas:
+    '.        .         '
+    'header   header    '
+    'ctaText  ctaButtons';
+
+  grid-template-rows: clamp(75px, 10vh, 120px) clamp(100px, 30vh, 300px) 1fr;
+  grid-template-columns: 50% 50%;
+
+  place-items: center;
 
   // Don't like putting this here
   overflow: visible;
 
-  // Text shadow for a little legibility on varied background
-  & p {
-    text-shadow: 0.07em 0 black, 0 0.07em black, -0.07em 0 black,
-      0 -0.07em black;
+  .textWrapper {
+    display: flex;
+
+    height: 100%;
+
+    flex-direction: column;
+    justify-content: space-evenly;
   }
-  & h1 {
-    text-shadow: 0.05em 0 black, 0 0.05em black, -0.05em 0 black,
-      0 -0.05em black;
+
+  &:not(.in) * {
+    pointer-events: none;
+    touch-action: none;
   }
 }
 #labelInfo {
@@ -30,40 +41,58 @@
 // New info page css
 // Info Header stuff
 .infoHeader {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  top: -15%;
   overflow: visible;
+  height: 100%;
 
-  text-shadow: 2px 2px 8px black;
+  grid-area: header;
+  pointer-events: none;
+  touch-action: none;
 }
 .infoHeaderTitle {
   position: relative;
   text-align: center;
   text-transform: capitalize;
 
-  margin: 35px 0;
-  font-size: 4em;
   font-family: $serif;
-  font-weight: bold;
+  letter-spacing: 1px;
+  font-size: $bigHeaderFontSize;
+
+  z-index: 10;
+  pointer-events: all;
+  touch-action: all;
 }
 .infoHeaderDescr {
   position: relative;
 
-  max-width: 40ch;
-  margin: 10px 0;
+  max-width: 45ch;
+  text-align: center;
+  font-family: $sans-serif;
+  font-weight: 200;
+
+  z-index: 10;
+  pointer-events: all;
+  touch-action: all;
 }
 #layeredImgs {
   display: flex;
   position: absolute;
   width: 100vw;
-  height: 300px;
+  height: clamp(100px, 30vh, 300px);
   margin-left: -50vw;
   left: 50%;
   justify-content: center;
   align-items: center;
   overflow: hidden;
+
+  .backdrop {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 5;
+
+    background-color: rgba(0, 0, 0, 0.5);
+  }
 }
 .labelImage {
   position: relative;
@@ -73,33 +102,25 @@
   }
 }
 
-// Info Section stuff
-.infoSection {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  width: 100%;
-}
 .labelDescriptionWrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 50%;
+  grid-area: ctaText;
 
-  & .labelDescription {
+  .labelDescription {
     width: 45ch;
     margin-bottom: 15px;
+    font-weight: 200;
   }
 }
 .infoCTA {
+  grid-area: ctaButtons;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 50%;
 
-  & button {
+  button {
     margin: 30px 0;
     background-color: rgba(255, 255, 255, 0);
     font-family: $sans-serif;
@@ -148,23 +169,12 @@
 }
 
 @media screen and (max-width: 700px) {
-  .infoHeader {
-    top: -5%;
-  }
-  .infoSection {
-    flex-direction: column;
-  }
-  .labelDescriptionWrapper {
-    width: 100%;
-    & .labelDescription {
-      width: 100%;
-    }
-  }
-  .infoCTA {
-    width: 100%;
-  }
-  .closeBtn {
-    top: 6%;
+  #infoPage {
+    grid-template-areas:
+      '.'
+      'header'
+      'ctaText'
+      'ctaButtons';
   }
 }
 

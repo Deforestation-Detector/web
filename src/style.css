@@ -324,8 +324,6 @@ span:nth-child(5) {
   pointer-events: all;
   touch-action: all;
   scroll-behavior: smooth;
-  -ms-scroll-snap-type: y mandatory;
-      scroll-snap-type: y mandatory;
   scrollbar-width: none;
 }
 .scrollComponent:not(.in) {
@@ -345,17 +343,21 @@ span:nth-child(5) {
 }
 .scrollComponent h1 {
   position: relative;
-  right: 30px;
   margin: 30px;
   font-family: "Cormorant Garamond", serif;
   font-size: clamp(2rem, 1.5vw + 1.75rem, 6rem);
 }
+.scrollComponent p {
+  margin-right: 5%;
+}
 .scrollComponent #aboutBack {
+  z-index: 1000;
   position: -webkit-sticky;
   position: sticky;
   border: none;
   margin-left: 5%;
   top: 50%;
+  background-color: rgba(0, 0, 0, 0);
 }
 
 .aboutSections {
@@ -364,10 +366,47 @@ span:nth-child(5) {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  left: 20%;
   height: 100vh;
-  width: 65%;
   scroll-snap-align: start;
+}
+.aboutSections h1 {
+  width: 70%;
+}
+.aboutSections p {
+  width: 65%;
+}
+
+#sectionTwo {
+  height: 230vh;
+  background-color: #ecece8;
+  opacity: 0.95;
+}
+#sectionTwo h1,
+#sectionTwo p {
+  color: #252525;
+}
+
+.colWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 500px;
+}
+
+.aboutCol {
+  width: 550px;
+  margin: 10px;
+  margin-top: 30px;
+}
+.aboutCol p,
+.aboutCol img {
+  width: 100%;
+}
+
+.aboutCol > * {
+  flex: 1 1 50%;
 }
 
 @media screen and (max-width: 500px) {
@@ -386,57 +425,105 @@ span:nth-child(5) {
     max-width: 70%;
   }
 }
-#labelListWrapper {
-  pointer-events: none;
-  touch-action: none;
-  text-shadow: 0 0 5px #000;
-  line-height: 32px;
-  margin-top: 40px;
-}
-#labelListWrapper, #labelListWrapper * {
+#infoPage {
+  display: grid;
+  grid-template-areas: ".        .         " "header   header    " "ctaText  ctaButtons";
+  grid-template-rows: clamp(75px, 10vh, 120px) clamp(100px, 30vh, 300px) 1fr;
+  grid-template-columns: 50% 50%;
+  place-items: center;
   overflow: visible;
 }
-#labelListWrapper.in #investigateBtn {
+#infoPage .textWrapper {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+#labelInfo {
+  width: 50%;
+}
+#labelInfo:not(.natural) {
+  color: #ff1f1f;
+}
+
+.infoHeader {
+  overflow: visible;
+  height: 100%;
+  grid-area: header;
+  pointer-events: none;
+  touch-action: none;
+}
+
+.infoHeaderTitle {
+  position: relative;
+  text-align: center;
+  text-transform: capitalize;
+  font-size: 4em;
+  font-family: "Cormorant Garamond", serif;
+  font-weight: bold;
+  z-index: 10;
   pointer-events: all;
   touch-action: all;
 }
-#labelListWrapper.in #updateLabelsBtn {
+
+.infoHeaderDescr {
+  position: relative;
+  max-width: 40ch;
+  margin: 10px 0;
+  text-align: center;
+  z-index: 10;
   pointer-events: all;
   touch-action: all;
 }
 
-#infoPage {
+#layeredImgs {
   display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: space-evenly;
+  position: absolute;
+  width: 100vw;
+  height: clamp(100px, 30vh, 300px);
+  margin-left: -50vw;
+  left: 50%;
+  justify-content: center;
   align-items: center;
+  overflow: hidden;
+}
+#layeredImgs .backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
-.tileLabelWrapper {
+.labelImage {
+  position: relative;
+}
+.labelImage:not(.in) {
+  display: none;
+}
+
+.labelDescriptionWrapper {
+  grid-area: ctaText;
+}
+.labelDescriptionWrapper .labelDescription {
+  width: 45ch;
+  margin-bottom: 15px;
+}
+
+.infoCTA {
+  grid-area: ctaButtons;
   display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: space-evenly;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 50%;
 }
-
-.tileLabel {
-  max-width: 200px;
-  margin: 5px;
-}
-.tileLabel:not(.natural) {
-  color: crimson;
-}
-
-button {
+.infoCTA button {
+  margin: 30px 0;
   background-color: rgba(255, 255, 255, 0);
   font-family: "Poppins", sans-serif;
   font-weight: 200;
   cursor: pointer;
-}
-button#investigateBtn, button#updateLabelsBtn {
   color: white;
   border: 1px solid white;
   padding: 1rem 1.5rem;
@@ -446,14 +533,14 @@ button#investigateBtn, button#updateLabelsBtn {
   font-size: 1.125rem;
   transition: background-color 0.2s ease-in-out;
 }
-button#investigateBtn:hover, button#updateLabelsBtn:hover {
+.infoCTA button:hover {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
 .closeBtn {
-  position: absolute;
+  position: fixed;
   right: 5%;
-  top: 25%;
+  top: 3%;
   width: 32px;
   height: 32px;
   opacity: 1;
@@ -482,39 +569,28 @@ button#investigateBtn:hover, button#updateLabelsBtn:hover {
   transform: rotate(-45deg);
 }
 
-#layeredImgs {
-  display: flex;
-  justify-content: center;
-}
-
-.labelImage {
-  position: relative;
-  max-width: 50%;
-  height: auto;
-}
-.labelImage:not(.in) {
-  display: none;
-}
-
 @media screen and (max-width: 700px) {
-  #infoPage {
-    display: flex;
-    flex-wrap: wrap;
-    padding: 100px 0;
-    text-align: center;
-    height: 70%;
-    font-size: 2.5vw;
+  .infoHeader {
+    top: -5%;
   }
 
-  .tileLabel {
-    max-width: 200px;
+  .infoSection {
+    flex-direction: column;
+  }
+
+  .labelDescriptionWrapper {
+    width: 100%;
+  }
+  .labelDescriptionWrapper .labelDescription {
+    width: 100%;
+  }
+
+  .infoCTA {
     width: 100%;
   }
 
   .closeBtn {
-    position: absolute;
-    right: 5%;
-    top: 10%;
+    top: 6%;
   }
 }
 #landing {

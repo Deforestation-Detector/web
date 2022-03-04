@@ -101,7 +101,9 @@ export default class CursorState {
   }
 
   handleMouseDown(e) {
-    this.lastMouseDown = performance.now() / 1000;
+    if (this.state.viewState.getView() === 'exploring') {
+      this.lastMouseDown = performance.now() / 1000;
+    }
   }
 
   handleMouseUp(e) {
