@@ -1,35 +1,14 @@
 @use './fonts' as *;
 
-// #labelListWrapper {
-//   pointer-events: none;
-//   touch-action: none;
-
-//   text-shadow: 0 0 5px #000;
-
-//   &,
-//   & * {
-//     overflow: visible;
-//   }
-
-//   line-height: 32px;
-//   margin-top: 40px;
-
-//   &.in #investigateBtn {
-//     pointer-events: all;
-//     touch-action: all;
-//   }
-//   &.in #updateLabelsBtn {
-//     pointer-events: all;
-//     touch-action: all;
-//   }
-// }
-
 #infoPage {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+
+  // Don't like putting this here
+  overflow: visible;
 
   // Text shadow for a little legibility on varied background
   & p {
@@ -47,73 +26,97 @@
     color: #ff1f1f;
   }
 }
-#labelName {
-  margin: 10px;
-}
-#labelDescr {
-  text-align: justify;
-  text-justify: inter-word;
-  margin: 10px;
-}
 
+// New info page css
+// Info Header stuff
+.infoHeader {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: visible;
+}
+.infoHeaderTitle {
+  position: relative;
+  text-align: center;
+
+  margin: 35px 0;
+  font-size: 4em;
+  font-family: $serif;
+  font-weight: bold;
+}
+.infoHeaderDescr {
+  position: relative;
+
+  max-width: 40ch;
+  margin: 10px 0;
+}
 #layeredImgs {
   display: flex;
+  position: absolute;
+  width: 100vw;
+  height: 300px;
+  margin-left: -50vw;
+  left: 50%;
   justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
 .labelImage {
   position: relative;
-  max-width: 50%;
-  height: auto;
 
   &:not(.in) {
     display: none;
   }
 }
 
-// .tileLabelWrapper {
-//   display: flex;
-//   flex-wrap: wrap;
-//   flex-direction: row;
-//   justify-content: space-evenly;
-//   align-items: center;
+// Info Section stuff
+.infoSection {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.labelDescription {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
 
-//   width: 100%;
-// }
-// .tileLabel {
-//   max-width: 200px;
-//   margin: 5px;
+  & p {
+    width: 45ch;
+    margin-bottom: 15px;
+  }
+}
+.infoCTA {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
 
-//   &:not(.natural) {
-//     color: crimson;
-//   }
-// }
+  & button {
+    margin: 30px 0;
+    background-color: rgba(255, 255, 255, 0);
+    font-family: $sans-serif;
+    font-weight: 200;
+    cursor: pointer;
+    color: white;
+    border: 1px solid white;
+    padding: 1rem 1.5rem;
+    width: fit-content;
+    font-size: 1.125rem;
 
-// button {
-//   background-color: rgba(255, 255, 255, 0);
-//   font-family: $sans-serif;
-//   font-weight: 200;
-//   cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
 
-//   &#investigateBtn,
-//   &#updateLabelsBtn {
-//     color: white;
-//     border: 1px solid white;
-//     padding: 1rem 1.5rem;
-
-//     width: fit-content;
-
-//     font-size: 1.125rem;
-
-//     transition: background-color 0.2s ease-in-out;
-
-//     &:hover {
-//       background-color: rgba(255, 255, 255, 0.1);
-//     }
-//   }
-// }
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+  }
+}
 
 .closeBtn {
-  position: absolute;
+  position: fixed;
   right: 5%;
   top: 5%;
   width: 32px;
@@ -140,33 +143,29 @@
   transform: rotate(-45deg);
 }
 
-@media screen and (max-width: 700px) {
-  #infoPage {
-    display: flex;
-    flex-wrap: wrap;
-    padding: 100px 0;
-    // text-align: center;
+// @media screen and (max-width: 700px) {
+//   #infoPage {
+//     display: flex;
+//     flex-wrap: wrap;
+//     padding: 100px 0;
+//     // text-align: center;
 
-    // height: 70%;
-    font-size: 2.5vw;
-  }
+//     // height: 70%;
+//     font-size: 2.5vw;
+//   }
 
-  #labelInfo {
-    width: 75%;
-  }
+//   #labelInfo {
+//     width: 75%;
+//   }
 
-  .labelImage {
-    max-width: 75%;
-    height: auto;
-  }
-  // .tileLabel {
-  //   max-width: 200px;
-  //   width: 100%;
-  // }
+//   .labelImage {
+//     max-width: 75%;
+//     height: auto;
+//   }
 
-  .closeBtn {
-    position: absolute;
-    right: 5%;
-    top: 10%;
-  }
-}
+//   .closeBtn {
+//     position: absolute;
+//     right: 5%;
+//     top: 10%;
+//   }
+// }

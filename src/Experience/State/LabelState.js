@@ -25,91 +25,119 @@ export default class LabelState {
 
     this.labels = {
       agriculture: {
-        description:
-          'This is an agriculture feature. Agriculture is the practice of cultivating plants and livestock. While certain levels of agriculture are necessary for survival, large-scale agriculture has been shown to have negative effects on the environment. Clearing forests to make room for agriculture destroys native animal habitation and raising commercial livestock leads to an abundance of extra greenhouse gas production.',
+        headerDescr:
+          'Agriculture is the practice of cultivating plants and livestock for the purpose of consumption.',
+        labelDescr:
+          'While certain levels of agriculture are necessary for survival, large-scale agriculture has been shown to have negative effects on the environment. Clearing forests to make room for agriculture destroys native animal habitation and raising commercial livestock leads to an abundance of extra greenhouse gas production.',
         natural: false,
         url: agricultureImg,
       },
       artisinal_mine: {
-        description: 'This is the description for the artisinal mine label.',
+        headerDescr:
+          'This is the header description for the artisinal mine label.',
+        labelDescr:
+          'This is the label description for the artisinal mine label.',
         natural: false,
         url: artisinalMineImg,
       },
       bare_ground: {
-        description: 'This is the description for the bare ground label.',
+        headerDescr:
+          'This is the header description for the bare ground label.',
+        labelDescr: 'This is the label description for the bare ground label.',
         natural: true,
         url: bareGroundImg,
       },
       blooming: {
-        description: 'This is the description for the blooming label.',
+        headerDescr: 'This is the header description for the blooming label.',
+        labelDescr: 'This is the label description for the blooming label.',
         natural: true,
         url: bloomingImg,
       },
       blow_down: {
-        description: 'This is the description for the blow down label.',
+        headerDescr: 'This is the header description for the blow down label.',
+        labelDescr: 'This is the label description for the blow down label.',
         natural: true,
         url: blowDownImg,
       },
       clear: {
-        description: 'This is the description for the clear label.',
+        headerDescr: 'This is the header description for the clear label.',
+        labelDescr: 'This is the label description for the clear label.',
         natural: true,
         url: clearImg,
       },
       cloudy: {
-        description: 'This is the description for the cloudy label.',
+        headerDescr: 'This is the header description for the cloudy label.',
+        labelDescr: 'This is the label description for the cloudy label.',
         natural: true,
         url: cloudyImg,
       },
       conventional_mine: {
-        description: 'This is the description for the conventional mine label.',
+        headerDescr:
+          'This is the header description for the conventional mine label.',
+        labelDescr:
+          'This is the label description for the conventional mine label.',
         natural: false,
         url: conventionalMineImg,
       },
       cultivation: {
-        description:
-          'This is a cultivation feature. Cultivation refers to the preparing of land to be used for agricultural purposes. Land cultivation is often invasive and destructive. Commonly used fertilizers and pesticides contain chemicals which damage the land and eventually leech and flow into bodies of water, further affecting the wildlife.',
+        headerDescr:
+          'Cultivation is the preparing of land to be used for agricultural purposes.',
+        labelDescr:
+          'Land cultivation is often invasive and destructive. Commonly used fertilizers and pesticides contain chemicals which damage the land and eventually leech and flow into bodies of water, further affecting the wildlife.',
         natural: false,
         url: cultivationImg,
       },
       habitation: {
-        description:
+        headerDescr: 'This is the header description for the habitation label.',
+        labelDescr:
           'This is a habitation feature. Habitation refers to the construction of living spaces and dwelling of people in those spaces. Human settlements, especially in the Amazon, are disruptive to the native wildlife and usually space must be cleared for their construction.',
         natural: false,
         url: habitationImg,
       },
       haze: {
-        description: 'This is the description for the haze label.',
+        headerDescr: 'This is the header description for the haze label.',
+        labelDescr: 'This is the label description for the haze label.',
         natural: true,
         url: hazeImg,
       },
       partly_cloudy: {
-        description: 'This is the description for the partly cloudy label.',
+        headerDescr:
+          'This is the header description for the partly cloudy label.',
+        labelDescr:
+          'This is the label description for the partly cloudy label.',
         natural: true,
         url: partlyCloudyImg,
       },
       primary: {
-        description: 'This is the description for the primary label.',
+        headerDescr: 'This is the header description for the primary label.',
+        labelDescr: 'This is the label description for the primary label.',
         natural: true,
         url: primaryImg,
       },
       road: {
-        description:
+        headerDescr: 'This is the header description for the road label.',
+        labelDescr:
           'This is a road feature. Roads are essential to allow people to transport food, supplies, and themselves around the rainforest. Unfortunately, building them usually involves clearing out large strips of the rainforest and can disrupt the wildlife.',
         natural: false,
         url: roadImg,
       },
       selective_logging: {
-        description: 'This is the description for the selective logging label.',
+        headerDescr:
+          'This is the header description for the selective logging label.',
+        labelDescr:
+          'This is the label description for the selective logging label.',
         natural: false,
         url: selectiveLoggingImg,
       },
       slash_burn: {
-        description: 'This is the description for the slash burn label.',
+        headerDescr: 'This is the header description for the slash burn label.',
+        labelDescr: 'This is the label description for the slash burn label.',
         natural: false,
         url: slashBurnImg,
       },
       water: {
-        description:
+        headerDescr: 'This is the header description for the water label.',
+        labelDescr:
           'This is a water feature. Water is an important component of rainforests, sustaining the varied plant life and animals. The Amazon is home to the Amazon River, the largest river by discharge volume of water in the world.',
         natural: true,
         url: waterImg,
@@ -129,29 +157,17 @@ export default class LabelState {
     this.state.domElements = {
       ...currDomElements,
       backdrop: document.getElementById('backdrop'),
-      // labelListNode: document.getElementById('labelList'),
       infoPage: document.getElementById('infoPage'),
       closeBtn: document.querySelector('.closeBtn'),
-      // tileLabel: document.querySelector('.tileLabel'),
       layeredImgs: document.getElementById('layeredImgs'),
-      // tileLabelWrapper: document.querySelector('.tileLabelWrapper'),
-      // labelImg: document.getElementById('labelImage'),
-      // updateButton: document.getElementById('updateLabelsBtn'),
-      labelInfo: document.getElementById('labelInfo'),
-      labelName: document.getElementById('labelName'),
-      labelDescr: document.getElementById('labelDescr'),
+
+      infoHeaderTitle: document.querySelector('.infoHeaderTitle'),
+      infoHeaderDescr: document.querySelector('.infoHeaderDescr'),
+      labelDescription: document.querySelector('.labelDescription'),
     };
   }
 
   setEventHandlers() {
-    // Event Handler for update button
-    // this.state.domElements.updateButton.onclick = () => {
-    //   this.state.trigger('labelsUpdated');
-    // };
-    // this.state.on('labelsUpdated', () => {
-    //   this.updateLabel();
-    // });
-
     // Event Handler for clicking on close button
     this.state.domElements.closeBtn.onclick = () => {
       this.state.trigger('doneInvestigating');
@@ -176,31 +192,24 @@ export default class LabelState {
         this.state.domElements.infoPage.classList.remove('in');
       }
     });
+
+    // Test Handler for new info page
   }
 
   updateLabel(label) {
-    // Grab the click element (likely from a state grab)
-    // For now, use a random label
-    // let keys = Object.keys(this.labels);
-    // let label = keys[(keys.length * Math.random()) << 0];
-
-    // let labelListNode = this.state.domElements.labelListNode;
-    let labelInfo = this.state.domElements.labelInfo;
-    let labelName = this.state.domElements.labelName;
-    let labelDescr = this.state.domElements.labelDescr;
-    // let tileLabel = this.state.domElements.tileLabel;
+    // Set dom elements to change
+    let infoHeaderTitle = this.state.domElements.infoHeaderTitle;
+    let infoHeaderDescr = this.state.domElements.infoHeaderDescr;
+    let labelDescription = this.state.domElements.labelDescription;
     let layeredImgs = this.state.domElements.layeredImgs;
+    // Set variables used in the updating function
     let formattedLabel = label.replaceAll('_', ' ');
     let labelObj = this.labels[label];
 
-    // Update label list in Explore view
-    // labelListNode.innerHTML = `<p>${formattedLabel}</p>`;
-
     // Update Information Page
-    labelName.innerHTML = formattedLabel;
-    labelDescr.innerHTML = labelObj.description;
-    // tileLabel.innerHTML = `<h1>${formattedLabel}</h1>
-    // <p>${labelObj.description}</p>`;
+    infoHeaderTitle.innerHTML = formattedLabel;
+    infoHeaderDescr.innerHTML = labelObj.headerDescr;
+    labelDescription.innerHTML = labelObj.labelDescr;
 
     // Remove any visible images
     for (let child of layeredImgs.childNodes) {
@@ -213,13 +222,11 @@ export default class LabelState {
     document.getElementById(`${label}Img`).classList.add('in');
 
     // Check if label is natural and update class
-    if (labelObj.natural) {
-      labelInfo.classList.add('natural');
-      // tileLabel.classList.add('natural');
-    } else {
-      labelInfo.classList.remove('natural');
-      // tileLabel.classList.remove('natural');
-    }
+    // if (labelObj.natural) {
+    //   labelInfo.classList.add('natural');
+    // } else {
+    //   labelInfo.classList.remove('natural');
+    // }
   }
 
   initializeImages() {
