@@ -14,7 +14,7 @@ varying float vFogNoise;
 #define S smoothstep
 #define FOG_START 10.0
 #define FOG_END 40.0
-#define FOG_RIM_START 45.0
+#define FOG_RIM_START 35.0
 #define FOG_RIM_END 74.0
 
 
