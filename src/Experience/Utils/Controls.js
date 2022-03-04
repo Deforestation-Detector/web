@@ -190,10 +190,10 @@ export default class Controls {
       }
     }
     if (this.keys.left) {
-      this.rotation.y += 0.025;
+      this.rotation.y += 0.015;
     }
     if (this.keys.right) {
-      this.rotation.y -= 0.025;
+      this.rotation.y -= 0.015;
     }
 
     if (Object.values(this.keys).find((val) => val === true)) {
