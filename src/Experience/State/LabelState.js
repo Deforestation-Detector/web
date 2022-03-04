@@ -88,9 +88,10 @@ export default class LabelState {
         url: cultivationImg,
       },
       habitation: {
-        headerDescr: 'This is the header description for the habitation label.',
+        headerDescr:
+          'Habitation is the construction of living spaces and the dwelling of people in those spaces.',
         labelDescr:
-          'This is a habitation feature. Habitation refers to the construction of living spaces and dwelling of people in those spaces. Human settlements, especially in the Amazon, are disruptive to the native wildlife and usually space must be cleared for their construction.',
+          'Human settlements, especially in the Amazon, are disruptive to the native wildlife and usually space must be cleared for their construction.',
         natural: false,
         url: habitationImg,
       },
@@ -115,9 +116,10 @@ export default class LabelState {
         url: primaryImg,
       },
       road: {
-        headerDescr: 'This is the header description for the road label.',
+        headerDescr:
+          'Roads are paths built through the rainforest from one location to another.',
         labelDescr:
-          'This is a road feature. Roads are essential to allow people to transport food, supplies, and themselves around the rainforest. Unfortunately, building them usually involves clearing out large strips of the rainforest and can disrupt the wildlife.',
+          'Roads are essential to allow people to transport food, supplies, and themselves around the rainforest. Unfortunately, building them usually involves clearing out large strips of the rainforest and can disrupt the wildlife.',
         natural: false,
         url: roadImg,
       },
@@ -136,9 +138,9 @@ export default class LabelState {
         url: slashBurnImg,
       },
       water: {
-        headerDescr: 'This is the header description for the water label.',
+        headerDescr: 'Water is the life force of the rainforest.',
         labelDescr:
-          'This is a water feature. Water is an important component of rainforests, sustaining the varied plant life and animals. The Amazon is home to the Amazon River, the largest river by discharge volume of water in the world.',
+          'Water is an important component of rainforests, sustaining the varied plant life and animals. The Amazon is home to the Amazon River, the largest river by discharge volume of water in the world.',
         natural: true,
         url: waterImg,
       },
