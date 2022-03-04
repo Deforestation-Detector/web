@@ -172,11 +172,8 @@ export default class LabelState {
   setEventHandlers() {
     // Event Handler for clicking on close button
     this.state.domElements.closeBtn.onclick = () => {
-      this.state.trigger('doneInvestigating');
-    };
-    this.state.on('doneInvestigating', () => {
       this.state.viewState.back();
-    });
+    };
 
     // Event Handler for handling state change
     this.state.on('viewchange', () => {
@@ -215,7 +212,7 @@ export default class LabelState {
 
     // Remove any visible images
     for (let child of layeredImgs.childNodes) {
-      if (child.classList.contains('in')) {
+      if (child.classList) {
         child.classList.remove('in');
       }
     }
