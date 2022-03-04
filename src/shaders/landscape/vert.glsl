@@ -5,6 +5,9 @@ varying vec2 vUv;
 varying vec3 vPos;
 varying float vFogDist;
 varying float vFogRim;
+varying float vFogNoise;
+
+#pragma glslify: snoise4 = require(glsl-noise/simplex/4d)
 
 void main() {
   vec3 pos = position;
@@ -17,4 +20,5 @@ void main() {
   vPos = modelPos.xyz;
   vFogDist = distance(modelPos.xyz, cameraPosition);
   vFogRim = length(modelPos.xz);
+  vFogNoise = clamp(snoise4(vec4(modelPos.xyz * 0.1, uTime * 0.1)), 0.0, 1.0) * 5.0;
 }

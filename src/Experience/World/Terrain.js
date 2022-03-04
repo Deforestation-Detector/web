@@ -43,7 +43,8 @@ export default class Terrain {
   update() {
     for (let obj of this.objects) {
       if (obj.material.uniforms) {
-        obj.material.uniforms.uTime.value = this.experience.clock.elapsed;
+        obj.material.uniforms.uTime.value =
+          this.experience.clock.elapsed / 1000;
       }
     }
   }

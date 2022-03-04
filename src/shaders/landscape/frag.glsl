@@ -9,6 +9,7 @@ varying vec2 vUv;
 varying vec3 vPos;
 varying float vFogDist;
 varying float vFogRim;
+varying float vFogNoise;
 
 #define S smoothstep
 #define FOG_START 10.0
@@ -87,7 +88,10 @@ void main() {
 
   // float fogFactor = clamp((FOG_END - vFogDist) / (FOG_END - FOG_START), 0.0, 1.0);
 
-  float fogRimFactor = 1.0 - clamp((FOG_RIM_END - vFogRim) / (FOG_RIM_END - FOG_RIM_START), 0.0, 1.0);
+  float fStart = FOG_RIM_START - vFogNoise;
+  float fEnd = FOG_RIM_END - vFogNoise;
+
+  float fogRimFactor = 1.0 - clamp((fEnd - vFogRim) / (fEnd - fStart), 0.0, 1.0);
 
   color *= S(0.0, 1.0, shadows.rgb) * uLightmapIntensity;
   
