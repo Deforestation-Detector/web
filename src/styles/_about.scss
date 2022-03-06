@@ -71,12 +71,15 @@
   p {
     width: 65%;
   }
+  img{
+    width: 35%;
+  }
   
 
   scroll-snap-align: start;
 }
 
-#sectionTwo {
+#sectionInfo {
   height: 210vh;
   background-color: rgb(236, 236, 232);
   opacity: 0.95;
@@ -96,7 +99,6 @@
 }
 
 .aboutCol {
-  //width: 40%;
   width: 550px;
   margin: 10px;
   margin-top: 30px;
@@ -109,38 +111,15 @@
     height: auto;
     width: 100%;
   }
+  a{
+    margin-left: 10%;
+  }
 }
 
 .aboutCol > * {
   flex: 1 1 50%;
 }
 
-
-#aboutInsight{
-  height: 100vh;
-  //background-image: url("https://images.pexels.com/photos/2739666/pexels-photo-2739666.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
-  background-attachment: fixed;
-  background-position: center;
-
-}
-
-
-#colTemp{
-  p{
-    font-style: italic;
-    width: 70%;
-  }
-  a{
-    margin-left: 10%;
-  }
-}
-
-#colTemp2{
-  width: 25%;
-  img{
-    width: 80%;
-  }
-}
 
 @media screen and (max-width: 700px) {
   .scrollComponent {
@@ -161,6 +140,16 @@
         width: 70%;
       }
     }
+
+    #sectionInfo{
+      height: 240vh;
+    }
+
+    #aboutActions{
+      height: 150vh;
+    }
+
+
   }
 }
 
