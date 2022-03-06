@@ -89,7 +89,7 @@ canvas {
   }
 }
 
-#content > *:not(#landing):not(#learnMore):not(canvas) {
+#content > *:not(#landing):not(#learnMore):not(canvas):not(#infoPage) {
   width: clamp(300px, 100%, 1500px);
   max-width: 90vw;
 }

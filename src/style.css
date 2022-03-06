@@ -434,10 +434,11 @@ span:nth-child(5) {
   grid-template-rows: clamp(75px, 10vh, 120px) clamp(100px, 30vh, 300px) auto;
   grid-template-columns: 50% 50%;
   place-items: center;
+  overflow-x: visible;
+  overflow-y: auto;
 }
 #infoPage,
 #infoPage * {
-  overflow-y: auto;
   pointer-events: all;
   touch-action: all;
 }
@@ -559,6 +560,7 @@ span:nth-child(5) {
   width: 32px;
   height: 32px;
   opacity: 1;
+  z-index: 10;
 }
 
 .closeBtn:hover {
@@ -578,10 +580,12 @@ span:nth-child(5) {
 
 .closeBtn:before {
   transform: rotate(45deg);
+  box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.75);
 }
 
 .closeBtn:after {
   transform: rotate(-45deg);
+  box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.75);
 }
 
 @media screen and (max-width: 768px), (max-aspect-ratio: 1/1) {
@@ -746,7 +750,7 @@ canvas.intersecting {
   cursor: pointer;
 }
 
-#content > *:not(#landing):not(#learnMore):not(canvas) {
+#content > *:not(#landing):not(#learnMore):not(canvas):not(#infoPage) {
   width: clamp(300px, 100%, 1500px);
   max-width: 90vw;
 }
