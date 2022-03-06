@@ -7,6 +7,7 @@ export default class AboutState {
 
     this.setDomElements();
     this.setEventHandlers();
+
   }
 
   setDomElements() {
