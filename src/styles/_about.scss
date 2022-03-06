@@ -71,12 +71,13 @@
   p {
     width: 65%;
   }
+  
 
   scroll-snap-align: start;
 }
 
 #sectionTwo {
-  height: 230vh;
+  height: 210vh;
   background-color: rgb(236, 236, 232);
   opacity: 0.95;
 
@@ -90,12 +91,12 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  width: 100vw;
+  width: 80vw;
   height: auto;
-
 }
 
 .aboutCol {
+  //width: 40%;
   width: 550px;
   margin: 10px;
   margin-top: 30px;
@@ -116,13 +117,26 @@
 
 
 #aboutInsight{
-  height: 110vh;
+  height: 100vh;
   //background-image: url("https://images.pexels.com/photos/2739666/pexels-photo-2739666.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
   background-attachment: fixed;
   background-position: center;
+
 }
 
-@media screen and (max-width: 500px) {
+
+
+#colTemp{
+  p{
+    font-style: italic;
+    width: 70%;
+  }
+  a{
+    margin-left: 10%;
+  }
+}
+
+@media screen and (max-width: 700px) {
   .scrollComponent {
     display: block;
     flex-wrap: wrap;
@@ -134,8 +148,13 @@
       top: 20%;
       margin-left: 5%;
     }
+
+    .aboutCol{
+      img{
+        margin-left: 12%;
+        width: 70%;
+      }
+    }
   }
-
-
 }
 
