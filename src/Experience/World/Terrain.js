@@ -52,26 +52,6 @@ export default class Terrain {
   traverseModel() {
     this.islands = [];
 
-    // var islandsLightmap = this.resources.items['islandsLightMap'];
-    // islandsLightmap.flipY = false;
-    // islandsLightmap.format = LuminanceFormat;
-
-    // var detailsLightmap = this.resources.items['detailsLightMap'];
-    // detailsLightmap.flipY = false;
-    // detailsLightmap.format = LuminanceFormat;
-
-    // var roundTreesLightmap = this.resources.items['roundTreesLightMap'];
-    // roundTreesLightmap.flipY = false;
-    // roundTreesLightmap.format = LuminanceFormat;
-
-    // var tallTreesLightmap = this.resources.items['tallTreesLightMap'];
-    // tallTreesLightmap.flipY = false;
-    // tallTreesLightmap.format = LuminanceFormat;
-
-    // var looseTreesLightmap = this.resources.items['looseTreesLightMap'];
-    // looseTreesLightmap.flipY = false;
-    // looseTreesLightmap.format = LuminanceFormat;
-
     this.model.scene.traverse((child) => {
       if (child instanceof Mesh) {
         if (
