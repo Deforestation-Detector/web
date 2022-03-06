@@ -23,6 +23,7 @@ export default class State extends EventEmitter {
 
     this.domElements = {};
     this.intersectObjects = [];
+    this.mobile = false;
 
     this.experience = new Experience();
     this.setDomElements();

@@ -34,12 +34,11 @@ export default class Controls {
 
   setEventHandlers() {
     this.canvas.addEventListener('pointerdown', (e) => {
-      this.state.cursorState.dragging = true;
+      this.handleMouseDown(e);
+    });
 
-      let x = (e.clientX / this.canvas.width) * 2.0 - 1.0;
-      let y = (-e.clientY / this.canvas.height) * 2.0 + 1.0;
-
-      this.mouse.set(x, y);
+    this.canvas.addEventListener('touchstart', (e) => {
+      this.handleMouseDown(e);
     });
 
     this.canvas.addEventListener('pointerup', (e) => {
@@ -62,7 +61,7 @@ export default class Controls {
           v.y = 0;
           v.normalize();
 
-          v.multiplyScalar(dy * 15);
+          v.multiplyScalar(dy * (this.state.mobile ? 22.5 : 15));
 
           v2.copy(this.position).add(v);
           v2.y = 0;
@@ -73,8 +72,8 @@ export default class Controls {
           }
         }
 
-        if (true || dir <= 0) {
-          this.rotation.y -= dx * 0.75;
+        if (!this.state.mobile || dir <= 0) {
+          this.rotation.y -= dx * (this.state.mobile ? 0.35 : 0.75);
         }
         this.mouse.set(x, y);
       }
@@ -156,6 +155,15 @@ export default class Controls {
         }
       }
     });
+  }
+
+  handleMouseDown(e) {
+    this.state.cursorState.dragging = true;
+
+    let x = (e.clientX / this.canvas.width) * 2.0 - 1.0;
+    let y = (-e.clientY / this.canvas.height) * 2.0 + 1.0;
+
+    this.mouse.set(x, y);
   }
 
   update() {

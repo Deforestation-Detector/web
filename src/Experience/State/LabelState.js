@@ -139,8 +139,7 @@ export default class LabelState {
       },
       water: {
         headerDescr: 'Water is the life force of the rainforest.',
-        labelDescr:
-          'Water is an important component of rainforests, sustaining the varied plant life and animals. The Amazon is home to the Amazon River, the largest river by discharge volume of water in the world.',
+        labelDescr: `Water is an important component of rainforests, sustaining the varied plant life and animals. The Amazon is home to the Amazon River, the largest river by discharge volume of water in the world.\n\nWater is an important component of rainforests, sustaining the varied plant life and animals. The Amazon is home to the Amazon River, the largest river by discharge volume of water in the world.`,
         natural: true,
         url: waterImg,
       },
@@ -207,8 +206,8 @@ export default class LabelState {
 
     // Update Information Page
     infoHeaderTitle.innerHTML = formattedLabel;
-    infoHeaderDescr.innerHTML = labelObj.headerDescr;
-    labelDescription.innerHTML = labelObj.labelDescr;
+    infoHeaderDescr.innerText = labelObj.headerDescr;
+    labelDescription.innerText = labelObj.labelDescr;
 
     // Remove any visible images
     for (let child of layeredImgs.childNodes) {

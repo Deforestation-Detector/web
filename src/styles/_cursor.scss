@@ -20,6 +20,10 @@ $cursorSize: clamp(100px, 6vw, 400px);
 
     // will-change: transform;
   }
+
+  &.mobile {
+    display: none;
+  }
 }
 
 #cursor {

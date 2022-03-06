@@ -148,6 +148,9 @@ span:nth-child(5) {
   pointer-events: none;
   touch-action: none;
 }
+#cursorWrapper.mobile {
+  display: none;
+}
 
 #cursor {
   position: relative;
@@ -428,16 +431,25 @@ span:nth-child(5) {
 #infoPage {
   display: grid;
   grid-template-areas: ".        .         " "header   header    " "ctaText  ctaButtons";
-  grid-template-rows: clamp(75px, 10vh, 120px) clamp(100px, 30vh, 300px) 1fr;
+  grid-template-rows: clamp(75px, 10vh, 120px) clamp(100px, 30vh, 300px) auto;
   grid-template-columns: 50% 50%;
   place-items: center;
-  overflow: visible;
+}
+#infoPage,
+#infoPage * {
+  overflow-y: auto;
+  pointer-events: all;
+  touch-action: all;
 }
 #infoPage .textWrapper {
   display: flex;
   height: 100%;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-evenly;
+}
+#infoPage:not(.in), #infoPage:not(.in) * {
+  pointer-events: none;
+  touch-action: none;
 }
 
 #labelInfo {
@@ -459,9 +471,9 @@ span:nth-child(5) {
   position: relative;
   text-align: center;
   text-transform: capitalize;
-  font-size: 4em;
   font-family: "Cormorant Garamond", serif;
-  font-weight: bold;
+  letter-spacing: 1px;
+  font-size: clamp(2rem, 2.5vw + 1.75rem, 6rem);
   z-index: 10;
   pointer-events: all;
   touch-action: all;
@@ -469,9 +481,10 @@ span:nth-child(5) {
 
 .infoHeaderDescr {
   position: relative;
-  max-width: 40ch;
-  margin: 10px 0;
+  max-width: 45ch;
   text-align: center;
+  font-family: "Poppins", sans-serif;
+  font-weight: 200;
   z-index: 10;
   pointer-events: all;
   touch-action: all;
@@ -508,6 +521,8 @@ span:nth-child(5) {
 .labelDescriptionWrapper .labelDescription {
   width: 45ch;
   margin-bottom: 15px;
+  font-size: 1rem;
+  font-weight: 200;
 }
 
 .infoCTA {
@@ -569,28 +584,36 @@ span:nth-child(5) {
   transform: rotate(-45deg);
 }
 
-@media screen and (max-width: 700px) {
-  .infoHeader {
-    top: -5%;
+@media screen and (max-width: 768px), (max-aspect-ratio: 1/1) {
+  #infoPage {
+    grid-template-areas: "." "header" "ctaText" "ctaButtons";
+    height: auto;
+    overflow-y: auto;
+    grid-template-columns: 100vw;
+    grid-template-rows: clamp(75px, 10vh, 120px) clamp(100px, 20vh, 300px) 1fr;
   }
 
-  .infoSection {
-    flex-direction: column;
+  #layeredImgs {
+    height: clamp(100px, 20vh, 300px);
+  }
+
+  .infoHeaderTitle {
+    font-weight: 600;
+  }
+
+  .infoHeaderDescr {
+    font-weight: 400;
   }
 
   .labelDescriptionWrapper {
-    width: 100%;
-  }
-  .labelDescriptionWrapper .labelDescription {
-    width: 100%;
+    margin: 3rem 0 2rem 0;
+    width: 90%;
   }
 
-  .infoCTA {
-    width: 100%;
-  }
-
-  .closeBtn {
-    top: 6%;
+  .labelDescription {
+    font-size: 0.8rem;
+    max-width: 100%;
+    text-align: center;
   }
 }
 #landing {
@@ -617,6 +640,7 @@ span:nth-child(5) {
   font-family: "Poppins", sans-serif;
   font-weight: 200;
   margin-bottom: 3rem;
+  text-align: center;
 }
 #landing button {
   background-color: rgba(255, 255, 255, 0);
@@ -670,6 +694,8 @@ span:nth-child(5) {
 
 body {
   font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  overflow: hidden;
 }
 
 a {
@@ -692,17 +718,22 @@ svg {
   flex-direction: column;
   align-items: center;
   color: white;
-  pointer-events: none;
-  touch-action: none;
   opacity: 1;
   transition: opacity ease-in-out 0.5s;
 }
+#content.in {
+  overflow-y: auto;
+}
 #content:not(.in) {
   opacity: 0;
+  overflow-y: hidden;
+  pointer-events: none;
+  touch-action: none;
 }
 
 canvas {
   position: absolute;
+  overflow: hidden;
   z-index: 5;
   cursor: -webkit-grab;
   cursor: grab;
@@ -785,7 +816,7 @@ canvas.intersecting {
   position: fixed;
   inset: 0;
   z-index: 5;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.9);
   opacity: 1;
   pointer-events: all;
   touch-action: all;
@@ -795,6 +826,13 @@ canvas.intersecting {
   opacity: 0;
   pointer-events: none;
   touch-action: none;
+}
+
+@media (max-width: 768px) {
+  #content > *:not(#landing):not(#learnMore):not(canvas) {
+    max-width: 100vw;
+    overflow-y: auto;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -32,6 +32,12 @@ export default class ViewState {
       return;
     }
 
+    if (newView === 'exploring') {
+      this.state.domElements.content.classList.remove('in');
+    } else {
+      this.state.domElements.content.classList.add('in');
+    }
+
     let oldView = this.#currentView; // might be needed
 
     // this.handleDomChanges(oldView, newView);

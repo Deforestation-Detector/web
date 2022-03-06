@@ -31,6 +31,8 @@
 
 body {
   font-family: fonts.$sans-serif;
+  font-size: 16px;
+  overflow: hidden;
 }
 
 a {
@@ -56,20 +58,25 @@ svg {
 
   color: white;
 
-  pointer-events: none;
-  touch-action: none;
-
   opacity: 1;
 
   transition: $transitionIn;
 
+  &.in {
+    overflow-y: auto;
+  }
+
   &:not(.in) {
     opacity: 0;
+    overflow-y: hidden;
+    pointer-events: none;
+    touch-action: none;
   }
 }
 
 canvas {
   position: absolute;
+  overflow: hidden;
   z-index: 5;
   cursor: grab;
 
@@ -189,5 +196,12 @@ canvas {
     opacity: 0;
     pointer-events: none;
     touch-action: none;
+  }
+}
+
+@media (max-width: 768px) {
+  #content > *:not(#landing):not(#learnMore):not(canvas) {
+    max-width: 100vw;
+    overflow-y: auto;
   }
 }
