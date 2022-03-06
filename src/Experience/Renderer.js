@@ -84,6 +84,9 @@ export default class Renderer {
   }
 
   update() {
-    this.instance.render(this.scene, this.camera.instance);
+    let view = this.experience.state.viewState.getView();
+    if (['exploring', 'loading'].includes(view)) {
+      this.instance.render(this.scene, this.camera.instance);
+    }
   }
 }
