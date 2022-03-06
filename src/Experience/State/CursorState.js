@@ -53,6 +53,12 @@ export default class CursorState {
       this.handleMouseUp(e);
     });
 
+    document.addEventListener('touchstart', (e) => {
+      this.state.domElements.cursorWrapper.classList.add('mobile');
+      this.state.mobile = true;
+      this.handleMouseDown(e);
+    });
+
     this.state.on('viewchange', () => {
       this.handleViewChange();
     });

@@ -5,17 +5,23 @@
   display: grid;
 
   grid-template-areas:
-    '.        .         '
-    'header   header    '
-    'ctaText  ctaButtons';
+    '.        .      .          .'
+    'header   header header     header'
+    '.      ctaText  ctaButtons .';
 
-  grid-template-rows: clamp(75px, 10vh, 120px) clamp(100px, 30vh, 300px) 1fr;
-  grid-template-columns: 50% 50%;
+  grid-template-rows: clamp(75px, 10vh, 120px) clamp(100px, 30vh, 300px) auto;
+  grid-template-columns: 1fr min(50%, 750px) min(50%, 750px) 1fr;
 
   place-items: center;
 
   // Don't like putting this here
-  overflow: visible;
+  overflow-x: visible;
+  overflow-y: auto;
+  &,
+  * {
+    pointer-events: all;
+    touch-action: all;
+  }
 
   .textWrapper {
     display: flex;
@@ -26,6 +32,7 @@
     justify-content: space-evenly;
   }
 
+  &:not(.in),
   &:not(.in) * {
     pointer-events: none;
     touch-action: none;
@@ -108,6 +115,7 @@
   .labelDescription {
     width: 45ch;
     margin-bottom: 15px;
+    font-size: clamp(0.8rem, 0.8rem + 0.25vw, 1.3rem);
     font-weight: 200;
   }
 }
@@ -147,34 +155,76 @@
   width: 32px;
   height: 32px;
   opacity: 1;
+  z-index: 10;
 }
 .closeBtn:hover {
-  opacity: 0.6;
   cursor: pointer;
+
+  &::before {
+    transform: rotate(225deg);
+  }
+
+  &::after {
+    transform: rotate(-45deg) scale(-1);
+  }
 }
-.closeBtn:before,
-.closeBtn:after {
+.closeBtn::before,
+.closeBtn::after {
   position: absolute;
   left: 15px;
   content: ' ';
   height: 33px;
   width: 2px;
   background-color: white;
+
+  transition: transform 0.25s ease-in-out;
 }
-.closeBtn:before {
+.closeBtn::before {
   transform: rotate(45deg);
+  box-shadow: 0px 0px 3px 2px rgba(0, 0, 0, 0.75);
 }
-.closeBtn:after {
-  transform: rotate(-45deg);
+.closeBtn::after {
+  transform: rotate(-45deg) scale(1);
+  box-shadow: 0px 0px 3px 2px rgba(0, 0, 0, 0.75);
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 768px), (max-aspect-ratio: 1/1) {
   #infoPage {
     grid-template-areas:
       '.'
       'header'
       'ctaText'
       'ctaButtons';
+
+    height: auto;
+
+    overflow-y: auto;
+
+    grid-template-columns: 100vw;
+    grid-template-rows: clamp(75px, 10vh, 120px) clamp(100px, 20vh, 300px) 1fr;
+  }
+
+  #layeredImgs {
+    height: clamp(100px, 20vh, 300px);
+  }
+
+  .infoHeaderTitle {
+    font-weight: 600;
+  }
+
+  .infoHeaderDescr {
+    font-weight: 400;
+  }
+
+  .labelDescriptionWrapper {
+    margin: 3rem 0 2rem 0;
+    width: 90%;
+  }
+
+  .labelDescription {
+    font-size: 0.8rem;
+    max-width: 100%;
+    text-align: center;
   }
 }
 
