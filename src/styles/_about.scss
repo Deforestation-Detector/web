@@ -72,10 +72,10 @@
     width: 65%;
   }
   img{
+    height: auto;
     width: 35%;
   }
   
-
   scroll-snap-align: start;
 }
 
@@ -89,11 +89,26 @@
   }
 }
 
+#aboutInsight {
+  background-color: rgb(236, 236, 232);
+  opacity: 0.95;
+  height: 120vh;
+  h1, p {
+    color: rgb(61, 61, 61);
+  }
+  img{
+    height: auto;
+    width: 50%;
+  }
+  
+}
+
 .colWrapper{
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  margin-left: 10%;//
   width: 80vw;
   height: auto;
 }
@@ -104,15 +119,11 @@
   margin-top: 30px;
 
   p{
-    margin-left: 10%;
     width: 80%;
   }
   img {
     height: auto;
     width: 100%;
-  }
-  a{
-    margin-left: 10%;
   }
 }
 
@@ -121,7 +132,7 @@
 }
 
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 900px) {
   .scrollComponent {
     display: block;
     flex-wrap: wrap;
