@@ -84,6 +84,7 @@
   > * {
     margin: 0 auto;
     width: clamp(300px, 100%, 1500px);
+    max-width: 90%;
   }
 }
 
@@ -161,15 +162,24 @@
 // }
 
 #sectionInfo {
-  background-color: rgb(20, 24, 22);
-  width: 100%;
+  background-color: rgb(26, 31, 28);
+  width: 100vw;
+  max-width: 100vw;
   height: auto;
   display: flex;
   justify-content: center;
 
   .wrapper {
-    width: $fullWidthClamped;
-    margin: 2.5rem 0;
+    width: 100vw;
+    margin: 2.5rem 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    > * {
+      width: $fullWidthClamped;
+      max-width: 90%;
+    }
   }
 
   h1 {
@@ -179,10 +189,42 @@
   .subHead {
     font-weight: 600;
     text-align: center;
-    margin: 5rem auto 3.5rem;
+    margin: 3.5rem auto 1rem;
     max-width: 75ch;
 
     font-size: clamp(1.125rem, 1.2rem + 0.2vw, 2.5rem);
+  }
+
+  .subSection {
+    background-color: rgb(53, 59, 56);
+    width: 100%;
+    max-width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    > * {
+      width: $fullWidthClamped;
+      max-width: 90%;
+    }
+
+    &.cardSection {
+      .textWrapper {
+        h1 {
+          margin-top: 2.5rem;
+        }
+
+        p {
+          max-width: 75ch;
+          margin-bottom: 1.75rem;
+        }
+      }
+    }
+
+    hr {
+      opacity: 0.4;
+    }
   }
 
   .callout {
@@ -191,7 +233,7 @@
     padding: 2rem 3rem;
 
     border-radius: 20px;
-    background-color: rgb(25, 31, 28);
+    background-color: rgb(30, 41, 35);
     color: white;
 
     box-shadow: 0px 5px 7px 5px rgba(0, 0, 0, 0.25);
@@ -203,11 +245,73 @@
     }
   }
 
+  .cards {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 3rem 0;
+    overflow: visible;
+
+    gap: 1rem;
+
+    .card {
+      display: grid;
+      border-radius: 10px;
+      position: relative;
+      place-items: center;
+      max-height: 400px;
+      box-shadow: 0px 5px 7px 5px rgba(0, 0, 0, 0.25);
+      overflow: visible;
+
+      width: clamp(300px, 20%, 350px);
+
+      .imgWrapper {
+        border-radius: 10px;
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        display: grid;
+        place-items: center;
+
+        &::after {
+          content: '';
+
+          position: absolute;
+          inset: 0;
+
+          background: rgb(0, 0, 0);
+          background: linear-gradient(
+            0deg,
+            rgba(0, 0, 0, 0.7469362745098039) 0%,
+            rgba(0, 0, 0, 0.6012780112044818) 25%,
+            rgba(0, 0, 0, 0) 50%,
+            rgba(0, 0, 0, 0) 100%
+          );
+        }
+
+        img {
+          max-height: 100%;
+        }
+      }
+
+      p {
+        position: absolute;
+        bottom: 10%;
+
+        font-size: 1.35rem;
+        font-weight: 600;
+        font-family: $sans-serif;
+        color: white;
+      }
+    }
+  }
+
   .graphSection {
     display: grid;
-    gap: 1.5rem;
-    max-width: 100%;
-    margin: 1rem 0;
+    column-gap: 2.5rem;
+    // max-width: 100%;
+    margin: 1rem 0 2.5rem;
 
     grid-template-columns: clamp(75px, 50%, 60ch) auto;
 
@@ -215,29 +319,46 @@
       max-width: 60ch;
       font-size: 1.2rem;
       line-height: 2rem;
+      padding-top: 1rem;
     }
 
     .graphCol {
       max-height: min(100%, 600px);
+      padding: 1rem 2rem 4rem;
+
+      img {
+        border-radius: 5px;
+        max-width: 100%;
+
+        box-shadow: 0px 5px 7px 5px rgba(0, 0, 0, 0.25);
+      }
     }
   }
 
   .doubleGraphSection {
     display: grid;
     gap: 1.5rem;
-    max-width: 100%;
+    // max-width: 100%;
     margin: 1rem 0;
 
     grid-template-columns: 50% 50%;
 
     .graphCol {
       max-height: min(100%, 600px);
+      padding: 1rem 2rem 4rem;
 
       img {
+        border-radius: 5px;
         max-width: 100%;
+
+        box-shadow: 0px 5px 7px 5px rgba(0, 0, 0, 0.25);
       }
     }
   }
+}
+
+#aboutCTA {
+  margin: 5rem auto;
 }
 
 #aboutInsight {
