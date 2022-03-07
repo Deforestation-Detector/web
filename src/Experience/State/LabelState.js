@@ -126,7 +126,7 @@ export default class LabelState {
           'The gold mined from the Amazon is consumed in a large part by the electronics industry, as it’s an important metal for creating conductive and rust-resistant electronic parts.\n\nYou can help combat habitation in the Amazon by using your electronics as long as you can. When it is absolutely necessary to replace them, check out the Environmental Protection Agency’s site on electronic donation and recycling to find out how you can recycle your old electronics.',
         ctaLink:
           'https://www.epa.gov/recycle/electronics-donation-and-recycling',
-        ctaBtnTxt: 'EPA Electronics Donation and Recycling',
+        ctaBtnTxt: 'EPA Electronic Recycling',
         natural: false,
         url: habitationImg,
       },
