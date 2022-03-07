@@ -36,10 +36,33 @@ body {
 }
 
 a {
-  color: orange;
+  position: relative;
+  color: $lightFont;
   text-decoration: none;
-  &:hover {
-    opacity: 0.7;
+  overflow: visible;
+  width: max-content;
+
+  &::after {
+    content: '';
+    z-index: -1;
+    overflow: visible;
+    height: 0.125rem;
+    width: 100%;
+
+    background-color: orange;
+
+    position: absolute;
+    left: 0%;
+    bottom: 2%;
+
+    transform: scaleX(0.1);
+    transform-origin: left;
+
+    transition: transform 0.25s ease-in-out;
+  }
+
+  &:hover::after {
+    transform: scaleX(1);
   }
 }
 
@@ -56,7 +79,7 @@ svg {
   flex-direction: column;
   align-items: center;
 
-  color: white;
+  color: $lightFont;
 
   opacity: 1;
 

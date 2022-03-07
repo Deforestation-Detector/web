@@ -1,3 +1,6 @@
 $bigHeaderFontSize: clamp(2rem, 2.5vw + 1.75rem, 6rem);
 $medHeaderFontSize: clamp(2rem, 1.5vw + 1.75rem, 6rem);
-$backDropColor: rgba(0, 0, 0, 0.9); ;
+$backDropColor: rgba(0, 0, 0, 0.9);
+$fullWidthClamped: clamp(300px, 100%, 1500px);
+
+$lightFont: #dde9e1;

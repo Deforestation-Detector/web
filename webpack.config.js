@@ -4,10 +4,7 @@ const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-  entry: [
-    path.resolve(__dirname, 'test/index.js'),
-    path.resolve(__dirname, 'src/index.js'),
-  ],
+  entry: [path.resolve(__dirname, 'src/index.js')],
   plugins: [
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, './src/index.html'),
@@ -29,11 +26,6 @@ module.exports = {
   module: {
     // rules to handle certain file types
     rules: [
-      // test files
-      {
-        test: /test\.js$/,
-        use: 'mocha-loader',
-      },
       // HTML
       {
         test: /\.html$/,
@@ -47,14 +39,10 @@ module.exports = {
       // Images
       {
         test: /\.(jpg|png|gif|svg|jpeg)$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              outputPath: 'assets/images/',
-            },
-          },
-        ],
+        type: 'asset/resource',
+        generator: {
+          filename: 'assets/images/[hash][ext]',
+        },
       },
       // Shaders
       {
@@ -64,7 +52,10 @@ module.exports = {
       // Models
       {
         test: /\.(gltf|obj|glb)$/,
-        use: ['file-loader'],
+        type: 'asset/resource',
+        generator: {
+          filename: 'assets/models',
+        },
       },
     ],
   },
