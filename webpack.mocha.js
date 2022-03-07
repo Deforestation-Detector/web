@@ -8,7 +8,6 @@ module.exports = {
     path.resolve(__dirname, 'test/index.js'),
     'webpack-plugin-serve/client',
   ],
-  watch: true,
   plugins: [new MiniHtmlWebpackPlugin()],
   module: {
     // rules to handle certain file types
@@ -31,14 +30,10 @@ module.exports = {
       // Images
       {
         test: /\.(jpg|png|gif|svg|jpeg)$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              outputPath: 'assets/images/',
-            },
-          },
-        ],
+        type: 'asset/resource',
+        generator: {
+          filename: 'assets/images/[hash][ext]',
+        },
       },
       // Shaders
       {
@@ -48,7 +43,10 @@ module.exports = {
       // Models
       {
         test: /\.(gltf|obj|glb)$/,
-        use: ['file-loader'],
+        type: 'asset/resource',
+        generator: {
+          filename: 'assets/models/[hash][ext]',
+        },
       },
     ],
   },

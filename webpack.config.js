@@ -54,7 +54,7 @@ module.exports = {
         test: /\.(gltf|obj|glb)$/,
         type: 'asset/resource',
         generator: {
-          filename: 'assets/models',
+          filename: 'assets/models/[hash][ext]',
         },
       },
     ],
