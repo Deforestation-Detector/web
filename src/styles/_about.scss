@@ -5,7 +5,6 @@
 
 .scrollComponent {
   position: relative;
-  max-height: 100vh;
 
   transition: $transitionIn;
   z-index: 10;
@@ -14,6 +13,10 @@
   pointer-events: all;
   touch-action: all;
   scroll-behavior: smooth;
+
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
 
   //scroll-snap-type: y mandatory;
   &:not(.in) {
@@ -28,64 +31,212 @@
     display: none;
   }
 
-  .downArrow {
-    bottom: 5%;
-  }
-  .upArrow {
-    transform: rotate(225deg);
-    top: 5%;
-  }
-
   h1 {
     position: relative;
-    margin: 30px;
     font-family: $serif;
-    font-size: $medHeaderFontSize;
+    font-size: $bigHeaderFontSize;
   }
   p {
-    margin-right: 5%;
+    font-family: $sans-serif;
+    font-weight: 200;
   }
 
   #aboutBack {
-    z-index: 1000;
-    position: sticky;
-    border: none;
-    margin-left: 5%;
-    top: 50%;
+    position: fixed;
+    right: 5%;
+    top: 3%;
+    width: 32px;
+    height: 32px;
+    opacity: 1;
+    z-index: 10;
+  }
+  #aboutBack:hover {
+    cursor: pointer;
 
-    background-color: rgba(0, 0, 0, 0);
+    &::before {
+      transform: rotate(225deg);
+    }
+
+    &::after {
+      transform: rotate(-45deg) scale(-1);
+    }
+  }
+  #aboutBack::before,
+  #aboutBack::after {
+    position: absolute;
+    left: 15px;
+    content: ' ';
+    height: 33px;
+    width: 2px;
+    background-color: white;
+
+    transition: transform 0.25s ease-in-out;
+  }
+  #aboutBack::before {
+    transform: rotate(45deg);
+    box-shadow: 0px 0px 3px 2px rgba(0, 0, 0, 0.75);
+  }
+  #aboutBack::after {
+    transform: rotate(-45deg) scale(1);
+    box-shadow: 0px 0px 3px 2px rgba(0, 0, 0, 0.75);
+  }
+
+  > * {
+    margin: 0 auto;
+    width: clamp(300px, 100%, 1500px);
   }
 }
 
-.aboutSections {
-  display: flex;
-  position: relative;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+#aboutLanding {
+  display: grid;
   height: 100vh;
+  grid-template-areas:
+    '.        .     '
+    'header   header'
+    'descText graph '
+    '.        .     ';
+
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 1fr auto auto 1fr;
 
   h1 {
-    width: 70%;
+    grid-area: header;
+    margin-bottom: 3.5rem;
   }
-  p {
-    width: 65%;
+
+  .textContent {
+    grid-area: descText;
+
+    p {
+      max-width: 60ch;
+      font-size: clamp(1rem, 0.8rem + 0.25vw, 1.3rem);
+      margin-bottom: 1rem;
+    }
+
+    .toc {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+
+      font-size: 1.25rem;
+    }
   }
-  img{
-    height: auto;
-    width: 35%;
+
+  .imgWrapper {
+    grid-area: graph;
+    display: grid;
+    place-items: center;
+
+    img {
+      max-width: min(100%, 600px);
+      max-height: min(100%, 600px);
+    }
   }
-  
-  scroll-snap-align: start;
+
+  .arrowWrapper {
+    position: absolute;
+    overflow: visible;
+
+    transform: translateX(-50%);
+
+    left: 50%;
+    bottom: 5%;
+  }
 }
 
-#sectionInfo {
-  height: 210vh;
-  background-color: rgb(236, 236, 232);
-  opacity: 0.95;
+// .aboutSections {
+//   display: flex;
+//   position: relative;
+//   justify-content: center;
+//   align-items: center;
+//   flex-direction: column;
+//   height: 100vh;
 
-  h1, p {
-    color: rgb(61, 61, 61);
+//   img {
+//     height: auto;
+//     width: 35%;
+//   }
+
+//   scroll-snap-align: start;
+// }
+
+#sectionInfo {
+  background-color: rgb(20, 24, 22);
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+
+  .wrapper {
+    width: $fullWidthClamped;
+    margin: 2.5rem 0;
+  }
+
+  h1 {
+    margin-bottom: 2rem;
+  }
+
+  .subHead {
+    font-weight: 600;
+    text-align: center;
+    margin: 5rem auto 3.5rem;
+    max-width: 75ch;
+
+    font-size: clamp(1.125rem, 1.2rem + 0.2vw, 2.5rem);
+  }
+
+  .callout {
+    width: max-content;
+    margin: 5rem auto;
+    padding: 2rem 3rem;
+
+    border-radius: 20px;
+    background-color: rgb(25, 31, 28);
+    color: white;
+
+    box-shadow: 0px 5px 7px 5px rgba(0, 0, 0, 0.25);
+
+    p {
+      text-align: center;
+      max-width: 75ch;
+      font-size: clamp(1.125rem, 1.2rem + 0.135vw, 2rem);
+    }
+  }
+
+  .graphSection {
+    display: grid;
+    gap: 1.5rem;
+    max-width: 100%;
+    margin: 1rem 0;
+
+    grid-template-columns: clamp(75px, 50%, 60ch) auto;
+
+    .aboutCol {
+      max-width: 60ch;
+      font-size: 1.2rem;
+      line-height: 2rem;
+    }
+
+    .graphCol {
+      max-height: min(100%, 600px);
+    }
+  }
+
+  .doubleGraphSection {
+    display: grid;
+    gap: 1.5rem;
+    max-width: 100%;
+    margin: 1rem 0;
+
+    grid-template-columns: 50% 50%;
+
+    .graphCol {
+      max-height: min(100%, 600px);
+
+      img {
+        max-width: 100%;
+      }
+    }
   }
 }
 
@@ -93,44 +244,15 @@
   background-color: rgb(236, 236, 232);
   opacity: 0.95;
   height: 120vh;
-  h1, p {
+  h1,
+  p {
     color: rgb(61, 61, 61);
-  }
-  img{
-    height: auto;
-    width: 50%;
-  }
-  
-}
-
-.colWrapper{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  margin-left: 10%;//
-  width: 80vw;
-  height: auto;
-}
-
-.aboutCol {
-  width: 550px;
-  margin: 10px;
-  margin-top: 30px;
-
-  p{
-    width: 80%;
   }
   img {
     height: auto;
-    width: 100%;
+    width: 50%;
   }
 }
-
-.aboutCol > * {
-  flex: 1 1 50%;
-}
-
 
 @media screen and (max-width: 900px) {
   .scrollComponent {
@@ -145,22 +267,19 @@
       margin-left: 5%;
     }
 
-    .aboutCol{
-      img{
+    .aboutCol {
+      img {
         margin-left: 12%;
         width: 70%;
       }
     }
 
-    #sectionInfo{
+    #sectionInfo {
       height: 240vh;
     }
 
-    #aboutActions{
+    #aboutActions {
       height: 150vh;
     }
-
-
   }
 }
-

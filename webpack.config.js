@@ -39,14 +39,10 @@ module.exports = {
       // Images
       {
         test: /\.(jpg|png|gif|svg|jpeg)$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              outputPath: 'assets/images/',
-            },
-          },
-        ],
+        type: 'asset/resource',
+        generator: {
+          filename: 'assets/images/[hash][ext]',
+        },
       },
       // Shaders
       {
@@ -56,7 +52,10 @@ module.exports = {
       // Models
       {
         test: /\.(gltf|obj|glb)$/,
-        use: ['file-loader'],
+        type: 'asset/resource',
+        generator: {
+          filename: 'assets/models',
+        },
       },
     ],
   },

@@ -132,7 +132,7 @@ export default class Experience {
     this.sizes.off('resize');
     this.clock.off('tick');
 
-    this.scene.traverse(child => {
+    this.scene.traverse((child) => {
       if (child instanceof Mesh) {
         child.geometry.dispose();
 

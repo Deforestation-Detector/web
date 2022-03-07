@@ -104,3 +104,7 @@ typings/
 
 # Containing Folder Attributes
 .DS_Store
+
+*/**/.DS_Store
+
+dist
