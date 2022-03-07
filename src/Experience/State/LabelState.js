@@ -26,9 +26,13 @@ export default class LabelState {
     this.labels = {
       agriculture: {
         headerDescr:
-          'Agriculture is the practice of cultivating plants and livestock for the purpose of consumption.',
+          'Agriculture is the practice of cultivating plants and livestock.',
         labelDescr:
-          'While certain levels of agriculture are necessary for survival, large-scale agriculture has been shown to have negative effects on the environment. Clearing forests to make room for agriculture destroys native animal habitation and raising commercial livestock leads to an abundance of extra greenhouse gas production.',
+          'While certain levels of agriculture are necessary for survival, large-scale commodity agriculture has been shown to have severe negative effects on the environment. Two of these commodities, beef and soy, have been some of the leading drivers of rainforest conversion. Demand for these products has been soaring worldwide, and in order to create pastures and fields to grow them, acres upon acres of the Amazon Rainforest have been cleared for space.\n\nThis has drastic consequences for the health of the rainforest and its inhabitants. The clearing of trees directly destroys a lot of animal habitation. Common agricultural practices tend to cause soil erosion and river siltation. Pesticides commonly used to protect crops eventually leak into the soil and contaminate nearby sources of water. The negative effects of large-scale agriculture in the Amazon Rainforest are measurable and devastating',
+        ctaDescr:
+          'You can help combat large-scale agriculture in the Amazon by reducing your beef and soy consumption and making more thoughtful decisions with your food. Also consider getting involved with the World Wildlife Fund whose mission is to conserve nature and reduce the most pressing threats to the diversity of life on Earth.',
+        ctaLink: 'https://wwf.panda.org/act/take_action/',
+        ctaBtnTxt: 'World Wildlife Fund',
         natural: false,
         url: agricultureImg,
       },
@@ -37,6 +41,9 @@ export default class LabelState {
           'This is the header description for the artisinal mine label.',
         labelDescr:
           'This is the label description for the artisinal mine label.',
+        ctaDescr: 'This is a description of the call to action.',
+        ctaLink: 'This is the url to the call to action.',
+        ctaBtnTxt: 'This is the button text',
         natural: false,
         url: artisinalMineImg,
       },
@@ -44,30 +51,45 @@ export default class LabelState {
         headerDescr:
           'This is the header description for the bare ground label.',
         labelDescr: 'This is the label description for the bare ground label.',
+        ctaDescr: 'This is a description of the call to action.',
+        ctaLink: 'This is the url to the call to action.',
+        ctaBtnTxt: 'This is the button text',
         natural: true,
         url: bareGroundImg,
       },
       blooming: {
         headerDescr: 'This is the header description for the blooming label.',
         labelDescr: 'This is the label description for the blooming label.',
+        ctaDescr: 'This is a description of the call to action.',
+        ctaLink: 'This is the url to the call to action.',
+        ctaBtnTxt: 'This is the button text',
         natural: true,
         url: bloomingImg,
       },
       blow_down: {
         headerDescr: 'This is the header description for the blow down label.',
         labelDescr: 'This is the label description for the blow down label.',
+        ctaDescr: 'This is a description of the call to action.',
+        ctaLink: 'This is the url to the call to action.',
+        ctaBtnTxt: 'This is the button text',
         natural: true,
         url: blowDownImg,
       },
       clear: {
         headerDescr: 'This is the header description for the clear label.',
         labelDescr: 'This is the label description for the clear label.',
+        ctaDescr: 'This is a description of the call to action.',
+        ctaLink: 'This is the url to the call to action.',
+        ctaBtnTxt: 'This is the button text',
         natural: true,
         url: clearImg,
       },
       cloudy: {
         headerDescr: 'This is the header description for the cloudy label.',
         labelDescr: 'This is the label description for the cloudy label.',
+        ctaDescr: 'This is a description of the call to action.',
+        ctaLink: 'This is the url to the call to action.',
+        ctaBtnTxt: 'This is the button text',
         natural: true,
         url: cloudyImg,
       },
@@ -76,6 +98,9 @@ export default class LabelState {
           'This is the header description for the conventional mine label.',
         labelDescr:
           'This is the label description for the conventional mine label.',
+        ctaDescr: 'This is a description of the call to action.',
+        ctaLink: 'This is the url to the call to action.',
+        ctaBtnTxt: 'This is the button text',
         natural: false,
         url: conventionalMineImg,
       },
@@ -84,6 +109,10 @@ export default class LabelState {
           'Cultivation is the preparing of land to be used for agricultural purposes.',
         labelDescr:
           'Land cultivation is often invasive and destructive. Commonly used fertilizers and pesticides contain chemicals which damage the land and eventually leech and flow into bodies of water, further affecting the wildlife.',
+        ctaDescr:
+          'This is a description of the call to action for cultivation.',
+        ctaLink: 'This is the url to the call to action for cultivation.',
+        ctaBtnTxt: 'This is the button text',
         natural: false,
         url: cultivationImg,
       },
@@ -92,12 +121,18 @@ export default class LabelState {
           'Habitation is the construction of living spaces and the dwelling of people in those spaces.',
         labelDescr:
           'Human settlements, especially in the Amazon, are disruptive to the native wildlife and usually space must be cleared for their construction.',
+        ctaDescr: 'This is a description of the call to action for habitation.',
+        ctaLink: 'This is the url to the call to action for habitation.',
+        ctaBtnTxt: 'This is the button text',
         natural: false,
         url: habitationImg,
       },
       haze: {
         headerDescr: 'This is the header description for the haze label.',
         labelDescr: 'This is the label description for the haze label.',
+        ctaDescr: 'This is a description of the call to action.',
+        ctaLink: 'This is the url to the call to action.',
+        ctaBtnTxt: 'This is the button text',
         natural: true,
         url: hazeImg,
       },
@@ -106,12 +141,18 @@ export default class LabelState {
           'This is the header description for the partly cloudy label.',
         labelDescr:
           'This is the label description for the partly cloudy label.',
+        ctaDescr: 'This is a description of the call to action.',
+        ctaLink: 'This is the url to the call to action.',
+        ctaBtnTxt: 'This is the button text',
         natural: true,
         url: partlyCloudyImg,
       },
       primary: {
         headerDescr: 'This is the header description for the primary label.',
         labelDescr: 'This is the label description for the primary label.',
+        ctaDescr: 'This is a description of the call to action.',
+        ctaLink: 'This is the url to the call to action.',
+        ctaBtnTxt: 'This is the button text',
         natural: true,
         url: primaryImg,
       },
@@ -120,6 +161,9 @@ export default class LabelState {
           'Roads are paths built through the rainforest from one location to another.',
         labelDescr:
           'Roads are essential to allow people to transport food, supplies, and themselves around the rainforest. Unfortunately, building them usually involves clearing out large strips of the rainforest and can disrupt the wildlife.',
+        ctaDescr: 'This is a description of the call to action for road.',
+        ctaLink: 'This is the url to the call to action for road.',
+        ctaBtnTxt: 'This is the button text',
         natural: false,
         url: roadImg,
       },
@@ -128,24 +172,33 @@ export default class LabelState {
           'This is the header description for the selective logging label.',
         labelDescr:
           'This is the label description for the selective logging label.',
+        ctaDescr: 'This is a description of the call to action.',
+        ctaLink: 'This is the url to the call to action.',
+        ctaBtnTxt: 'This is the button text',
         natural: false,
         url: selectiveLoggingImg,
       },
       slash_burn: {
         headerDescr: 'This is the header description for the slash burn label.',
         labelDescr: 'This is the label description for the slash burn label.',
+        ctaDescr: 'This is a description of the call to action.',
+        ctaLink: 'This is the url to the call to action.',
+        ctaBtnTxt: 'This is the button text',
         natural: false,
         url: slashBurnImg,
       },
       water: {
         headerDescr: 'Water is the life force of the rainforest.',
-        labelDescr: `Water is an important component of rainforests, sustaining the varied plant life and animals. The Amazon is home to the Amazon River, the largest river by discharge volume of water in the world.\n\nWater is an important component of rainforests, sustaining the varied plant life and animals. The Amazon is home to the Amazon River, the largest river by discharge volume of water in the world.`,
+        labelDescr:
+          'The Amazon is home to the Amazon River, the largest river by discharge volume of water in the world. This water is an important component of the rainforest, sustaining nearly one-third of all known species of animals in the world as well as the diverse plant life.\n\nHowever, deforestation threatens to disrupt the balance of the water cycle. Trees help increase the water vapor content in the air and lead to precipitation. Without them, there is less rain, and less water replenishing the river. What’s more, roots of trees help maintain water in the soil, and without them there’s increased sediment runoff into the river, clogging it up and affecting the structure of the river.\n\nAgriculture also threatens the health of the river. The use of pesticides and other agricultural chemicals often leaks into the soil and eventually the surrounding bodies of water. This can pose a threat to the wildlife that depend on clean water.\n\nThe water of the Amazon Rainforest is under attack and is crucial to the survival of many species.',
+        ctaDescr:
+          "You can help combat drought and water pollution in the Amazon by becoming informed of the human impact on the Amazon's water. Also consider getting involved with Amazon Aid Foundation which aims to preserve the Amazon Rainforest including its river.",
+        ctaLink: 'https://amazonaid.org/activate/',
+        ctaBtnTxt: 'Amazon Aid Foundation',
         natural: true,
         url: waterImg,
       },
     };
-
-    this.labelList = ['Label 1', 'Label 2', 'Label 3', 'Label 4', 'Label 5'];
 
     this.setDomElements();
     this.setEventHandlers();
@@ -165,6 +218,8 @@ export default class LabelState {
       infoHeaderTitle: document.querySelector('.infoHeaderTitle'),
       infoHeaderDescr: document.querySelector('.infoHeaderDescr'),
       labelDescription: document.querySelector('.labelDescription'),
+      ctaDescr: document.querySelector('.ctaDescr'),
+      ctaBtn: document.querySelector('.ctaBtn'),
     };
   }
 
@@ -172,6 +227,11 @@ export default class LabelState {
     // Event Handler for clicking on close button
     this.state.domElements.closeBtn.onclick = () => {
       this.state.viewState.back();
+    };
+
+    // Event Handler for clicking CTA button
+    this.state.domElements.ctaBtn.onclick = () => {
+      window.open(this.state.domElements.ctaBtn.href);
     };
 
     // Event Handler for handling state change
@@ -198,8 +258,11 @@ export default class LabelState {
     // Set dom elements to change
     let infoHeaderTitle = this.state.domElements.infoHeaderTitle;
     let infoHeaderDescr = this.state.domElements.infoHeaderDescr;
-    let labelDescription = this.state.domElements.labelDescription;
     let layeredImgs = this.state.domElements.layeredImgs;
+    let labelDescription = this.state.domElements.labelDescription;
+    let ctaDescr = this.state.domElements.ctaDescr;
+    let ctaBtn = this.state.domElements.ctaBtn;
+
     // Set variables used in the updating function
     let formattedLabel = label.replaceAll('_', ' ');
     let labelObj = this.labels[label];
@@ -208,6 +271,9 @@ export default class LabelState {
     infoHeaderTitle.innerHTML = formattedLabel;
     infoHeaderDescr.innerText = labelObj.headerDescr;
     labelDescription.innerText = labelObj.labelDescr;
+    ctaDescr.innerText = labelObj.ctaDescr;
+    ctaBtn.innerHTML = labelObj.ctaBtnTxt;
+    ctaBtn.href = labelObj.ctaLink;
 
     // Remove any visible images
     for (let child of layeredImgs.childNodes) {
@@ -218,13 +284,6 @@ export default class LabelState {
 
     // Add desired image
     document.getElementById(`${label}Img`).classList.add('in');
-
-    // Check if label is natural and update class
-    // if (labelObj.natural) {
-    //   labelInfo.classList.add('natural');
-    // } else {
-    //   labelInfo.classList.remove('natural');
-    // }
   }
 
   initializeImages() {
