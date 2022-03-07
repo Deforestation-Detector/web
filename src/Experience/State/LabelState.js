@@ -160,10 +160,12 @@ export default class LabelState {
         headerDescr:
           'Roads are paths built through the rainforest from one location to another.',
         labelDescr:
-          'Roads are essential to allow people to transport food, supplies, and themselves around the rainforest. Unfortunately, building them usually involves clearing out large strips of the rainforest and can disrupt the wildlife.',
-        ctaDescr: 'This is a description of the call to action for road.',
-        ctaLink: 'This is the url to the call to action for road.',
-        ctaBtnTxt: 'This is the button text',
+          'Roads are essential to allow people to transport food, supplies, and themselves around and through the rainforest. Unfortunately, building them has consequences for the health of the rainforest.\n\nUsually, building roads involves clearing out large strips of the rainforest and can disrupt the wildlife. In addition, the existence of roads through the rainforest tends to facilitate further deforestation, since it’s even easier to drive in equipment and drive out lumber.\n\nRoads can also cause habitat fragmentation by breaking up sections of the rainforest into smaller subsections. This fragmentation can cause changes in humidity levels, wind, temperature, and exposure to invasive species and fire which in turn can lead to rainforest die-off.',
+        ctaDescr:
+          'You can help combat destructive road construction in the Amazon by becoming informed on sustainable road building practices and spreading the word. Conservation.org is a great place to start.',
+        ctaLink:
+          'https://www.conservation.org/blog/building-roads-protecting-forests-community-resilience-in-the-bolivian-amazon/',
+        ctaBtnTxt: 'Conservation.org',
         natural: false,
         url: roadImg,
       },
