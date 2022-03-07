@@ -14,7 +14,6 @@
 
   place-items: center;
 
-  // Don't like putting this here
   overflow-x: visible;
   overflow-y: auto;
   &,
@@ -23,169 +22,159 @@
     touch-action: all;
   }
 
-  .textWrapper {
-    display: flex;
-
-    height: 100%;
-
-    flex-direction: column;
-    justify-content: space-evenly;
-  }
-
   &:not(.in),
   &:not(.in) * {
     pointer-events: none;
     touch-action: none;
   }
-}
-#labelInfo {
-  width: 50%;
-  &:not(.natural) {
-    color: #ff1f1f;
-  }
-}
 
-// New info page css
-// Info Header stuff
-.infoHeader {
-  overflow: visible;
-  height: 100%;
-
-  grid-area: header;
-  pointer-events: none;
-  touch-action: none;
-}
-.infoHeaderTitle {
-  position: relative;
-  text-align: center;
-  text-transform: capitalize;
-
-  font-family: $serif;
-  letter-spacing: 1px;
-  font-size: $bigHeaderFontSize;
-
-  z-index: 10;
-  pointer-events: all;
-  touch-action: all;
-}
-.infoHeaderDescr {
-  position: relative;
-
-  max-width: 45ch;
-  text-align: center;
-  font-family: $sans-serif;
-  font-weight: 200;
-
-  z-index: 10;
-  pointer-events: all;
-  touch-action: all;
-}
-#layeredImgs {
-  display: flex;
-  position: absolute;
-  width: 100vw;
-  height: clamp(100px, 30vh, 300px);
-  margin-left: -50vw;
-  left: 50%;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-
-  .backdrop {
-    position: absolute;
-
-    inset: 0;
-
-    z-index: 5;
-
-    background-color: rgba(0, 0, 0, 0.5);
-  }
-}
-.labelImage {
-  position: relative;
-
-  &:not(.in) {
-    display: none;
-  }
-}
-
-.labelDescriptionWrapper {
-  grid-area: ctaText;
-
-  .labelDescription {
-    width: 45ch;
-    margin-bottom: 15px;
-    font-size: clamp(0.8rem, 0.8rem + 0.25vw, 1.3rem);
-    font-weight: 200;
-  }
-}
-.infoCTA {
-  grid-area: ctaButtons;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 50%;
-
-  button {
-    margin: 30px 0;
-    background-color: rgba(255, 255, 255, 0);
-    font-family: $sans-serif;
-    font-weight: 200;
-    cursor: pointer;
-    color: white;
-    border: 1px solid white;
-    padding: 1rem 1.5rem;
-    width: fit-content;
-    font-size: 1.125rem;
-
-    transition: background-color 0.2s ease-in-out;
+  .closeBtn {
+    position: fixed;
+    right: 5%;
+    top: 3%;
+    width: 32px;
+    height: 32px;
+    opacity: 1;
+    z-index: 10;
 
     &:hover {
-      background-color: rgba(255, 255, 255, 0.1);
+      cursor: pointer;
+
+      &::before {
+        transform: rotate(225deg);
+      }
+
+      &::after {
+        transform: rotate(-45deg) scale(-1);
+      }
+    }
+    &:before,
+    &:after {
+      position: absolute;
+      left: 15px;
+      content: ' ';
+      height: 33px;
+      width: 2px;
+      background-color: white;
+
+      transition: transform 0.25s ease-in-out;
+    }
+    &:before {
+      transform: rotate(45deg);
+      box-shadow: 0px 0px 3px 2px rgba(0, 0, 0, 0.75);
+    }
+    &:after {
+      transform: rotate(-45deg) scale(1);
+      box-shadow: 0px 0px 3px 2px rgba(0, 0, 0, 0.75);
     }
   }
-}
 
-.closeBtn {
-  position: fixed;
-  right: 5%;
-  top: 3%;
-  width: 32px;
-  height: 32px;
-  opacity: 1;
-  z-index: 10;
-}
-.closeBtn:hover {
-  cursor: pointer;
+  // New info page css
+  // Info Header stuff
+  .infoHeader {
+    overflow: visible;
+    height: 100%;
 
-  &::before {
-    transform: rotate(225deg);
+    grid-area: header;
+
+    #layeredImgs {
+      display: flex;
+      position: absolute;
+      width: 100vw;
+      height: clamp(100px, 30vh, 300px);
+      margin-left: -50vw;
+      left: 50%;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+
+      .backdrop {
+        position: absolute;
+        inset: 0;
+        z-index: 5;
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+      .labelImage {
+        position: relative;
+
+        &:not(.in) {
+          display: none;
+        }
+      }
+    }
+
+    .textWrapper {
+      display: flex;
+
+      height: 100%;
+
+      flex-direction: column;
+      justify-content: space-evenly;
+
+      .infoHeaderTitle {
+        position: relative;
+        text-align: center;
+        text-transform: capitalize;
+
+        font-family: $serif;
+        letter-spacing: 1px;
+        font-size: $bigHeaderFontSize;
+
+        z-index: 10;
+      }
+
+      .infoHeaderDescr {
+        position: relative;
+
+        max-width: 45ch;
+        text-align: center;
+        font-family: $sans-serif;
+        font-weight: 200;
+
+        z-index: 10;
+      }
+    }
   }
 
-  &::after {
-    transform: rotate(-45deg) scale(-1);
-  }
-}
-.closeBtn::before,
-.closeBtn::after {
-  position: absolute;
-  left: 15px;
-  content: ' ';
-  height: 33px;
-  width: 2px;
-  background-color: white;
+  .labelDescriptionWrapper {
+    grid-area: ctaText;
 
-  transition: transform 0.25s ease-in-out;
-}
-.closeBtn::before {
-  transform: rotate(45deg);
-  box-shadow: 0px 0px 3px 2px rgba(0, 0, 0, 0.75);
-}
-.closeBtn::after {
-  transform: rotate(-45deg) scale(1);
-  box-shadow: 0px 0px 3px 2px rgba(0, 0, 0, 0.75);
+    .labelDescription {
+      width: 45ch;
+      margin-bottom: 15px;
+      font-size: clamp(0.8rem, 0.8rem + 0.25vw, 1.3rem);
+      font-weight: 200;
+    }
+  }
+
+  .infoCTA {
+    grid-area: ctaButtons;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+
+    button {
+      margin: 30px 0;
+      background-color: rgba(255, 255, 255, 0);
+      font-family: $sans-serif;
+      font-weight: 200;
+      cursor: pointer;
+      color: white;
+      border: 1px solid white;
+      padding: 1rem 1.5rem;
+      width: fit-content;
+      font-size: 1.125rem;
+
+      transition: background-color 0.2s ease-in-out;
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 768px), (max-aspect-ratio: 1/1) {
@@ -202,28 +191,28 @@
 
     grid-template-columns: 100vw;
     grid-template-rows: clamp(75px, 10vh, 120px) clamp(100px, 20vh, 300px) 1fr;
-  }
 
-  #layeredImgs {
-    height: clamp(100px, 20vh, 300px);
-  }
+    #layeredImgs {
+      height: clamp(100px, 20vh, 300px);
+    }
 
-  .infoHeaderTitle {
-    font-weight: 600;
-  }
+    .infoHeaderTitle {
+      font-weight: 600;
+    }
 
-  .infoHeaderDescr {
-    font-weight: 400;
-  }
+    .infoHeaderDescr {
+      font-weight: 400;
+    }
 
-  .labelDescriptionWrapper {
-    margin: 3rem 0 2rem 0;
-    width: 90%;
-  }
+    .labelDescriptionWrapper {
+      margin: 3rem 0 2rem 0;
+      width: 90%;
+    }
 
-  .labelDescription {
-    font-size: 0.8rem;
-    max-width: 100%;
-    text-align: center;
+    .labelDescription {
+      font-size: 0.8rem;
+      max-width: 100%;
+      text-align: center;
+    }
   }
 }
