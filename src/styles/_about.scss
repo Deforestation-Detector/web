@@ -103,6 +103,7 @@
   h1 {
     grid-area: header;
     margin-bottom: 3.5rem;
+    max-width: 60%;
   }
 
   .textContent {
@@ -112,12 +113,14 @@
       max-width: 60ch;
       font-size: clamp(1rem, 0.8rem + 0.25vw, 1.3rem);
       margin-bottom: 1rem;
+      line-height: 2rem;
     }
 
     .toc {
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
+      margin-top: 2rem;
 
       font-size: 1.25rem;
     }
@@ -129,8 +132,9 @@
     place-items: center;
 
     img {
-      max-width: min(100%, 600px);
-      max-height: min(100%, 600px);
+      border-radius: 10px;
+      max-width: 90%;
+      max-height: min(90%, 600px);
     }
   }
 
@@ -189,7 +193,7 @@
   .subHead {
     font-weight: 600;
     text-align: center;
-    margin: 3.5rem auto 1rem;
+    margin: 3.5rem auto 2rem;
     max-width: 75ch;
 
     font-size: clamp(1.125rem, 1.2rem + 0.2vw, 2.5rem);
@@ -359,19 +363,167 @@
 
 #aboutCTA {
   margin: 5rem auto;
+
+  h1 {
+    margin-bottom: 2rem;
+  }
+
+  p {
+    max-width: 75ch;
+    font-size: clamp(1rem, 0.8rem + 0.25vw, 1.3rem);
+    line-height: 2rem;
+  }
 }
 
 #aboutInsight {
-  background-color: rgb(236, 236, 232);
-  opacity: 0.95;
-  height: 120vh;
-  h1,
-  p {
-    color: rgb(61, 61, 61);
+  background-color: rgb(36, 36, 36);
+  width: 100%;
+  max-width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  > * {
+    width: $fullWidthClamped;
+    max-width: 90%;
   }
-  img {
-    height: auto;
-    width: 50%;
+
+  h1 {
+    margin: 2rem 0;
+  }
+
+  p {
+    max-width: 75ch;
+    font-size: clamp(1rem, 0.8rem + 0.25vw, 1.3rem);
+    line-height: 2rem;
+
+    margin-bottom: 2rem;
+  }
+
+  hr {
+    opacity: 0.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .imgSection {
+    width: 100vw;
+    max-width: 100vw;
+    display: grid;
+    place-items: center;
+    padding-bottom: 2rem;
+
+    .tooltip {
+      margin: 2rem auto;
+
+      padding: 1rem 2rem;
+      border-radius: 20px;
+
+      background-color: rgb(23, 34, 28);
+      border: 2px solid rgb(43, 63, 52);
+      box-shadow: 0px 5px 7px 5px rgba(0, 0, 0, 0.25);
+
+      p {
+        margin: 0;
+      }
+    }
+
+    img {
+      max-height: min(95%, 300px);
+      max-width: min(1500px, 90%);
+    }
+  }
+}
+
+#aboutActions {
+  background-color: rgb(12, 12, 12);
+  width: 100vw;
+  max-width: 100vw;
+  padding-bottom: 2.5rem;
+
+  > * {
+    width: $fullWidthClamped;
+    max-width: 90%;
+
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .textWrapper {
+    h1 {
+      margin: 2rem 0;
+    }
+
+    p {
+      max-width: 75ch;
+      font-size: clamp(1rem, 0.8rem + 0.25vw, 1.3rem);
+      line-height: 2rem;
+
+      margin-bottom: 2rem;
+    }
+  }
+
+  hr {
+    opacity: 0.6;
+  }
+
+  .ctaWrapper {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 3rem auto;
+    overflow: visible;
+
+    gap: 1rem;
+
+    .ctaCard {
+      position: relative;
+      display: grid;
+
+      grid-template-columns: 100%;
+      grid-template-rows: 1fr auto;
+
+      .desc {
+        background-color: rgb(49, 49, 49);
+        padding: 1rem 2rem;
+
+        overflow-y: auto;
+        scrollbar-width: none;
+
+        &::-webkit-scrollbar {
+          display: none;
+        }
+
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+      }
+
+      .link {
+        background-color: rgb(27, 27, 27);
+        padding: 1rem 2rem;
+
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+
+        a {
+          color: $lightFont;
+          text-decoration: underline;
+
+          transition: color 0.2s ease-in-out;
+
+          &:hover {
+            color: orange;
+          }
+        }
+      }
+
+      border-radius: 10px;
+      box-shadow: 0px 5px 7px 5px rgba(0, 0, 0, 0.25);
+      overflow: visible;
+
+      height: clamp(300px, 15vh, 400px);
+      width: clamp(300px, 20%, 350px);
+    }
   }
 }
 

@@ -55,14 +55,14 @@ a {
     left: 0%;
     bottom: 2%;
 
-    transform: scaleX(0.1);
+    transform: scaleX(1);
     transform-origin: left;
 
-    transition: transform 0.25s ease-in-out;
+    transition: transform 0.15s ease-in-out;
   }
 
   &:hover::after {
-    transform: scaleX(1);
+    transform: scaleX(0.1);
   }
 }
 
