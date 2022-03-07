@@ -28,7 +28,7 @@ export default class LabelState {
         headerDescr:
           'Agriculture is the practice of cultivating plants and livestock.',
         labelDescr:
-          'While certain levels of agriculture are necessary for survival, large-scale commodity agriculture has been shown to have severe negative effects on the environment. Two of these commodities, beef and soy, have been some of the leading drivers of rainforest conversion. Demand for these products has been soaring worldwide, and in order to create pastures and fields to grow them, acres upon acres of the Amazon Rainforest have been cleared for space.\n\nThis has drastic consequences for the health of the rainforest and its inhabitants. The clearing of trees directly destroys a lot of animal habitation. Common agricultural practices tend to cause soil erosion and river siltation. Pesticides commonly used to protect crops eventually leak into the soil and contaminate nearby sources of water. The negative effects of large-scale agriculture in the Amazon Rainforest are measurable and devastating',
+          'While certain levels of agriculture are necessary for survival, large-scale commodity agriculture has been shown to have severe negative effects on the environment. Two of these commodities, beef and soy, have been some of the leading drivers of rainforest conversion. Demand for these products has been soaring worldwide, and in order to create pastures and fields to grow them, acres upon acres of the Amazon Rainforest have been cleared for space.\n\nThis has drastic consequences for the health of the rainforest and its inhabitants. The clearing of trees directly destroys a lot of animal habitation. Common agricultural practices tend to cause soil erosion and river siltation. Pesticides commonly used to protect crops eventually leak into the soil and contaminate nearby sources of water. The negative effects of large-scale agriculture in the Amazon Rainforest are measurable and devastating.',
         ctaDescr:
           'You can help combat large-scale agriculture in the Amazon by reducing your beef and soy consumption and making more thoughtful decisions with your food. Also consider getting involved with the World Wildlife Fund whose mission is to conserve nature and reduce the most pressing threats to the diversity of life on Earth.',
         ctaLink: 'https://wwf.panda.org/act/take_action/',
@@ -108,22 +108,25 @@ export default class LabelState {
         headerDescr:
           'Cultivation is the preparing of land to be used for agricultural purposes.',
         labelDescr:
-          'Land cultivation is often invasive and destructive. Commonly used fertilizers and pesticides contain chemicals which damage the land and eventually leech and flow into bodies of water, further affecting the wildlife.',
+          'Land cultivation is necessary for the growing of crops and livestock. However, there are sustainable cultivation practices and unsustainable cultivation practices, the latter of which cause damage to the surrounding environment. In order to keep up with beef and soy demand, large-scale agriculture resort to unsustainable practices, the effects of which are more apparent every day.\n\nMany of these unsustainable cultivation practices have sustainable counterparts.\nInstead of using chemical fertilizers and growing homogeneous plots of crops, diverse crops can be planted in various plots while leaving other plots empty. While this isn’t as profitable in the short term, it allows the soil to recover and regain its nutrients and facilitates long-term, sustainable farming.\nInstead of slashing and burning sections of the rainforest to create farmland, the trees can be cut down and the lumber could be used for sustainable housing and building construction. While this takes more effort, it cuts down on a lot of CO2 emissions.\n\nWhile these sustainable methods are more effort and less profitable, they are more viable for the long term and contribute to a healthier rainforest.',
         ctaDescr:
-          'This is a description of the call to action for cultivation.',
-        ctaLink: 'This is the url to the call to action for cultivation.',
-        ctaBtnTxt: 'This is the button text',
+          'You can help combat adverse cultivation practices by becoming informed of healthier practices and spreading the word. Also consider getting involved with the World Wildlife Fund, which has programs for promoting sustainable practices in the Amazon.',
+        ctaLink:
+          'https://www.wwf.org.uk/what-we-do/projects/tackling-unsustainable-practices-amazon',
+        ctaBtnTxt: 'World Wildlife Fund',
         natural: false,
         url: cultivationImg,
       },
       habitation: {
         headerDescr:
-          'Habitation is the construction of living spaces and the dwelling of people in those spaces.',
+          'Habitation is the construction of living spaces in the rainforest.',
         labelDescr:
-          'Human settlements, especially in the Amazon, are disruptive to the native wildlife and usually space must be cleared for their construction.',
-        ctaDescr: 'This is a description of the call to action for habitation.',
-        ctaLink: 'This is the url to the call to action for habitation.',
-        ctaBtnTxt: 'This is the button text',
+          'Human settlements, especially in the Amazon, are disruptive to the native wildlife. To build these habitations, space in the rainforest must be cleared out to make room. In addition to eliminating wildlife habitations, housing construction can also create fragmentation in the rainforest which leads to rainforest die-off.\n\nIn 2014, the Climate Policy Initiative discovered that rural settlements are responsible for roughly 30% of deforestation in the Amazon. The demand for these rural settlements comes in part from Bolsonaro’s incentives to increase gold mining in the Amazon. In order to house the miners that work on extracting gold from the Amazon, small settlements must be created near the mines.\n\nHuman settlements don’t need to be destructive however. There are sustainable construction practices like mindful planning and lumber reuse that can be employed to lessen the impact on the rainforest.',
+        ctaDescr:
+          'The gold mined from the Amazon is consumed in a large part by the electronics industry, as it’s an important metal for creating conductive and rust-resistant electronic parts.\n\nYou can help combat habitation in the Amazon by using your electronics as long as you can. When it is absolutely necessary to replace them, check out the Environmental Protection Agency’s site on electronic donation and recycling to find out how you can recycle your old electronics.',
+        ctaLink:
+          'https://www.epa.gov/recycle/electronics-donation-and-recycling',
+        ctaBtnTxt: 'EPA Electronics Donation and Recycling',
         natural: false,
         url: habitationImg,
       },
@@ -160,7 +163,7 @@ export default class LabelState {
         headerDescr:
           'Roads are paths built through the rainforest from one location to another.',
         labelDescr:
-          'Roads are essential to allow people to transport food, supplies, and themselves around and through the rainforest. Unfortunately, building them has consequences for the health of the rainforest.\n\nUsually, building roads involves clearing out large strips of the rainforest and can disrupt the wildlife. In addition, the existence of roads through the rainforest tends to facilitate further deforestation, since it’s even easier to drive in equipment and drive out lumber.\n\nRoads can also cause habitat fragmentation by breaking up sections of the rainforest into smaller subsections. This fragmentation can cause changes in humidity levels, wind, temperature, and exposure to invasive species and fire which in turn can lead to rainforest die-off.',
+          'Roads are essential to allow people to transport food, supplies, and themselves around and through the rainforest. Unfortunately, building them has consequences for the health of the rainforest.\n\nBuilding roads typically involves clearing out large strips of the rainforest and can disrupt the wildlife. In addition, the existence of roads through the rainforest tends to facilitate further deforestation, since it’s even easier to drive in equipment and drive out lumber.\n\nRoads can also cause habitat fragmentation by breaking up sections of the rainforest into smaller subsections. This fragmentation can cause changes in humidity levels, wind, temperature, and exposure to invasive species and fire which in turn can lead to rainforest die-off.',
         ctaDescr:
           'You can help combat destructive road construction in the Amazon by becoming informed on sustainable road building practices and spreading the word. Conservation.org is a great place to start.',
         ctaLink:
