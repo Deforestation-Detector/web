@@ -41,6 +41,23 @@
     font-weight: 200;
   }
 
+  #aboutShadow {
+    position: fixed;
+    inset: 0;
+
+    opacity: 0;
+
+    pointer-events: none;
+    touch-action: none;
+
+    transition: $transitionIn;
+    transition-duration: 0.2s;
+
+    &.in {
+      opacity: 1;
+    }
+  }
+
   #aboutBack {
     position: fixed;
     right: 5%;
@@ -146,6 +163,9 @@
   .arrowWrapper {
     position: absolute;
     overflow: visible;
+
+    display: none;
+    place-items: center;
 
     transform: translateX(-50%);
 

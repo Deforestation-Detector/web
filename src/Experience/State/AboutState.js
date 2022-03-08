@@ -7,7 +7,6 @@ export default class AboutState {
 
     this.setDomElements();
     this.setEventHandlers();
-
   }
 
   setDomElements() {
@@ -17,6 +16,7 @@ export default class AboutState {
       ...currDomElements,
       learnMore: document.getElementById('learnMore'), //learn more page
       aboutBack: document.getElementById('aboutBack'), //learn more back button
+      aboutShadow: document.getElementById('aboutShadow'),
     };
   }
 
@@ -25,6 +25,18 @@ export default class AboutState {
     this.state.domElements.aboutBack.onclick = () => {
       this.state.viewState.back();
     };
+
+    this.state.domElements.learnMore.addEventListener('scroll', (e) => {
+      let target = e.target;
+
+      if (target === this.state.domElements.learnMore) {
+        if (target.scrollTop > 12.5) {
+          this.state.domElements.aboutShadow.classList.remove('in');
+        } else {
+          this.state.domElements.aboutShadow.classList.add('in');
+        }
+      }
+    });
 
     this.state.on('viewchange', () => {
       let view = this.state.viewState.getView();

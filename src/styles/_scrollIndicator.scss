@@ -1,11 +1,71 @@
 .scroll-shadows {
   background: linear-gradient(#313131 33%, rgba(49, 49, 49, 0)),
     linear-gradient(rgba(49, 49, 49, 0), #313131 66%) 0 100%,
-    radial-gradient(farthest-side at 50% 0, orange 50%, rgba(0, 0, 0, 0)),
-    radial-gradient(farthest-side at 50% 100%, orange 50%, rgba(0, 0, 0, 0)) 0
-      100%;
+    radial-gradient(
+      farthest-side at 50% 0,
+      rgba(255, 166, 0, 0.25) 25%,
+      rgba(0, 0, 0, 0)
+    ),
+    radial-gradient(
+        farthest-side at 50% 100%,
+        rgba(255, 166, 0, 0.25) 25%,
+        rgba(0, 0, 0, 0)
+      )
+      0 100%;
   background-color: #313131;
   background-repeat: no-repeat;
   background-attachment: local, local, scroll, scroll;
   background-size: 100% 45px, 100% 45px, 100% 15px, 100% 15px;
+
+  animation-name: shadowAnimSmall;
+  animation-iteration-count: infinite;
+  animation-duration: 1.5s;
+  animation-timing-function: ease-in-out;
+  animation-direction: alternate;
+}
+
+.scroll-shadows-bottom {
+  background: linear-gradient(rgba(0, 0, 0, 0) 33%, rgba(0, 0, 0, 0)),
+    linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 66%) 0 100%,
+    radial-gradient(
+      farthest-side at 50% 0,
+      rgba(255, 166, 0, 0) 0%,
+      rgba(0, 0, 0, 0)
+    ),
+    radial-gradient(
+        farthest-side at 50% 100%,
+        rgba(255, 166, 0, 0.25) 25%,
+        rgba(0, 0, 0, 0)
+      )
+      0 100%;
+  background-color: rgba(0, 0, 0, 0);
+  background-repeat: no-repeat;
+  background-attachment: local, local, scroll, scroll;
+  background-size: 100% 45px, 100% 45px, 100% 1.5rem, 100% 1.5px;
+
+  animation-name: shadowAnim;
+  animation-iteration-count: infinite;
+  animation-duration: 2s;
+  animation-timing-function: ease-in-out;
+  animation-direction: alternate;
+}
+
+@keyframes shadowAnimSmall {
+  0% {
+    background-size: 100% 45px, 100% 45px, 100% 0.5rem, 100% 0.5rem;
+  }
+
+  100% {
+    background-size: 100% 45px, 100% 45px, 100% 1.5rem, 100% 1.5rem;
+  }
+}
+
+@keyframes shadowAnim {
+  0% {
+    background-size: 100% 45px, 100% 45px, 100% 1.5rem, 100% 1.5rem;
+  }
+
+  100% {
+    background-size: 100% 45px, 100% 45px, 100% 3rem, 100% 3rem;
+  }
 }
