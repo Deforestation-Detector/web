@@ -1,6 +1,8 @@
-# threejs-template
+# Deforestation Detector
 
-Template for vanilla Three.js projects
+[Live App](http://deforestationdetector.com) [![Netlify Status](https://api.netlify.com/api/v1/badges/2d1c5909-9cd5-4d24-8a61-e96fb69918b8/deploy-status)](https://app.netlify.com/sites/cse115-project/deploys)
+
+To install make sure you have [Node.js](https://nodejs.org/en/) installed.
 
 To install dependencies run the following terminal command while in the project
 directory:
