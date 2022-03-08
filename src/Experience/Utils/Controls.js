@@ -179,7 +179,7 @@ export default class Controls {
       v.normalize();
 
       v2.copy(this.position);
-      v2.add(v.multiplyScalar((0.75 * delta) / 16));
+      v2.add(v.multiplyScalar((0.625 * delta) / 16));
       v2.y = 0;
 
       if (v2.length() <= 100.0) {
@@ -193,7 +193,7 @@ export default class Controls {
       v.normalize();
 
       v2.copy(this.position);
-      v2.sub(v.multiplyScalar((0.75 * delta) / 16));
+      v2.sub(v.multiplyScalar((0.625 * delta) / 16));
       v2.y = 0;
 
       if (v2.length() <= 100.0) {
