@@ -734,19 +734,13 @@
   }
 }
 
-// @media (max-width: 1000px) {
-//   #aboutActions {
-//     .ctaWrapper {
-//       display: grid;
-//       place-items: center;
-//       gap: 2.5rem;
-
-//       grid-auto-flow: row;
-//       grid-template-columns: 100%;
-//       grid-auto-rows: aut;
-//     }
-//   }
-// }
+@media (max-width: 768px) {
+  #aboutActions {
+    .ctaWrapper {
+      justify-content: center;
+    }
+  }
+}
 
 @media (max-width: 1000px) {
   .scrollComponent {
