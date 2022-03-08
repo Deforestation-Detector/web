@@ -14,6 +14,8 @@
   grid-template-rows: clamp(75px, 10vh, 120px) clamp(100px, 30vh, 300px) auto auto 1fr;
   grid-template-columns: 1fr min(50%, 750px) min(50%, 750px) 1fr;
 
+  height: auto;
+
   place-items: center;
 
   overflow-x: visible;
@@ -167,6 +169,7 @@
     flex-direction: column;
     align-items: center;
     gap: 1.5rem;
+    margin-bottom: 2rem;
 
     text-align: center;
 
@@ -178,9 +181,12 @@
       max-width: 60ch;
       white-space: pre-line;
     }
+  }
+}
 
-    .ctaBtn {
-    }
+@supports (-moz-appearance: none) {
+  #infoPage .labelDescriptionWrapper .labelDescription {
+    column-count: 2;
   }
 }
 
