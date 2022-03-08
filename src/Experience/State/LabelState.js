@@ -1,10 +1,10 @@
 import Experience from '..';
 // Import image paths
-import agricultureImg from '../../img/labelImages/agriculture.jpeg';
-import cultivationImg from '../../img/labelImages/cultivation.jpeg';
-import habitationImg from '../../img/labelImages/habitation.jpeg';
-import roadImg from '../../img/labelImages/road.jpeg';
-import waterImg from '../../img/labelImages/water.jpeg';
+import agricultureImg from '../../img/labelImages/agriculture.jpg';
+import cultivationImg from '../../img/labelImages/cultivation.jpg';
+import habitationImg from '../../img/labelImages/habitation.jpg';
+import roadImg from '../../img/labelImages/road.jpg';
+import waterImg from '../../img/labelImages/water.jpg';
 
 export default class LabelState {
   constructor() {
