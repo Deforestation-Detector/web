@@ -53,7 +53,6 @@ export default class Controls {
 
         let dx = this.mouse.x - x;
         let dy = this.mouse.y - y;
-        let delta = this.experience.clock.delta;
 
         let dir = Math.abs(dy) - Math.abs(dx);
 
@@ -62,7 +61,7 @@ export default class Controls {
           v.y = 0;
           v.normalize();
 
-          v.multiplyScalar((dy * (this.state.mobile ? 22.5 : 15) * delta) / 16);
+          v.multiplyScalar(dy * (this.state.mobile ? 22.5 : 22));
 
           v2.copy(this.position).add(v);
           v2.y = 0;
@@ -74,8 +73,7 @@ export default class Controls {
         }
 
         if (!this.state.mobile || dir <= 0) {
-          this.rotation.y -=
-            (dx * (this.state.mobile ? 0.35 : 0.75) * delta) / 16;
+          this.rotation.y -= dx * (this.state.mobile ? 0.35 : 0.75);
         }
         this.mouse.set(x, y);
       }
@@ -171,7 +169,7 @@ export default class Controls {
   update() {
     if (this.state.viewState.getView() !== 'exploring') return;
 
-    let delta = this.experience.clock.delta;
+    let delta = this.experience.clock.deltaSum;
 
     if (this.keys.up) {
       v.copy(negZ).applyQuaternion(this.camera.quaternion);
@@ -214,9 +212,9 @@ export default class Controls {
       this.state.domElements.cursor.classList.remove('dragging');
     }
 
-    this.camera.position.lerp(this.position, 0.1);
+    this.camera.position.lerp(this.position, (0.1 * delta) / 16);
 
-    this.lerpedRotation.lerp(this.rotation, 0.1);
+    this.lerpedRotation.lerp(this.rotation, (0.1 * delta) / 16);
     this.camera.rotation.setFromVector3(this.lerpedRotation);
   }
 }

@@ -21,7 +21,7 @@
   overflow-y: auto;
   &,
   * {
-    overflow-x: visible;
+    // overflow-x: visible;
     pointer-events: all;
     touch-action: all;
   }
@@ -77,7 +77,7 @@
   // Info Header stuff
   .infoHeader {
     overflow: visible;
-    height: 100%;
+    height: clamp(100px, 30vh, 300px);
 
     grid-area: header;
 
@@ -111,6 +111,7 @@
       display: flex;
 
       height: 100%;
+      max-width: 90%;
 
       flex-direction: column;
       justify-content: space-evenly;
