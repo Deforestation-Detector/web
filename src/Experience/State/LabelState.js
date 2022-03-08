@@ -1,21 +1,9 @@
 import Experience from '..';
 // Import image paths
 import agricultureImg from '../../img/labelImages/agriculture.jpeg';
-import artisinalMineImg from '../../img/labelImages/artisinal_mine.jpeg';
-import bareGroundImg from '../../img/labelImages/bare_ground.jpeg';
-import bloomingImg from '../../img/labelImages/blooming.jpeg';
-import blowDownImg from '../../img/labelImages/blow_down.jpeg';
-import clearImg from '../../img/labelImages/clear.jpeg';
-import cloudyImg from '../../img/labelImages/cloudy.jpeg';
-import conventionalMineImg from '../../img/labelImages/conventional_mine.jpeg';
 import cultivationImg from '../../img/labelImages/cultivation.jpeg';
 import habitationImg from '../../img/labelImages/habitation.jpeg';
-import hazeImg from '../../img/labelImages/haze.jpeg';
-import partlyCloudyImg from '../../img/labelImages/partly_cloudy.jpeg';
-import primaryImg from '../../img/labelImages/primary.jpeg';
 import roadImg from '../../img/labelImages/road.jpeg';
-import selectiveLoggingImg from '../../img/labelImages/selective_logging.jpeg';
-import slashBurnImg from '../../img/labelImages/slash_burn.jpeg';
 import waterImg from '../../img/labelImages/water.jpeg';
 
 export default class LabelState {
@@ -35,74 +23,6 @@ export default class LabelState {
         ctaBtnTxt: 'World Wildlife Fund',
         natural: false,
         url: agricultureImg,
-      },
-      artisinal_mine: {
-        headerDescr:
-          'This is the header description for the artisinal mine label.',
-        labelDescr:
-          'This is the label description for the artisinal mine label.',
-        ctaDescr: 'This is a description of the call to action.',
-        ctaLink: 'This is the url to the call to action.',
-        ctaBtnTxt: 'This is the button text',
-        natural: false,
-        url: artisinalMineImg,
-      },
-      bare_ground: {
-        headerDescr:
-          'This is the header description for the bare ground label.',
-        labelDescr: 'This is the label description for the bare ground label.',
-        ctaDescr: 'This is a description of the call to action.',
-        ctaLink: 'This is the url to the call to action.',
-        ctaBtnTxt: 'This is the button text',
-        natural: true,
-        url: bareGroundImg,
-      },
-      blooming: {
-        headerDescr: 'This is the header description for the blooming label.',
-        labelDescr: 'This is the label description for the blooming label.',
-        ctaDescr: 'This is a description of the call to action.',
-        ctaLink: 'This is the url to the call to action.',
-        ctaBtnTxt: 'This is the button text',
-        natural: true,
-        url: bloomingImg,
-      },
-      blow_down: {
-        headerDescr: 'This is the header description for the blow down label.',
-        labelDescr: 'This is the label description for the blow down label.',
-        ctaDescr: 'This is a description of the call to action.',
-        ctaLink: 'This is the url to the call to action.',
-        ctaBtnTxt: 'This is the button text',
-        natural: true,
-        url: blowDownImg,
-      },
-      clear: {
-        headerDescr: 'This is the header description for the clear label.',
-        labelDescr: 'This is the label description for the clear label.',
-        ctaDescr: 'This is a description of the call to action.',
-        ctaLink: 'This is the url to the call to action.',
-        ctaBtnTxt: 'This is the button text',
-        natural: true,
-        url: clearImg,
-      },
-      cloudy: {
-        headerDescr: 'This is the header description for the cloudy label.',
-        labelDescr: 'This is the label description for the cloudy label.',
-        ctaDescr: 'This is a description of the call to action.',
-        ctaLink: 'This is the url to the call to action.',
-        ctaBtnTxt: 'This is the button text',
-        natural: true,
-        url: cloudyImg,
-      },
-      conventional_mine: {
-        headerDescr:
-          'This is the header description for the conventional mine label.',
-        labelDescr:
-          'This is the label description for the conventional mine label.',
-        ctaDescr: 'This is a description of the call to action.',
-        ctaLink: 'This is the url to the call to action.',
-        ctaBtnTxt: 'This is the button text',
-        natural: false,
-        url: conventionalMineImg,
       },
       cultivation: {
         headerDescr:
@@ -130,35 +50,6 @@ export default class LabelState {
         natural: false,
         url: habitationImg,
       },
-      haze: {
-        headerDescr: 'This is the header description for the haze label.',
-        labelDescr: 'This is the label description for the haze label.',
-        ctaDescr: 'This is a description of the call to action.',
-        ctaLink: 'This is the url to the call to action.',
-        ctaBtnTxt: 'This is the button text',
-        natural: true,
-        url: hazeImg,
-      },
-      partly_cloudy: {
-        headerDescr:
-          'This is the header description for the partly cloudy label.',
-        labelDescr:
-          'This is the label description for the partly cloudy label.',
-        ctaDescr: 'This is a description of the call to action.',
-        ctaLink: 'This is the url to the call to action.',
-        ctaBtnTxt: 'This is the button text',
-        natural: true,
-        url: partlyCloudyImg,
-      },
-      primary: {
-        headerDescr: 'This is the header description for the primary label.',
-        labelDescr: 'This is the label description for the primary label.',
-        ctaDescr: 'This is a description of the call to action.',
-        ctaLink: 'This is the url to the call to action.',
-        ctaBtnTxt: 'This is the button text',
-        natural: true,
-        url: primaryImg,
-      },
       road: {
         headerDescr:
           'Roads are paths built through the rainforest from one location to another.',
@@ -171,26 +62,6 @@ export default class LabelState {
         ctaBtnTxt: 'Conservation.org',
         natural: false,
         url: roadImg,
-      },
-      selective_logging: {
-        headerDescr:
-          'This is the header description for the selective logging label.',
-        labelDescr:
-          'This is the label description for the selective logging label.',
-        ctaDescr: 'This is a description of the call to action.',
-        ctaLink: 'This is the url to the call to action.',
-        ctaBtnTxt: 'This is the button text',
-        natural: false,
-        url: selectiveLoggingImg,
-      },
-      slash_burn: {
-        headerDescr: 'This is the header description for the slash burn label.',
-        labelDescr: 'This is the label description for the slash burn label.',
-        ctaDescr: 'This is a description of the call to action.',
-        ctaLink: 'This is the url to the call to action.',
-        ctaBtnTxt: 'This is the button text',
-        natural: false,
-        url: slashBurnImg,
       },
       water: {
         headerDescr: 'Water is the life force of the rainforest.',
@@ -255,8 +126,6 @@ export default class LabelState {
         this.state.domElements.infoPage.classList.remove('in');
       }
     });
-
-    // Test Handler for new info page
   }
 
   updateLabel(label) {
