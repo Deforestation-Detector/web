@@ -18,10 +18,10 @@
 
   place-items: center;
 
-  overflow-x: visible;
   overflow-y: auto;
   &,
   * {
+    overflow-x: visible;
     pointer-events: all;
     touch-action: all;
   }

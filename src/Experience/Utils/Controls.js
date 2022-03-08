@@ -46,39 +46,7 @@ export default class Controls {
     });
 
     this.canvas.addEventListener('pointermove', (e) => {
-      if (this.state.cursorState.dragging) {
-        this.state.cursorState.setIntersection(null);
-        let x = (e.clientX / window.innerWidth) * 2.0 - 1.0;
-        let y = (-e.clientY / window.innerHeight) * 2.0 + 1.0;
-
-        let dx = this.mouse.x - x;
-        let dy = this.mouse.y - y;
-        let delta = this.experience.clock.delta;
-
-        let dir = Math.abs(dy) - Math.abs(dx);
-
-        if (true || dir > 0) {
-          v.copy(negZ).applyQuaternion(this.camera.quaternion);
-          v.y = 0;
-          v.normalize();
-
-          v.multiplyScalar((dy * (this.state.mobile ? 22.5 : 15) * delta) / 16);
-
-          v2.copy(this.position).add(v);
-          v2.y = 0;
-
-          if (v2.length() <= 100.0) {
-            v2.y = this.position.y;
-            this.position.copy(v2);
-          }
-        }
-
-        if (!this.state.mobile || dir <= 0) {
-          this.rotation.y -=
-            (dx * (this.state.mobile ? 0.35 : 0.75) * delta) / 16;
-        }
-        this.mouse.set(x, y);
-      }
+      requestAnimationFrame(() => this.handleMouseMove(e));
     });
 
     window.addEventListener('keydown', (e) => {
@@ -159,6 +127,41 @@ export default class Controls {
     });
   }
 
+  handleMouseMove(e) {
+    if (this.state.cursorState.dragging) {
+      this.state.cursorState.setIntersection(null);
+      let x = (e.clientX / window.innerWidth) * 2.0 - 1.0;
+      let y = (-e.clientY / window.innerHeight) * 2.0 + 1.0;
+
+      let dx = this.mouse.x - x;
+      let dy = this.mouse.y - y;
+      let delta = this.experience.clock.delta;
+
+      let dir = Math.abs(dy) - Math.abs(dx);
+
+      if (true || dir > 0) {
+        v.copy(negZ).applyQuaternion(this.camera.quaternion);
+        v.y = 0;
+        v.normalize();
+
+        v.multiplyScalar((dy * (this.state.mobile ? 35 : 60) * delta) / 16);
+
+        v2.copy(this.position).add(v);
+        v2.y = 0;
+
+        if (v2.length() <= 100.0) {
+          v2.y = this.position.y;
+          this.position.copy(v2);
+        }
+      }
+
+      if (!this.state.mobile || dir <= 0) {
+        this.rotation.y -= (dx * (this.state.mobile ? 0.45 : 1.2) * delta) / 16;
+      }
+      this.mouse.set(x, y);
+    }
+  }
+
   handleMouseDown(e) {
     this.state.cursorState.dragging = true;
 
@@ -214,9 +217,9 @@ export default class Controls {
       this.state.domElements.cursor.classList.remove('dragging');
     }
 
-    this.camera.position.lerp(this.position, 0.1);
+    this.camera.position.lerp(this.position, (0.1 * delta) / 16);
 
-    this.lerpedRotation.lerp(this.rotation, 0.1);
+    this.lerpedRotation.lerp(this.rotation, (0.1 * delta) / 16);
     this.camera.rotation.setFromVector3(this.lerpedRotation);
   }
 }
