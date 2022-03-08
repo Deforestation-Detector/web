@@ -53,6 +53,7 @@ export default class Controls {
 
         let dx = this.mouse.x - x;
         let dy = this.mouse.y - y;
+        let delta = this.experience.clock.delta;
 
         let dir = Math.abs(dy) - Math.abs(dx);
 
@@ -61,7 +62,7 @@ export default class Controls {
           v.y = 0;
           v.normalize();
 
-          v.multiplyScalar(dy * (this.state.mobile ? 22.5 : 15));
+          v.multiplyScalar((dy * (this.state.mobile ? 22.5 : 15) * delta) / 16);
 
           v2.copy(this.position).add(v);
           v2.y = 0;
@@ -73,7 +74,8 @@ export default class Controls {
         }
 
         if (!this.state.mobile || dir <= 0) {
-          this.rotation.y -= dx * (this.state.mobile ? 0.35 : 0.75);
+          this.rotation.y -=
+            (dx * (this.state.mobile ? 0.35 : 0.75) * delta) / 16;
         }
         this.mouse.set(x, y);
       }
@@ -169,13 +171,15 @@ export default class Controls {
   update() {
     if (this.state.viewState.getView() !== 'exploring') return;
 
+    let delta = this.experience.clock.delta;
+
     if (this.keys.up) {
       v.copy(negZ).applyQuaternion(this.camera.quaternion);
       v.y = 0;
       v.normalize();
 
       v2.copy(this.position);
-      v2.add(v.multiplyScalar(0.5));
+      v2.add(v.multiplyScalar((0.75 * delta) / 16));
       v2.y = 0;
 
       if (v2.length() <= 100.0) {
@@ -189,7 +193,7 @@ export default class Controls {
       v.normalize();
 
       v2.copy(this.position);
-      v2.sub(v.multiplyScalar(0.5));
+      v2.sub(v.multiplyScalar((0.75 * delta) / 16));
       v2.y = 0;
 
       if (v2.length() <= 100.0) {
@@ -198,10 +202,10 @@ export default class Controls {
       }
     }
     if (this.keys.left) {
-      this.rotation.y += 0.02;
+      this.rotation.y += (0.02 * delta) / 16;
     }
     if (this.keys.right) {
-      this.rotation.y -= 0.02;
+      this.rotation.y -= (0.02 * delta) / 16;
     }
 
     if (Object.values(this.keys).find((val) => val === true)) {
