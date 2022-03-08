@@ -25,7 +25,7 @@ export default class Camera {
       far
     );
 
-    this.instance.position.set(0, 20, 50);
+    this.instance.position.set(0, 30, 60);
     this.instance.rotation.reorder('YXZ');
 
     this.instance.lookAt(0, 0, 10);

@@ -236,7 +236,7 @@ export default class LabelState {
 
     // Event Handler for clicking CTA button
     this.state.domElements.ctaBtn.onclick = () => {
-      window.open(this.state.domElements.ctaBtn.href);
+      // window.open(this.state.domElements.ctaBtn.href);
     };
 
     // Event Handler for handling state change

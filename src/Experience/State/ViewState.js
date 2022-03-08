@@ -8,6 +8,7 @@ export default class ViewState {
     this.state = this.experience.state;
 
     this.#currentView = 'loading';
+    this.lastChange = performance.now() / 1000;
     this.views = ['loading', 'landing', 'exploring', 'about', 'investigate'];
 
     this.setHandlers();
@@ -32,6 +33,8 @@ export default class ViewState {
       return;
     }
 
+    if (performance.now() / 1000 - this.lastChange < 0.5) return;
+
     if (newView === 'exploring') {
       this.state.domElements.content.classList.remove('in');
     } else {
@@ -44,6 +47,7 @@ export default class ViewState {
     this.viewHistory.push(newView);
     this.#currentView = newView;
 
+    this.lastChange = performance.now() / 1000;
     this.experience.state.trigger('viewchange');
   }
 

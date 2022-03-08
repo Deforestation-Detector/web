@@ -7,9 +7,11 @@
   grid-template-areas:
     '.        .      .          .'
     'header   header header     header'
-    '.      ctaText  ctaButtons .';
+    '.      ctaText  ctaText .'
+    '.      ctaBtns  ctaBtns .'
+    '.      .        .       .';
 
-  grid-template-rows: clamp(75px, 10vh, 120px) clamp(100px, 30vh, 300px) auto;
+  grid-template-rows: clamp(75px, 10vh, 120px) clamp(100px, 30vh, 300px) auto auto 1fr;
   grid-template-columns: 1fr min(50%, 750px) min(50%, 750px) 1fr;
 
   place-items: center;
@@ -131,6 +133,8 @@
         font-family: $sans-serif;
         font-weight: 200;
 
+        font-size: clamp(1.3rem, 0.5rem + 1vw, 2.2rem);
+
         z-index: 10;
       }
     }
@@ -138,41 +142,44 @@
 
   .labelDescriptionWrapper {
     grid-area: ctaText;
+    max-width: 90%;
+
+    hr {
+      width: 100%;
+      opacity: 0;
+      margin: 1.5rem 0;
+    }
 
     .labelDescription {
-      width: 45ch;
-      margin-bottom: 15px;
+      columns: 45ch auto;
+      column-rule: 1px solid rgba(255, 255, 255, 0.4);
+      column-gap: 2.5rem;
+      margin: 5rem 0 0;
       font-size: clamp(0.8rem, 0.8rem + 0.25vw, 1.3rem);
       font-weight: 200;
     }
   }
 
   .infoCTA {
-    grid-area: ctaButtons;
+    grid-area: ctaBtns;
 
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    width: 50%;
+    gap: 1.5rem;
 
-    button {
-      margin: 30px 0;
-      background-color: rgba(255, 255, 255, 0);
-      font-family: $sans-serif;
-      font-weight: 200;
-      cursor: pointer;
-      color: white;
-      border: 1px solid white;
-      padding: 1rem 1.5rem;
-      width: fit-content;
-      font-size: 1.125rem;
+    text-align: center;
 
-      transition: background-color 0.2s ease-in-out;
+    h2 {
+      font-size: 2.5rem;
+    }
 
-      &:hover {
-        background-color: rgba(255, 255, 255, 0.1);
-      }
+    .ctaDescr {
+      max-width: 60ch;
+      white-space: pre-line;
+    }
+
+    .ctaBtn {
     }
   }
 }
@@ -183,7 +190,7 @@
       '.'
       'header'
       'ctaText'
-      'ctaButtons';
+      'ctaBtns';
 
     height: auto;
 

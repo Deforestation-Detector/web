@@ -81,6 +81,12 @@ export default class Renderer {
   resize() {
     this.instance.setSize(this.sizes.width, this.sizes.height);
     this.instance.setPixelRatio(this.sizes.pixelRatio);
+
+    // force render on resize if not in render loop
+    let view = this.experience.state.viewState.getView();
+    if (!['exploring', 'loading'].includes(view)) {
+      this.instance.render(this.scene, this.camera.instance);
+    }
   }
 
   update() {
