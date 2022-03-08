@@ -451,7 +451,7 @@
 
       width: clamp(300px, 20%, 350px);
 
-      transform: scale(1);
+      transform: scale(0.95);
 
       transition: transform 0.15s ease-in-out;
 
@@ -501,7 +501,7 @@
 
       &:hover {
         cursor: pointer;
-        transform: scale(0.95);
+        transform: scale(1);
 
         p {
           transform: translateY(0);
