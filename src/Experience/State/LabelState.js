@@ -105,11 +105,6 @@ export default class LabelState {
       this.state.viewState.back();
     };
 
-    // Event Handler for clicking CTA button
-    this.state.domElements.ctaBtn.onclick = () => {
-      // window.open(this.state.domElements.ctaBtn.href);
-    };
-
     // Event Handler for handling state change
     this.state.on('viewchange', () => {
       let view = this.state.viewState.getView();
