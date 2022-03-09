@@ -28,7 +28,6 @@ export default class AboutState {
 
     this.state.domElements.learnMore.addEventListener('scroll', (e) => {
       let target = e.target;
-
       if (target === this.state.domElements.learnMore) {
         if (target.scrollTop > 12.5) {
           this.state.domElements.aboutShadow.classList.remove('in');
