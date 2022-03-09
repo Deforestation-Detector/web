@@ -37,6 +37,7 @@ export default class CursorState {
       cursorWrapper: document.getElementById('cursorWrapper'),
       cursor: document.getElementById('cursor'),
       cursorTextWrapper: document.querySelector('#cursor .wrapper'),
+      learnMoreNav: document.getElementById('learnMoreNavLink'),
     };
   }
 
@@ -113,13 +114,16 @@ export default class CursorState {
   }
 
   handleMouseUp(e) {
+    console.log(e);
     let t = performance.now() / 1000;
     let clicked = t - this.lastMouseDown <= 0.5;
 
     this.state.domElements.cursor.classList.remove('dragging');
 
     if (this.state.viewState.getView() === 'exploring' && clicked) {
-      if (this.#intersecting) {
+      if (e.target === this.state.domElements.learnMoreNav) {
+        this.state.viewState.setView('about');
+      } else if (this.#intersecting) {
         this.state.viewState.setView('investigate');
       }
     }
