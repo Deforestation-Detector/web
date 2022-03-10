@@ -13,7 +13,8 @@
 
   transition: opacity ease-in-out 0.2s;
 
-  &:not(.in) {
+  &:not(.in),
+  &:not(.in) * {
     pointer-events: none;
     touch-action: none;
     opacity: 0;
