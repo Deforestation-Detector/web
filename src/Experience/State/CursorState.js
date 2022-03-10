@@ -114,7 +114,6 @@ export default class CursorState {
   }
 
   handleMouseUp(e) {
-    console.log(e);
     let t = performance.now() / 1000;
     let clicked = t - this.lastMouseDown <= 0.5;
 

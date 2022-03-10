@@ -14,7 +14,7 @@
   grid-template-rows: clamp(75px, 10vh, 120px) clamp(100px, 30vh, 300px) auto auto 1fr;
   grid-template-columns: 1fr min(50%, 750px) min(50%, 750px) 1fr;
 
-  height: auto;
+  height: 100%;
 
   place-items: center;
 
@@ -30,6 +30,12 @@
   &:not(.in) * {
     pointer-events: none;
     touch-action: none;
+  }
+
+  // Hide the scroll bar
+  scrollbar-width: none; // Firefox
+  ::-webkit-scrollbar {
+    display: none; // Chrome, Safari and Opera
   }
 
   .closeBtn {
@@ -146,6 +152,7 @@
   .labelDescriptionWrapper {
     grid-area: ctaText;
     max-width: 90%;
+    overflow: visible;
 
     hr {
       width: 100%;
@@ -166,11 +173,14 @@
   .infoCTA {
     grid-area: ctaBtns;
 
+    max-width: 90%;
+
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 1.5rem;
     margin-bottom: 2rem;
+    overflow: visible;
 
     text-align: center;
 
@@ -199,7 +209,7 @@
       'ctaText'
       'ctaBtns';
 
-    height: auto;
+    height: 100%;
 
     overflow-y: auto;
 

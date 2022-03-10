@@ -113,8 +113,8 @@ export default class LabelState {
         // Update the label
         let element = this.state.cursorState.getIntersection();
         this.updateLabel(element);
-        this.state.domElements.content.scrollTop = 0;
-        this.state.domElements.learnMore.scrollTop = 0;
+        // this.state.domElements.content.scrollTop = 0;
+        this.state.domElements.infoPage.scrollTop = 0;
         // Set the state
         this.state.domElements.backdrop.classList.add('in');
         this.state.domElements.infoPage.classList.add('in');

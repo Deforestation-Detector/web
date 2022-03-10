@@ -79,6 +79,7 @@ svg {
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow-y: hidden;
 
   color: $lightFont;
 
@@ -86,13 +87,8 @@ svg {
 
   transition: $transitionIn;
 
-  &.in {
-    overflow-y: auto;
-  }
-
   &:not(.in) {
     opacity: 0;
-    overflow-y: hidden;
     pointer-events: none;
     touch-action: none;
   }
@@ -197,7 +193,6 @@ canvas {
   pointer-events: all;
   touch-action: all;
 
-
   &:not(.in) {
     opacity: 0;
     pointer-events: none;
@@ -225,9 +220,7 @@ canvas {
 }
 
 @media (max-width: 768px) {
-  #content > *:not(#landing):not(#learnMore):not(canvas) {
+  #content > *:not(#landing):not(#learnMore):not(#infoPage):not(canvas) {
     max-width: 100vw;
-    overflow-y: auto;
   }
 }
-

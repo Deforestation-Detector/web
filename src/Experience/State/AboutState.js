@@ -41,7 +41,7 @@ export default class AboutState {
       let view = this.state.viewState.getView();
 
       if (view === 'about') {
-        this.state.domElements.content.scrollTop = 0;
+        // this.state.domElements.learnMore.scrollTop = 0;
         // this.state.domElements.learnMore.scrollTop = 0;
         this.state.domElements.learnMore.classList.add('in');
       } else {
