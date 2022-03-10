@@ -82,7 +82,7 @@ export default class Terrain {
           });
 
           if (child.name === 'bake1') {
-            child.position.y -= 0.03;
+            // child.position.y -= 0.03;
           }
         }
 
