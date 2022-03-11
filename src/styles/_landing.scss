@@ -17,7 +17,9 @@
   pointer-events: all;
   touch-action: all;
 
-  transition: $transitionIn;
+  &.in {
+    animation: $fadeinAnim;
+  }
 
   h1 {
     font-family: $serif;
@@ -72,9 +74,6 @@
 
   &:not(.in),
   &.exploring {
-    opacity: 0;
-
-    pointer-events: none;
-    touch-action: none;
+    animation: $fadeoutAnim;
   }
 }

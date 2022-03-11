@@ -25,6 +25,18 @@ export default class ViewState {
         this.back();
       }
     });
+
+    document.addEventListener('animationstart', (e) => {
+      if (e.animationName === 'fadein') {
+        e.target.style.width = null;
+      }
+    });
+
+    document.addEventListener('animationend', (e) => {
+      if (e.animationName === 'fadeout') {
+        e.target.style.width = '0px';
+      }
+    });
   }
 
   setView(newView) {

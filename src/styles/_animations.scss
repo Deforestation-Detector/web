@@ -8,4 +8,17 @@
   }
 }
 
+@keyframes fadeout {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
 $transitionIn: opacity ease-in-out 0.5s;
+
+$fadeinAnim: fadein 0.5s ease-in 0s 1 forwards;
+$fadeoutAnim: fadeout 0.5s ease-in 0s 1 forwards;
