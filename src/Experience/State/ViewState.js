@@ -28,13 +28,17 @@ export default class ViewState {
 
     document.addEventListener('animationstart', (e) => {
       if (e.animationName === 'fadein') {
-        e.target.style.width = null;
+        e.target.style.transform = null;
+        e.target.style.touchAction = null;
+        e.target.style.pointerEvents = null;
       }
     });
 
     document.addEventListener('animationend', (e) => {
       if (e.animationName === 'fadeout') {
-        e.target.style.width = '0px';
+        e.target.style.transform = 'translateY(-200vh)';
+        e.target.style.touchAction = 'none';
+        e.target.style.pointerEvents = 'none';
       }
     });
   }
