@@ -42,6 +42,7 @@ export default class State extends EventEmitter {
   setDomElements() {
     this.domElements = {
       content: document.getElementById('content'),
+      loadPage: document.getElementById('loadpage'),
     };
   }
 }

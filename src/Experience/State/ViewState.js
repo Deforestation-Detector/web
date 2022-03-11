@@ -36,9 +36,14 @@ export default class ViewState {
 
     document.addEventListener('animationend', (e) => {
       if (e.animationName === 'fadeout') {
-        e.target.style.transform = 'translateY(-200vh)';
-        e.target.style.touchAction = 'none';
-        e.target.style.pointerEvents = 'none';
+        if (this.state.viewState.getView() === 'exploring') {
+          this.state.domElements.loadPage.style.display = 'none';
+          this.state.domElements.landingPage.style.display = 'none';
+        } else {
+          e.target.style.transform = 'translateY(-200vh)';
+          e.target.style.touchAction = 'none';
+          e.target.style.pointerEvents = 'none';
+        }
       }
     });
   }
