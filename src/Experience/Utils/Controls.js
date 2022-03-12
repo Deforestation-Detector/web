@@ -160,8 +160,8 @@ export default class Controls {
   handleMouseDown(e) {
     this.state.cursorState.dragging = true;
 
-    let x = (e.clientX / this.canvas.width) * 2.0 - 1.0;
-    let y = (-e.clientY / this.canvas.height) * 2.0 + 1.0;
+    let x = (e.clientX / window.innerWidth) * 2.0 - 1.0;
+    let y = (-e.clientY / window.innerHeight) * 2.0 + 1.0;
 
     this.mouse.set(x, y);
   }
