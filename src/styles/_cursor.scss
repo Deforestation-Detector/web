@@ -49,7 +49,7 @@ $cursorSize: clamp(100px, 6vw, 400px);
   &.in {
     opacity: 1;
   }
-
+// Hides cursor while moving
   &.moving:not(.intersecting),
   &.dragging {
     transform: scale(0.5);
@@ -58,7 +58,7 @@ $cursorSize: clamp(100px, 6vw, 400px);
       opacity: 0;
     }
   }
-
+ // Ripple effect when hovering over label
   &.intersecting {
     .ripple {
       animation-name: rippleAnimation;

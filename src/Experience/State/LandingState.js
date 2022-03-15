@@ -20,6 +20,7 @@ export default class LandingState {
     };
   }
 
+  // Handles removing/adding landing pge
   setEventHandlers() {
     this.state.domElements.exploreBtn.onclick = () => {
       this.state.viewState.setView('exploring');

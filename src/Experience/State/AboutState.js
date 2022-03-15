@@ -20,8 +20,8 @@ export default class AboutState {
     };
   }
 
+  // Handles removing/adding about page
   setEventHandlers() {
-    // Event Handler for leaving About
     this.state.domElements.aboutBack.onclick = () => {
       this.state.viewState.back();
     };
@@ -29,7 +29,7 @@ export default class AboutState {
     this.state.domElements.learnMore.addEventListener('scroll', (e) => {
       let target = e.target;
       if (target === this.state.domElements.learnMore) {
-        if (target.scrollTop > 12.5) {
+        if (target.scrollTop > 12.5) { // Finds when we should make shadow dissapear on scroll
           this.state.domElements.aboutShadow.classList.remove('in');
         } else {
           this.state.domElements.aboutShadow.classList.add('in');

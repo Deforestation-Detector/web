@@ -17,6 +17,7 @@
   pointer-events: all;
   touch-action: all;
 
+  // Adds page into view
   &.in {
     animation: $fadeinAnim;
   }
@@ -73,7 +74,7 @@
   }
 
   &:not(.in),
-  &.exploring {
+  &.exploring { // Removes page from view
     animation: $fadeoutAnim;
   }
 }

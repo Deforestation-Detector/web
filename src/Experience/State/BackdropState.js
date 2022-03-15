@@ -18,6 +18,7 @@ export default class BackdropState {
     };
   }
 
+  // Handles removing/adding backdrop
   setHandlers() {
     this.state.on('viewchange', () => {
       let view = this.state.viewState.getView();

@@ -21,6 +21,7 @@ export default class ExploreState {
     };
   }
 
+  // Handles removing/adding exploration experience
   setEventHandlers() {
     this.state.domElements.learnMoreNav.onclick = () => {
       this.state.viewState.setView('about');
