@@ -17,6 +17,7 @@ export default class CursorState {
     this.setText();
   }
 
+  // Sets the intersecting member to the passed ovject if clickable
   setIntersection(obj) {
     if (obj === null || obj instanceof Mesh) {
       this.#intersecting = obj;
@@ -25,10 +26,12 @@ export default class CursorState {
     }
   }
 
+  // Retrieves the intersecting member
   getIntersection() {
     return this.#intersecting;
   }
 
+  // Adds the dom elements required by this js file to the dom elements list
   setDomElements() {
     let currDomElements = this.state.domElements;
 
@@ -41,6 +44,7 @@ export default class CursorState {
     };
   }
 
+  // Initializes the event handlers for the cursor
   setHandlers() {
     document.addEventListener('mousemove', (e) => {
       this.handleMouseMove(e);
@@ -73,6 +77,7 @@ export default class CursorState {
     });
   }
 
+  // Handles mouse movement behavior
   handleMouseMove(e) {
     this.state.domElements.cursorWrapper.style.transform = `translate(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%))`;
 
@@ -107,12 +112,14 @@ export default class CursorState {
     }
   }
 
+  // Handles mouse click behavior
   handleMouseDown(e) {
     if (this.state.viewState.getView() === 'exploring') {
       this.lastMouseDown = performance.now() / 1000;
     }
   }
 
+  // Handles mouse release behavior
   handleMouseUp(e) {
     let t = performance.now() / 1000;
     let clicked = t - this.lastMouseDown <= 0.5;
@@ -128,6 +135,7 @@ export default class CursorState {
     }
   }
 
+  // Handles dom changes when the view state changes
   handleViewChange() {
     let view = this.state.viewState.getView();
 
@@ -137,6 +145,7 @@ export default class CursorState {
       this.state.domElements.cursor.classList.remove('in');
     }
   }
+
 
   handleIntersection() {
     this.state.domElements.cursor.classList.add('intersecting');

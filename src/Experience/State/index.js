@@ -29,6 +29,7 @@ export default class State extends EventEmitter {
     this.setDomElements();
   }
 
+  // Initialize all the view states
   init() {
     this.viewState = new ViewState();
     this.landingState = new LandingState();
@@ -39,6 +40,7 @@ export default class State extends EventEmitter {
     this.cursorState = new CursorState();
   }
 
+  // Initializes the dom element list with the top level required elements
   setDomElements() {
     this.domElements = {
       content: document.getElementById('content'),

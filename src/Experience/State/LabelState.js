@@ -81,6 +81,7 @@ export default class LabelState {
     this.initializeImages();
   }
 
+  // Adds the dom elements required by this js file to the dom elements list
   setDomElements() {
     let currDomElements = this.state.domElements;
 
@@ -99,6 +100,7 @@ export default class LabelState {
     };
   }
 
+  // Initializes the event handlers for the info page.
   setEventHandlers() {
     // Event Handler for clicking on close button
     this.state.domElements.closeBtn.onclick = () => {
@@ -125,6 +127,7 @@ export default class LabelState {
     });
   }
 
+  //Updates the info page with the passed label's information
   updateLabel(label) {
     // Set dom elements to change
     let infoHeaderTitle = this.state.domElements.infoHeaderTitle;
@@ -157,6 +160,7 @@ export default class LabelState {
     document.getElementById(`${label}Img`).classList.add('in');
   }
 
+  // Preloads all the images from the label list and adds them to the layered images element
   initializeImages() {
     for (const label of Object.keys(this.labels)) {
       var labelObj = this.labels[label];

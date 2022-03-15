@@ -16,6 +16,7 @@ export default class ViewState {
     this.viewHistory = ['landing'];
   }
 
+  // Initializes event handlers for the view state
   setHandlers() {
     document.addEventListener('keydown', (e) => {
       if (
@@ -48,6 +49,7 @@ export default class ViewState {
     });
   }
 
+  // Sets the view to the passed view if it exists as a valid view
   setView(newView) {
     if (!this.views.includes(newView)) {
       console.error('Tried to transition to a non-existent view: ', newView);
@@ -83,10 +85,12 @@ export default class ViewState {
     this.setView(lastView);
   }
 
+  // Returns the previous view
   getLastView() {
     return this.viewHistory[this.viewHistory.length - 1];
   }
 
+  // Returns the current view
   getView() {
     return this.#currentView;
   }

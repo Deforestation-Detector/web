@@ -9,6 +9,7 @@ export default class AboutState {
     this.setEventHandlers();
   }
 
+  // Adds the dom elements required by this js file to the dom elements list
   setDomElements() {
     let currDomElements = this.state.domElements;
 
